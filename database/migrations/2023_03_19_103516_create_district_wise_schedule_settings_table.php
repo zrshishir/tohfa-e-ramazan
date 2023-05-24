@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('district_id');
             $table->integer('time_addition_subtraction');
-            $table->integer('am_pm');
+            $table->string('am_pm')->nullable();
             $table->boolean('is_active')->default(false);
             $table->timestamps();
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
@@ -28,8 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('district_wise_schedule_settings', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('district_wise_schedule_settings');
     }
 };
