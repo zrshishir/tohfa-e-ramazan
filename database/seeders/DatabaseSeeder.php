@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         
         // write code to link CountrySeeder to this class
+        // sql query to delete all tables of database
+        
         $this->call([
             CountriesSeeder::class,
             DivisionSeeder::class,

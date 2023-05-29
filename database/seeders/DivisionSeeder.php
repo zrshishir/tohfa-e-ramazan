@@ -15,15 +15,15 @@ class DivisionSeeder extends Seeder
     public function run(): void
     {
         $divisions = [
-            ['name' => 'Dhaka'],
-            ['name' => 'Chittagong'],
-            ['name' => 'Khulna'],
-            ['name' => 'Rajshahi'],
-            ['name' => 'Barisal'],
-            ['name' => 'Sylhet'],
-            ['name' => 'Rangpur'],
+            ['name' => 'Dhaka', 'country_id' => 18],
+            ['name' => 'Chittagong', 'country_id' => 18],
+            ['name' => 'Khulna', 'country_id' => 18],
+            ['name' => 'Rajshahi', 'country_id' => 18],
+            ['name' => 'Barisal', 'country_id' => 18],
+            ['name' => 'Sylhet', 'country_id' => 18],
+            ['name' => 'Rangpur', 'country_id' => 18],
         ];
 
-        DB::table('districts')->insert($divisions);
+        DB::table('divisions')->insert($divisions);
     }
 }
