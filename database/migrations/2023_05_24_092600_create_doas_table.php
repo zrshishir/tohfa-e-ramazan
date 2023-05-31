@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->text('when_not_to_use')->nullable();
             $table->boolean('status')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

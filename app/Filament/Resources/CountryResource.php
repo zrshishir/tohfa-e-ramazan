@@ -23,7 +23,19 @@ class CountryResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('iso')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('name')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('nice_name')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('iso3')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('num_code')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('phone_code')
+                    ->tel()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,12 +43,24 @@ class CountryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('iso'),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('nice_name'),
+                Tables\Columns\TextColumn::make('iso3'),
+                Tables\Columns\TextColumn::make('num_code'),
+                Tables\Columns\TextColumn::make('phone_code'),
+                Tables\Columns\TextColumn::make('deleted_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -58,6 +82,7 @@ class CountryResource extends Resource
         return [
             'index' => Pages\ListCountries::route('/'),
             'create' => Pages\CreateCountry::route('/create'),
+            'view' => Pages\ViewCountry::route('/{record}'),
             'edit' => Pages\EditCountry::route('/{record}/edit'),
         ];
     }    

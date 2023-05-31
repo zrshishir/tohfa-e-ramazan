@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\CountryResource\Pages;
+namespace App\Filament\Resources\CategoryResource\Pages;
 
-use App\Filament\Resources\CountryResource;
+use App\Filament\Resources\CategoryResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditCountry extends EditRecord
+class EditCategory extends EditRecord
 {
-    protected static string $resource = CountryResource::class;
+    protected static string $resource = CategoryResource::class;
 
     protected function getActions(): array
     {

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\CountryResource\Pages;
+namespace App\Filament\Resources\DoaResource\Pages;
 
-use App\Filament\Resources\CountryResource;
+use App\Filament\Resources\DoaResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditCountry extends EditRecord
+class EditDoa extends EditRecord
 {
-    protected static string $resource = CountryResource::class;
+    protected static string $resource = DoaResource::class;
 
     protected function getActions(): array
     {

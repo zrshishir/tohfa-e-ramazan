@@ -6,19 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Blog extends Model
+class RamazanSchedule extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'ramazan_schedules';
     protected $fillable = [
+        'district_id',
+        'roza_no',
         'title',
-        'content',
-        'user_id',
-        'is_published',
-        'published_at'
+        'sehri_time',
+        'iftar_time',
+        'date',
     ];
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
 }

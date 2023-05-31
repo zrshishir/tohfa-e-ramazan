@@ -17,8 +17,9 @@ return new class extends Migration
             $table->integer('time_addition_subtraction');
             $table->string('am_pm')->nullable();
             $table->boolean('is_active')->default(false);
-            $table->timestamps();
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
+            $table->softDeletes();
+            $table->timestamps();
         });
 
     }

@@ -23,7 +23,11 @@ class DivisionResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('country_id')
+                    ->required(),
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -31,12 +35,20 @@ class DivisionResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('country_id'),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('deleted_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -58,6 +70,7 @@ class DivisionResource extends Resource
         return [
             'index' => Pages\ListDivisions::route('/'),
             'create' => Pages\CreateDivision::route('/create'),
+            'view' => Pages\ViewDivision::route('/{record}'),
             'edit' => Pages\EditDivision::route('/{record}/edit'),
         ];
     }    

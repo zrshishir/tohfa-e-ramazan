@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\CountryResource\Pages;
+namespace App\Filament\Resources\DistrictWiseScheduleSettingResource\Pages;
 
-use App\Filament\Resources\CountryResource;
+use App\Filament\Resources\DistrictWiseScheduleSettingResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditCountry extends EditRecord
+class EditDistrictWiseScheduleSetting extends EditRecord
 {
-    protected static string $resource = CountryResource::class;
+    protected static string $resource = DistrictWiseScheduleSettingResource::class;
 
     protected function getActions(): array
     {

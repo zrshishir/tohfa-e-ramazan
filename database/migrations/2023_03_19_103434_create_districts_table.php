@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('division_id');
             $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

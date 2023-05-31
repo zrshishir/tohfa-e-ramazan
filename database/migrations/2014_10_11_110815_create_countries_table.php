@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('iso3')->unique()->nullable();
             $table->string('num_code')->unique()->nullable();
             $table->string('phone_code')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

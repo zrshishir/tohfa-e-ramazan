@@ -4,19 +4,16 @@ namespace App\Filament\Resources\DivisionResource\Pages;
 
 use App\Filament\Resources\DivisionResource;
 use Filament\Pages\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 
-class EditDivision extends EditRecord
+class ViewDivision extends ViewRecord
 {
     protected static string $resource = DivisionResource::class;
 
     protected function getActions(): array
     {
         return [
-            Actions\ViewAction::make(),
-            Actions\DeleteAction::make(),
-            Actions\ForceDeleteAction::make(),
-            Actions\RestoreAction::make(),
+            Actions\EditAction::make(),
         ];
     }
 }

@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('ramazan_schedules', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('district_id')->nullable()->constrained('districts')->onDelete('cascade');
             $table->string('roza_no');
             $table->string('title');
             $table->string('shehri_time');
             $table->string('iftar_time');
             $table->string('day');
             $table->timestamp('date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
