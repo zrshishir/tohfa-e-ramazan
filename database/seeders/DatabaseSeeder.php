@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CountriesSeeder::class,
             DivisionSeeder::class,
-            DistrictSeeder::class
+            DistrictSeeder::class,
+            MonthSeeder::class,
         ]);
     }
 }
