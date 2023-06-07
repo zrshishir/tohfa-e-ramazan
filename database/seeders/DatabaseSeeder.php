@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             DivisionSeeder::class,
             DistrictSeeder::class,
             MonthSeeder::class,
+            PermanentCalendarSeeder::class,
         ]);
     }
 }

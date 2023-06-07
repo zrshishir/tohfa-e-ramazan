@@ -12,7 +12,12 @@ class PermanentCalendarController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'status' => 'success',
+            'status_code' => 200,
+            'message' => 'Permanent Calendar Data',
+            'data' => PermanentCalendar::all(),
+        ]);
     }
 
     /**
