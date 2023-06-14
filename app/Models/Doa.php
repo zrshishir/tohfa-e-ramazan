@@ -15,6 +15,7 @@ class Doa extends Model
 
     protected $fillable = [
         'user_id',
+        'doa_category_id',
         'title',
         'doa_for',
         'description',
@@ -27,4 +28,14 @@ class Doa extends Model
         'when_not_to_use',
         'status'
     ];
+
+    public function doaCategory()
+    {
+        return $this->belongsTo(DoaCategory::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

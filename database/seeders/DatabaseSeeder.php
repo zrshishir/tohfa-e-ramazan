@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\DoaCategory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -29,6 +31,7 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,
             MonthSeeder::class,
             PermanentCalendarSeeder::class,
+            DoaCategorySeeder::class,
         ]);
     }
 }

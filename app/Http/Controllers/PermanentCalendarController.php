@@ -12,11 +12,18 @@ class PermanentCalendarController extends Controller
      */
     public function index()
     {
+        date_default_timezone_set('Asia/Dhaka');
+        $date = date('Y-m-d');
+        $month = date('m', strtotime($date));
+        $day = date('d', strtotime($date));
+
+        $permanentCalendars = PermanentCalendar::where('month_id', '>=', $month)->where('day', '>=', $day)->paginate(30);
+        
         return response()->json([
             'status' => 'success',
             'status_code' => 200,
             'message' => 'Permanent Calendar Data',
-            'data' => PermanentCalendar::all(),
+            'data' => $permanentCalendars,
         ]);
     }
 
