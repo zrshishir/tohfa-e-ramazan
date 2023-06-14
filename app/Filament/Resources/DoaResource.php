@@ -24,6 +24,7 @@ class DoaResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('user_id'),
+                Forms\Components\TextInput::make('doa_category_id'),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
@@ -56,6 +57,7 @@ class DoaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('doa_category_id'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('doa_for'),
                 Tables\Columns\TextColumn::make('description'),
@@ -76,7 +78,7 @@ class DoaResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                //
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -84,8 +86,6 @@ class DoaResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-                Tables\Actions\ForceDeleteBulkAction::make(),
-                Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
     
@@ -105,12 +105,4 @@ class DoaResource extends Resource
             'edit' => Pages\EditDoa::route('/{record}/edit'),
         ];
     }    
-    
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
 }
