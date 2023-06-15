@@ -17,7 +17,8 @@ class PermanentCalendarResource extends Resource
 {
     protected static ?string $model = PermanentCalendar::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar';
+    protected static ?string $navigationGroup = 'Salat Calendar';
 
     public static function form(Form $form): Form
     {

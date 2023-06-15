@@ -18,6 +18,7 @@ class DoaCategoryResource extends Resource
     protected static ?string $model = DoaCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = 'Doa';
 
     public static function form(Form $form): Form
     {
