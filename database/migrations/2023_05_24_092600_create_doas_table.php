@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('arabic_text')->nullable();
             $table->text('bangla_text')->nullable();
             $table->text('english_text')->nullable();
+            $table->text('meaning')->nullable();
             $table->string('reference')->nullable();
             $table->text('when_to_use')->nullable();
             $table->text('notes')->nullable();
