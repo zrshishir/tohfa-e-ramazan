@@ -213,7 +213,7 @@ class CountriesSeeder extends Seeder
             [ 'iso' => 'ZA', 'name' => 'SOUTH AFRICA', 'nice_name' => 'South Africa', 'iso3' => 'ZAF', 'num_code'=>710,'phone_code' => 27],
             [ 'iso' => 'GS', 'name' => 'SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS', 'nice_name' => 'South Georgia and the South Sandwich Islands', 'iso3' => NULL, 'num_code' => NULL, 'phone_code' => 0],
             [ 'iso' => 'ES', 'name' => 'SPAIN', 'nice_name' => 'Spain', 'iso3' => 'ESP', 'num_code' => 724, 'phone_code' => 34],
-            
+
             [ 'iso' => 'LK', 'name' => 'SRI LANKA', 'nice_name' => 'Sri Lanka', 'iso3' => 'LKA', 'num_code' => 144, 'phone_code' => 94],
             [ 'iso' => 'SD', 'name' => 'SUDAN', 'nice_name' => 'Sudan', 'iso3' => 'SDN', 'num_code' => 736, 'phone_code' => 249],
             [ 'iso' => 'SR', 'name' => 'SURINAME', 'nice_name' => 'Suriname', 'iso3' => 'SUR', 'num_code' => 740, 'phone_code' => 597],
@@ -241,7 +241,6 @@ class CountriesSeeder extends Seeder
             [ 'iso' => 'AE', 'name' => 'UNITED ARAB EMIRATES', 'nice_name' => 'United Arab Emirates', 'iso3' => 'ARE', 'num_code' => 784, 'phone_code' => 971],
             [ 'iso' => 'GB', 'name' => 'UNITED KINGDOM', 'nice_name' => 'United Kingdom', 'iso3' => 'GBR', 'num_code' => 826, 'phone_code' => 44],
             [ 'iso' => 'US', 'name' => 'UNITED STATES', 'nice_name' => 'United States', 'iso3' => 'USA', 'num_code' => 840, 'phone_code' => 1]
-            
         ]);
     }
 }

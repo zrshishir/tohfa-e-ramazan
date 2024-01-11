@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        
+
         // write code to link CountrySeeder to this class
         // sql query to delete all tables of database
-        
+
         $this->call([
             CountriesSeeder::class,
             DivisionSeeder::class,
@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             MonthSeeder::class,
             PermanentCalendarSeeder::class,
             DoaCategorySeeder::class,
+            MazhabTableSeeder::class,
         ]);
     }
 }
