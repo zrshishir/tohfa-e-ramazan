@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+    app:
+        container_name: tohfa-e-ramazan
+        hostname: tohfa-e-ramazan
+        build:
+            context: ./
+            target: development
+        restart: unless-stopped
+        volumes:
+            - .:/home/swoole/
+            - /home/swoole/vendor
+            - ./storage:/home/swoole/storage
+            - ./app:/home/swoole/app
+        ports:
+            - 8886:80
+        environment:
+            CHOKIDAR_USEPOLLING: 'true'
+        user: "swoole:swoole"
+        depends_on:
+            - db
+
+    db:
+        image: mariadb:10.6
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: tohfa-e-ramazan
+            MYSQL_USER: root
+            MYSQL_PASSWORD: password
+
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - 8080:80
+        environment:
+            - PMA_ARBITRARY=1

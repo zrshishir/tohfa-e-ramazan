@@ -1,0 +1,44 @@
+name: Laravel Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: laravel
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Compose
+        uses: docker/compose-action@v1
+        with:
+          compose-file: docker-compose.yml
+
+      - name: Install dependencies
+        run: docker-compose run --rm app composer install
+
+      - name: Run database migrations
+        run: docker-compose run --rm app php artisan migrate
+
+      - name: Run tests
+        run: docker-compose run --rm app vendor/bin/phpunit
+git checkout -b "development"
+git push origin development
+git status

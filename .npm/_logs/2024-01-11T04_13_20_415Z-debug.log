@@ -1,0 +1,36 @@
+0 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'run', 'dev' ]
+1 info using npm@7.5.2
+2 info using node@v12.22.12
+3 timing config:load:defaults Completed in 1ms
+4 timing config:load:file:/usr/share/nodejs/npm/npmrc Completed in 2ms
+5 timing config:load:builtin Completed in 2ms
+6 timing config:load:cli Completed in 0ms
+7 timing config:load:env Completed in 1ms
+8 timing config:load:project Completed in 5ms
+9 timing config:load:file:/home/swoole/.npmrc Completed in 1ms
+10 timing config:load:user Completed in 1ms
+11 timing config:load:file:/etc/npmrc Completed in 12ms
+12 timing config:load:global Completed in 12ms
+13 timing config:load:cafile Completed in 0ms
+14 timing config:load:validate Completed in 0ms
+15 timing config:load:setUserAgent Completed in 1ms
+16 timing config:load:setEnvs Completed in 0ms
+17 timing config:load Completed in 23ms
+18 verbose npm-session a5b46d8a6f101801
+19 timing npm:load Completed in 35ms
+20 timing command:run-script Completed in 28ms
+21 verbose stack Error: command failed
+21 verbose stack     at ChildProcess.<anonymous> (/usr/share/nodejs/@npmcli/promise-spawn/index.js:64:27)
+21 verbose stack     at ChildProcess.emit (events.js:314:20)
+21 verbose stack     at maybeClose (internal/child_process.js:1022:16)
+21 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:287:5)
+22 verbose cwd /home/swoole
+23 verbose Linux 5.15.49-linuxkit
+24 verbose argv "/usr/bin/node" "/usr/bin/npm" "run" "dev"
+25 verbose node v12.22.12
+26 verbose npm  v7.5.2
+27 error code 127
+28 error path /home/swoole
+29 error command failed
+30 error command sh -c vite
+31 verbose exit 127

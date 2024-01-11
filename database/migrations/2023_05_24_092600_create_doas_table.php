@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('doas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
-            $table->foreignId('doa_category_id')->nullable()->constrained('doa_categories')->onDelete('cascade');
+            $table->foreignId('user_id')
+                    ->constrained()
+                    ->cascadeOnUpdate();
+            $table->foreignId('doa_category_id')
+                    ->constrained()
+                    ->cascadeOnUpdate();
             $table->string('title');
             $table->string('doa_for');
             $table->text('description')->nullable();

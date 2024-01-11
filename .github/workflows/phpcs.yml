@@ -1,0 +1,36 @@
+name: PHPCS
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 'latest'
+
+      - name: Install dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
+
+      - name: Install Swoole extension
+        run: pecl install swoole
+
+      - name: Enable Swoole extension
+        run: echo "extension=swoole.so" >> ${{ php.ini }}
+
+      - name: Run PHPCS
+        run: vendor/bin/phpcs --standard=PSR2 app/
+
+      # ...

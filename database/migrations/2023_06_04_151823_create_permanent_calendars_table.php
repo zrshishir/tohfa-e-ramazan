@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('permanent_calendars', function (Blueprint $table) {
+       Schema::create('permanent_calendars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('month_id')->constrained('months');
+            $table->foreignId('month_id')
+                    ->constrained()
+                    ->cascadeOnUpdate();
             $table->string('day')->nullable();
             $table->string('sehri_time')->nullable();
             $table->string('fazr_time')->nullable();

@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('doa_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')
+                    ->constrained()
+                    ->cascadeOnDelete();
             $table->string('name');
             $table->timestamps();
         });
