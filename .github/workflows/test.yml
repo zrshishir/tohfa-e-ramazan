@@ -12,30 +12,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: laravel
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+
+      - name: Create Docker network
+        run: docker network create yosuite-network
 
       - name: Set up Docker Compose
-        uses: docker/compose-action@v1
-        with:
-          compose-file: docker-compose.yml
+        run: docker-compose up -d
 
       - name: Install dependencies
-        run: docker-compose run --rm app composer install
+        run: |
+          docker-compose run --rm -u root app composer install
+
+
+      - name: Generate application key
+        run: docker-compose run --rm -u root app php artisan key:generate
 
       - name: Run database migrations
-        run: docker-compose run --rm app php artisan migrate
+        run: docker-compose run --rm -u root app php artisan migrate
+
+      - name: Run module migrations
+        run: docker-compose run --rm -u root app php artisan module:migrate-refresh
+
+      - name: Run seeder
+        run: docker-compose run --rm -u root app php artisan module:seed
 
       - name: Run tests
-        run: docker-compose run --rm app vendor/bin/phpunit
+        run: docker-compose run --rm -u root app vendor/bin/phpunit
+
+      - name: Stop Docker Compose
+        run: docker-compose down
