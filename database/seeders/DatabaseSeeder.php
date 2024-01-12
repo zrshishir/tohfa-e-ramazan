@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             PermanentCalendarSeeder::class,
             DoaCategorySeeder::class,
             MazhabTableSeeder::class,
+            MazhabWiseScheduleSettingSeeder::class,
         ]);
     }
 }
