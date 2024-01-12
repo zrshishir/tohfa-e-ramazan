@@ -1,5 +1,6 @@
-- docker-composer up -d
+- docker-compose up -d
 - docker exec -it tohfa-e-ramazan bash
 - php artisan migrate
 - php artisan make:filament-user
 - php artisan db:seed
+- docker-compose down
