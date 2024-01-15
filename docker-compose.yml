@@ -20,6 +20,8 @@ services:
         user: "swoole:swoole"
         depends_on:
             - db
+        networks:
+            - ramazan
 
     db:
         image: mariadb:10.6
@@ -29,6 +31,9 @@ services:
             MYSQL_DATABASE: tohfa-e-ramazan
             MYSQL_USER: root
             MYSQL_PASSWORD: password
+        command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        networks:
+            - ramazan
 
     phpmyadmin:
         image: phpmyadmin
@@ -37,3 +42,5 @@ services:
             - 8080:80
         environment:
             - PMA_ARBITRARY=1
+        networks:
+            - ramazan
