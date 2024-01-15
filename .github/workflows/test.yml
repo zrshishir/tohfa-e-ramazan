@@ -15,8 +15,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Remove existing network
-        run: docker network rm ramazan
+      # - name: Remove existing network
+      #   run: docker network rm ramazan
 
       - name: Create Docker network
         run: docker network create ramazan
