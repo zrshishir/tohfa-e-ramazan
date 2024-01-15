@@ -26,10 +26,6 @@ jobs:
         run: |
           docker-compose run --rm -u root app composer install
 
-
-      - name: Generate application key
-        run: docker-compose run --rm -u root app php artisan key:generate
-
       - name: Run database migrations
         run: docker-compose run --rm -u root app php artisan migrate
 

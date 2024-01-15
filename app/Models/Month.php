@@ -10,6 +10,7 @@ class Month extends Model
     use HasFactory;
 
     protected $table = 'months';
+
     protected $fillable = [
         'name',
     ];

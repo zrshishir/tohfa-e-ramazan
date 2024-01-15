@@ -18,6 +18,7 @@ class DoaCategoryResource extends Resource
     protected static ?string $model = DoaCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+
     protected static ?string $navigationGroup = 'Doa';
 
     public static function form(Form $form): Form
@@ -53,14 +54,14 @@ class DoaCategoryResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -69,5 +70,5 @@ class DoaCategoryResource extends Resource
             'view' => Pages\ViewDoaCategory::route('/{record}'),
             'edit' => Pages\EditDoaCategory::route('/{record}/edit'),
         ];
-    }    
+    }
 }

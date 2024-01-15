@@ -45,3 +45,25 @@ php artisan migrate:refresh
 php artisan make:filament-user
 php artisan db:seed
 exit
+php artisan make:model Mazhab
+php artisan make:model MazhabWiseScheduleSetting
+php artisan make:filament-resource Mazhab --generate
+php artisan make:filament-resource MazhabWiseScheduleSetting --generate
+exit
+php artisan migrate
+php artisan make:filament-user
+php artisan db:seed
+php artisan make:controller MazhabController
+exit
+php artisan migrate
+php artisan make:filament-user
+php artisan db:seed
+exit
+php artisan migratre
+php artisan migrate
+php artisan make:filament-user
+php artisan db:seed
+php artisan make:migration create_tasbih_table
+php artisan make:seeder TasbihTableSeeder
+php artisan make:filament-resource Tasbih --generate
+exit

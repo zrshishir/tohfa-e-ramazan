@@ -18,6 +18,7 @@ class DistrictResource extends Resource
     protected static ?string $model = District::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+
     protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
@@ -58,14 +59,14 @@ class DistrictResource extends Resource
                 Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -74,8 +75,8 @@ class DistrictResource extends Resource
             'view' => Pages\ViewDistrict::route('/{record}'),
             'edit' => Pages\EditDistrict::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

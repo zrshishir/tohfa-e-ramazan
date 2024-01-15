@@ -18,6 +18,7 @@ class DoaResource extends Resource
     protected static ?string $model = Doa::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+
     protected static ?string $navigationGroup = 'Doa';
 
     public static function form(Form $form): Form
@@ -89,14 +90,14 @@ class DoaResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -105,5 +106,5 @@ class DoaResource extends Resource
             'view' => Pages\ViewDoa::route('/{record}'),
             'edit' => Pages\EditDoa::route('/{record}/edit'),
         ];
-    }    
+    }
 }

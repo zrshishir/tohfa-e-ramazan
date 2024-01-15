@@ -18,6 +18,7 @@ class DistrictWiseScheduleSettingResource extends Resource
     protected static ?string $model = DistrictWiseScheduleSetting::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+
     protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
@@ -64,14 +65,14 @@ class DistrictWiseScheduleSettingResource extends Resource
                 Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -80,8 +81,8 @@ class DistrictWiseScheduleSettingResource extends Resource
             'view' => Pages\ViewDistrictWiseScheduleSetting::route('/{record}'),
             'edit' => Pages\EditDistrictWiseScheduleSetting::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

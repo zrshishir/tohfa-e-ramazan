@@ -18,6 +18,7 @@ class DivisionResource extends Resource
     protected static ?string $model = Division::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+
     protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
@@ -58,14 +59,14 @@ class DivisionResource extends Resource
                 Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -74,8 +75,8 @@ class DivisionResource extends Resource
             'view' => Pages\ViewDivision::route('/{record}'),
             'edit' => Pages\EditDivision::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

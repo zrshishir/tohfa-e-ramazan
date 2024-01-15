@@ -10,6 +10,7 @@ class PermanentCalendar extends Model
     use HasFactory;
 
     protected $table = 'permanent_calendars';
+
     protected $fillable = [
         'sehri_time',
         'fazr_time',
