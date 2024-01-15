@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+      - development
+
 
 jobs:
   app:
@@ -23,13 +22,13 @@ jobs:
         run: docker-compose up -d
 
       - name: Run database migrations
-        run: docker-compose run --rm -u swoole app php artisan migrate
+        run: docker-compose run --rm -u root app php artisan migrate
 
       - name: Run seeder
-        run: docker-compose run --rm -u swoole app php artisan db:seed
+        run: docker-compose run --rm -u root app php artisan db:seed
 
       - name: Run tests
-        run: docker-compose run --rm -u swoole app vendor/bin/phpunit
+        run: docker-compose run --rm -u root app vendor/bin/phpunit
 
       - name: Stop Docker Compose
         run: docker-compose down
