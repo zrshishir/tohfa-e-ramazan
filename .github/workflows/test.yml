@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create Docker network
-        run: docker network create yosuite-network
+        run: docker network create ramazan
 
       - name: Set up Docker Compose
         run: docker-compose up -d
