@@ -67,3 +67,9 @@ php artisan make:migration create_tasbih_table
 php artisan make:seeder TasbihTableSeeder
 php artisan make:filament-resource Tasbih --generate
 exit
+php artisan make:seeder UsersTableSeeder
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+exit

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         // sql query to delete all tables of database
 
         $this->call([
+            UsersTableSeeder::class,
             CountriesSeeder::class,
             DivisionSeeder::class,
             DistrictSeeder::class,
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
             DoaCategorySeeder::class,
             MazhabTableSeeder::class,
             MazhabWiseScheduleSettingSeeder::class,
+            TasbihTableSeeder::class,
         ]);
     }
 }
