@@ -24,11 +24,11 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose up -d
 
-      - name: Run database migrations
-        run: docker-compose run --rm -u root app php artisan migrate --force
+      # - name: Run database migrations
+      #   run: docker-compose run --rm -u root app php artisan migrate --force
 
-      - name: Run seeder
-        run: docker-compose run --rm -u root app php artisan db:seed --force
+      # - name: Run seeder
+      #   run: docker-compose run --rm -u root app php artisan db:seed --force
 
       - name: Run tests
         run: docker-compose run --rm -u root app vendor/bin/phpunit
