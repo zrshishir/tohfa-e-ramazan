@@ -30,9 +30,13 @@ services:
             - 3306:3306
         environment:
             MYSQL_DATABASE: tohfa-e-ramazan
-            MYSQL_USER: root
+            MYSQL_USER: swoole
             MYSQL_PASSWORD: password
             MYSQL_ROOT_PASSWORD: password
+        volumes:
+            - ./mysql:/var/lib/mysql
+        networks:
+            - ramazan
 
     phpmyadmin:
         image: phpmyadmin

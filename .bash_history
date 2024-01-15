@@ -76,3 +76,6 @@ exit
 php artisan migrate:refresh
 php artisan db:seed
 exit
+mysql -uroot -p
+mysql -uroot -p
+exit
