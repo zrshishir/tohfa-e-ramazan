@@ -79,3 +79,8 @@ exit
 mysql -uroot -p
 mysql -uroot -p
 exit
+php artisan migrate
+php artisan migrate:refresh
+php artisan migrate:refresh
+php artisan db:seed
+exit
