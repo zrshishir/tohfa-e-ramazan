@@ -22,10 +22,6 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose up -d
 
-      - name: Install dependencies
-        run: |
-          docker-compose run --rm  app composer install
-
       - name: Run database migrations
         run: docker-compose run --rm  app php artisan migrate
 
