@@ -24,16 +24,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          docker-compose run --rm -u root app composer install
+          docker-compose run --rm  app composer install
 
       - name: Run database migrations
-        run: docker-compose run --rm -u root app php artisan migrate
+        run: docker-compose run --rm  app php artisan migrate
 
       - name: Run seeder
-        run: docker-compose run --rm -u root app php artisan db:seed
+        run: docker-compose run --rm  app php artisan db:seed
 
       - name: Run tests
-        run: docker-compose run --rm -u root app vendor/bin/phpunit
+        run: docker-compose run --rm  app vendor/bin/phpunit
 
       - name: Stop Docker Compose
         run: docker-compose down
