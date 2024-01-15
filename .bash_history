@@ -84,3 +84,6 @@ php artisan migrate:refresh
 php artisan migrate:refresh
 php artisan db:seed
 exit
+php artisan make:model
+php artisan make:model Tasbih
+exit

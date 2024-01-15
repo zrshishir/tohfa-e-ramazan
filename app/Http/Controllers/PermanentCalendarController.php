@@ -18,7 +18,7 @@ class PermanentCalendarController extends Controller
         $day = date('d', strtotime($date));
 
         $permanentCalendars = PermanentCalendar::where('month_id', '>=', $month)->where('day', '>=', $day)->paginate(30);
-        
+
         return response()->json([
             'status' => 'success',
             'status_code' => 200,
