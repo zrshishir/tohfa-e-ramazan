@@ -44,3 +44,7 @@ services:
             - PMA_ARBITRARY=1
         networks:
             - ramazan
+
+networks:
+    ramazan:
+        driver: bridge
