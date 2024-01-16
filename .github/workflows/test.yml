@@ -21,6 +21,9 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose up -d
 
+      - name: Install dependencies
+        run: docker-compose run --rm -u root app composer install
+
       - name: Check MySQL connection
         run: docker-compose exec -t db mysql --user=root --password=password --host=db --execute="SELECT 1;"
 
