@@ -24,10 +24,10 @@ services:
             - ramazan
 
     db:
-        image: mysql:8.0
+        image: mariadb:10.6
         restart: always
         ports:
-            - 3306:3306
+            - "3306:3306"
         environment:
             MYSQL_DATABASE: tohfa-e-ramazan
             MYSQL_USER: swoole
