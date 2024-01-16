@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get("/permanent-calendar", "App\Http\Controllers\PermanentCalendarController@index");
 Route::get('/mazhabs', 'App\Http\Controllers\MazhabController@index');
+Route::get("/tasbih", "App\Http\Controllers\TasbihController@index");

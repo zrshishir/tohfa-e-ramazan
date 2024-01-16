@@ -25,7 +25,14 @@ class TasbihResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('user_id')
+                    ->required(),
+                Forms\Components\TextInput::make('subhanallah'),
+                Forms\Components\TextInput::make('alhamdulillah'),
+                Forms\Components\TextInput::make('allahuakbar'),
+                Forms\Components\TextInput::make('astagfirullah'),
+                Forms\Components\TextInput::make('la_ilaha_illallah'),
+                Forms\Components\TextInput::make('subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem'),
             ]);
     }
 
@@ -33,12 +40,23 @@ class TasbihResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('subhanallah'),
+                Tables\Columns\TextColumn::make('alhamdulillah'),
+                Tables\Columns\TextColumn::make('allahuakbar'),
+                Tables\Columns\TextColumn::make('astagfirullah'),
+                Tables\Columns\TextColumn::make('la_ilaha_illallah'),
+                Tables\Columns\TextColumn::make('subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime(),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -58,6 +76,7 @@ class TasbihResource extends Resource
         return [
             'index' => Pages\ListTasbihs::route('/'),
             'create' => Pages\CreateTasbih::route('/create'),
+            'view' => Pages\ViewTasbih::route('/{record}'),
             'edit' => Pages\EditTasbih::route('/{record}/edit'),
         ];
     }

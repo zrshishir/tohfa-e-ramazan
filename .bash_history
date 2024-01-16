@@ -87,3 +87,31 @@ exit
 php artisan make:model
 php artisan make:model Tasbih
 exit
+php artisan make:controller TasbihController
+php artisan migrate:refresh
+docker-compose down
+exit
+php artisan migrate:refresh
+php artisan db:seed
+exit
+php artisan migrate
+php artisan migrate:refresh
+php artisan db:seed
+exit
+php artisan make:filament-resource Tasbih --generate --view
+exit
+php artisan migrate
+php artisan migrate:refresh
+php artisan db:seed
+exit
+php artisan migrate:refresh
+php artisan db:seed
+php artisan route:list
+exit
+exit
+php artisan make:controller TasbihController -r
+php artisan migrate:refresh
+exit
+php artisan migrate:refresh
+php artisan db:seed
+exit

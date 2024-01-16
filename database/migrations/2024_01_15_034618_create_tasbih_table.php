@@ -18,8 +18,8 @@ return new class extends Migration
             $table->json('alhamdulillah')->nullable();
             $table->json('allahuakbar')->nullable();
             $table->json('astagfirullah')->nullable();
-            $table->json('lailahaillallah')->nullable();
-            $table->json('subhanallahiwalhamdulillahi')->nullable();
+            $table->json('la_ilaha_illallah')->nullable();
+            $table->json('subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem')->nullable();
 
             $table->timestamps();
         });

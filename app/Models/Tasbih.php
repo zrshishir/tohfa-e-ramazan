@@ -11,5 +11,13 @@ class Tasbih extends Model
 
     protected $table = 'tasbih';
 
-    protected $fillable
+    protected $fillable = [
+        'user_id',
+        'subhanallah',
+        'alhamdulillah',
+        'allahuakbar',
+        'astagfirullah',
+        'laillahaillallah',
+        'subhanallahiwalhamdulillahi'
+    ];
 }
