@@ -46,14 +46,7 @@ class TasbihController extends Controller
             'subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem' => 'required',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'status_code' => 400,
-                'message' => 'Validation Error',
-                'errors' => $validator->errors(),
-            ]);
-        }
+        if
 
         $tasbih = Tasbih::create($request->all());
 
