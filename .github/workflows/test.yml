@@ -22,10 +22,10 @@ jobs:
         run: docker-compose up -d
 
       - name: check mysql connection
-        run: docker-compose exec db mysql --user=root --password=password --host "
+        run: docker-compose exec db mysql --user=root --password=password --host=db "
 
       - name: Wait for MySQL to start
-        run: docker-compose exec db mysql --user=root --password=password --host "
+        run: docker-compose exec db mysql --user=root --password=password --host=db "
 
       - name: Run migrations
         run: docker-compose run --rm -u root app php artisan migrate
