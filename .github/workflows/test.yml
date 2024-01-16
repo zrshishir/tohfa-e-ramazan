@@ -6,7 +6,6 @@ on:
       - main
       - development
 
-
 jobs:
   app:
     runs-on: ubuntu-latest
@@ -21,11 +20,9 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose up -d
 
-      - name: check mysql connection
-        run: docker-compose exec db mysql --user=root --password=password --host=db "
-
-      - name: Wait for MySQL to start
-        run: docker-compose exec db mysql --user=root --password=password --host=db "
+      - name: Check MySQL connection
+        run: |
+          docker-compose exec db mysql --user=root --password=password --host=db "SELECT 1;"
 
       - name: Run migrations
         run: docker-compose run --rm -u root app php artisan migrate
@@ -51,5 +48,3 @@ jobs:
         with:
           report_paths: '**/junit.xml'
           fail_on_failure: false
-
-
