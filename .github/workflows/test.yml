@@ -21,11 +21,8 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose up -d
 
-      - name: check mysql connection
-        run: docker-compose exec db mysqladmin --user=root --password=password --host "
-
-      - name: Wait for MySQL to start
-        run: docker-compose exec db mysqladmin --user=root --password=password --host "
+      - name: Check MySQL connection
+        run: docker-compose exec -t db mysql --user=root --password=password --host=db --execute="SELECT 1;"
 
       - name: Run migrations
         env:
@@ -36,7 +33,7 @@ jobs:
         run: docker-compose run --rm -u root app php artisan migrate --force
 
       - name: Run seeder
-        run: docker-compose run --rm -u root app php artisan db:seed
+        run: docker-compose run --rm -u root app php artisan db:seed --force
 
       - name: Run tests
         run: docker-compose run --rm -u root app vendor/bin/phpunit
