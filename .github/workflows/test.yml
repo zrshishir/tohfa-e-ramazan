@@ -25,7 +25,7 @@ jobs:
         run: docker-compose run --rm -u root app composer install
 
       - name: Check MySQL connection
-        run: docker-compose exec -t db mysql --user=root --password=password --host=db --execute="SELECT 1;"
+        run: docker-compose exec -t db mysql --user=swoole --password=password --host=db --execute="SELECT 1;"
 
       - name: Run migrations
         env:
@@ -33,7 +33,7 @@ jobs:
           DB_HOST: db
           DB_PORT: 3306
           DB_DATABASE: tohfa-e-ramazan
-          DB_USERNAME: root
+          DB_USERNAME: swoole
           DB_PASSWORD: password
         run: docker-compose run --rm -u root app php artisan migrate --force
 
