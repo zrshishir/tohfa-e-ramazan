@@ -35,7 +35,34 @@ class TasbihController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate json data
+        $validator = $request->validate([
+            'user_id' => 'required',
+            'subhanallah' => 'required',
+            'alhamdulillah' => 'required',
+            'allahuakbar' => 'required',
+            'astagfirullah' => 'required',
+            'la_ilaha_illallah' => 'required',
+            'subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'status_code' => 400,
+                'message' => 'Validation Error',
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        $tasbih = Tasbih::create($request->all());
+
+        return response()->json([
+            'status' => 'success',
+            'status_code' => 200,
+            'message' => 'Tasbih Data',
+            'data' => $tasbih,
+        ]);
     }
 
     /**
@@ -43,7 +70,15 @@ class TasbihController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // show tasbih data by user id
+        $tasbih = Tasbih::where('user_id', $id)->first();
+
+        return response()->json([
+            'status' => 'success',
+            'status_code' => 200,
+            'message' => 'Tasbih Data',
+            'data' => $tasbih,
+        ]);
     }
 
     /**
@@ -51,7 +86,14 @@ class TasbihController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $tasbih = Tasbih::where('user_id', $id)->first();
+
+        return response()->json([
+            'status' => 'success',
+            'status_code' => 200,
+            'message' => 'Tasbih Data',
+            'data' => $tasbih,
+        ]);
     }
 
     /**
@@ -59,7 +101,35 @@ class TasbihController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // validate json data
+        $validator = $request->validate([
+            'user_id' => 'required',
+            'subhanallah' => 'required',
+            'alhamdulillah' => 'required',
+            'allahuakbar' => 'required',
+            'astagfirullah' => 'required',
+            'la_ilaha_illallah' => 'required',
+            'subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'status_code' => 400,
+                'message' => 'Validation Error',
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        $tasbih = Tasbih::where('user_id', $id)->first();
+        $tasbih->update($request->all());
+
+        return response()->json([
+            'status' => 'success',
+            'status_code' => 200,
+            'message' => 'Tasbih Data',
+            'data' => $tasbih,
+        ]);
     }
 
     /**
@@ -67,6 +137,14 @@ class TasbihController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tasbih = Tasbih::where('user_id', $id)->first();
+        $tasbih->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'status_code' => 200,
+            'message' => 'Tasbih Data',
+            'data' => $tasbih,
+        ]);
     }
 }
