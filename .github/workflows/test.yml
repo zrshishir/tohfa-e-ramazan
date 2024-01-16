@@ -6,6 +6,9 @@ on:
       - main
       - development
 
+permissions:
+  contents: read
+
 jobs:
   app:
     runs-on: ubuntu-latest
@@ -21,8 +24,7 @@ jobs:
         run: docker-compose up -d
 
       - name: Check MySQL connection
-        run: |
-          docker-compose exec db mysql --user=root --password=password --host=db "SELECT 1;"
+        run: docker-compose exec -t db mysql --user=root --password=password --host=db --execute="SELECT 1;"
 
       - name: Run migrations
         run: docker-compose run --rm -u root app php artisan migrate
