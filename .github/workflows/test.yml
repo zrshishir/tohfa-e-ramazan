@@ -15,9 +15,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # - name: Remove existing network
-      #   run: docker network rm ramazan
-
       - name: Create Docker network
         run: docker network create ramazan
 
@@ -38,3 +35,15 @@ jobs:
 
       - name: Stop Docker Compose
         run: docker-compose down
+
+      - name: Remove Docker network
+        run: docker network rm ramazan
+
+      - name: Publish test report
+        uses: mikepenz/action-junit-report@v2
+        if: always()
+        with:
+          report_paths: '**/junit.xml'
+          fail_on_failure: false
+
+
