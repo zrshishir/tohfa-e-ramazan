@@ -6,8 +6,6 @@ on:
       - main
       - development
 
-permissions:
-  contents: read
 
 jobs:
   app:
@@ -23,11 +21,19 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose up -d
 
-      - name: Check MySQL connection
-        run: docker-compose exec -t db mysql --user=root --password=password --host=db --execute="SELECT 1;"
+      - name: check mysql connection
+        run: docker-compose exec db mysqladmin --user=root --password=password --host "
+
+      - name: Wait for MySQL to start
+        run: docker-compose exec db mysqladmin --user=root --password=password --host "
 
       - name: Run migrations
-        run: docker-compose run --rm -u root app php artisan migrate
+        env:
+          DB_HOST: db
+          DB_DATABASE: tohfa-e-ramazan
+          DB_USERNAME: root
+          DB_PASSWORD: password
+        run: docker-compose run --rm -u root app php artisan migrate --force
 
       - name: Run seeder
         run: docker-compose run --rm -u root app php artisan db:seed
@@ -43,10 +49,3 @@ jobs:
 
       - name: Remove Docker network
         run: docker network rm ramazan
-
-      - name: Publish test report
-        uses: mikepenz/action-junit-report@v2
-        if: always()
-        with:
-          report_paths: '**/junit.xml'
-          fail_on_failure: false
