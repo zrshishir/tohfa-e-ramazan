@@ -17,15 +17,19 @@ class PermanentCalendarController extends Controller
         $month = date('m', strtotime($date));
         $day = date('d', strtotime($date));
 
-
-
+        $mazhabId = 1;
+        $mazhabSetting = MazhabSetting::where('mazhab_id', $mazhabId)->first();
         $permanentCalendars = PermanentCalendar::where('month_id', '>=', $month)->where('day', '>=', $day)->paginate(30);
+
 
         return response()->json([
             'status' => 'success',
             'status_code' => 200,
             'message' => 'Permanent Calendar Data',
-            'data' => $permanentCalendars,
+            'data' => [
+                'mazhab_setting' => $mazhabSetting,
+                'permanent_calendars' => $permanentCalendars,
+            ]
         ]);
     }
 

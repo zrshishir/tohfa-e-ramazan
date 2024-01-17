@@ -46,9 +46,14 @@ class TasbihController extends Controller
             'subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem' => 'required',
         ]);
 
-        if
 
-        $tasbih = Tasbih::create($request->all());
+        $tasbih = Tasbih::where('user_id', $request->user_id)->first();
+
+        if ($tasbih) {
+            $tasbih->update($request->all());
+        } else {
+            $tasbih = Tasbih::create($request->all());
+        }
 
         return response()->json([
             'status' => 'success',

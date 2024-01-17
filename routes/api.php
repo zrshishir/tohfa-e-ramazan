@@ -21,5 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("/permanent-calendar", "App\Http\Controllers\PermanentCalendarController@index");
 Route::get('/mazhabs', 'App\Http\Controllers\MazhabController@index');
 
-Route::get("/tasbih", "App\Http\Controllers\TasbihController@index");
-Route::post("/tasbih", "App\Http\Controllers\TasbihController@store");
+// write tasbih routes here
+Route::get('/tasbih', 'App\Http\Controllers\TasbihController@index');
+Route::post('/tasbih', 'App\Http\Controllers\TasbihController@store');
+Route::put('/tasbih', 'App\Http\Controllers\TasbihController@update');
+Route::delete('/tasbih', 'App\Http\Controllers\TasbihController@destroy');
+// route to show
+Route::get('/tasbih/{id}', 'App\Http\Controllers\TasbihController@show');
