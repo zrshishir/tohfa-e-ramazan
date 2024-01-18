@@ -31,6 +31,6 @@ Route::get('/tasbih/{id}', 'App\Http\Controllers\TasbihController@show');
 // write doa category routes here
 Route::get('/doa-category', 'App\Http\Controllers\DoaCategoryController@index');
 // write doa routes here
-Route::get('/doa/{category_id}', 'App\Http\Controllers\DoaController@index');
+Route::get('/doa', 'App\Http\Controllers\DoaController@index');
 // route to show
-Route::get('/doa/{id}', 'App\Http\Controllers\DoaController@show');
+// Route::get('/doa', 'App\Http\Controllers\DoaController@show');

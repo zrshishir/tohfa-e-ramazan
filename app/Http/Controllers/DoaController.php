@@ -8,9 +8,9 @@ use App\Models\Doa;
 class DoaController extends Controller
 {
     // write all methods for restful api
-    public function index($category_id)
+    public function index()
     {
-        $doas = Doa::where('category_id', $category_id)->get();
+        $doas = Doa::all();
 
         return response()->json([
             'success' => true,
