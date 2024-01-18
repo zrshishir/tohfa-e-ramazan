@@ -28,3 +28,9 @@ Route::put('/tasbih', 'App\Http\Controllers\TasbihController@update');
 Route::delete('/tasbih', 'App\Http\Controllers\TasbihController@destroy');
 // route to show
 Route::get('/tasbih/{id}', 'App\Http\Controllers\TasbihController@show');
+// write doa category routes here
+Route::get('/doa-category', 'App\Http\Controllers\DoaCategoryController@index');
+// write doa routes here
+Route::get('/doa/{category_id}', 'App\Http\Controllers\DoaController@index');
+// route to show
+Route::get('/doa/{id}', 'App\Http\Controllers\DoaController@show');

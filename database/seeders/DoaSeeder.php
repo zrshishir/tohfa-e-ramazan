@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DoaSeeder extends Seeder
 {
@@ -148,6 +149,22 @@ class DoaSeeder extends Seeder
                 'notes' => 'সালাতের দোয়া',
                 'when_not_to_use' => '',
             ],
+
+            [
+                'user_id' => 1,
+                'title' => 'দোয়া কুনুত',
+                'doa_category_id' => 1,
+                'doa_for' => 'দোয়া কুনুত',
+                'description' => 'দোয়া কুনুত',
+                'arabic_text' => 'اللَّهُمَّ إِنَّا نَسْتَعِينُكَ وَنَسْتَغْفِرُكَ وَنُؤْمِنُ بِكَ وَنَتَوَكَّلُ عَلَيْكَ وَنُثْنِئْ عَلَيْكَ الْخَيْرَ وَنَشْكُرُكَ وَلَا نَكْفُرُكَ وَنَخْلَعُ وَنَتْرُكُ مَنْ يَفْجُرُكَ اللَّهُمَّ إِيَّاكَ نَعْبُدُ وَلَكَ نُصَلِّي وَنَسْجُدُ وَإِلَيْكَ نَسْعَى وَنَحْفِدُ وَنَرْجُو رَحْمَتَكَ وَنَخْشَى عَذَابَكَ إِنَّ عَذَابَكَ بِالْكُفَّارِ مُلْحِقٌ',
+                'bangla_text' => 'আল্লাহুম্মা ইন্না নাসতা’ইনুকা ওয়া নাস্তাগফিরুকা ওয়া নুমিনু বিকা ওয়া নাতাওয়াক্কালু ‘আলাইকা ওয়া নুসনী ‘আলাইকাল খায়রা ওয়া নাশকুরুকা ওয়া লা নাকফুরুকা ওয়া নাখলা’উ ওয়া নাতরুকু মান ইয়াফজুরুকা আল্লাহুম্মা ইয়ায়্যা কা না’বুদু ওয়া লাকা নুসাল্লী ওয়া নাসজুদু ওয়া ইলাইকা নাস’আ ওয়া নাহফিদু ওয়া নারজু রাহমাতাকা ওয়া নাখশা ‘আযাবাকা ইন্না ‘আযাবাকা বিল কুফফারি মুলহিক',
+                'english_text' => 'Allahumma inna nastainuka wa nastaghfiruka wa nu’minu bika wa natawakkalu ‘alaika wa nuthni ‘alaikal khairi wa nashkuruka wa la nakfuruka wa nakhla’u wa natruku mai yafjuruka. Allahumma iyyaka na’budu wa laka nusalli wa nasjudu wa ilaika nas’a wa nahfidu wa narju rahmataka wa nakhsha ‘azabaka inna ‘azabaka bil kuffari mulhik.',
+                'meaning' => 'হে আল্লাহ! আমরা আপনার সাহায্য চাই, আপনার ক্ষমা চাই, আপনার বিশ্বাস করি, আপনার উপর আশ্রয় করি, আপনার উপর ভালোবাসা করি, আপনার উপর কৃতজ্ঞতা প্রকাশ করি, আপনার উপর অস্ত্রাণ্য করি, আপনার উপর ভরসা করি, আপনার রহমত প্রতীক্ষা করি এবং আপনার আযাব থেকে ভয় পাই। নিশ্চয়ই আপনার আযাব কাফেরদের জন্য অবসান হবে।',
+                'reference' => 'সহীহ বুখারী, হাদিস নং ১১৩৩',
+                'when_to_use' => 'সালাতের শেষে এই দোয়াটি পাঠ করতে হয়।',
+                'notes' => 'সালাতের দোয়া',
+                'when_not_to_use' => '',
+            ],
             [
                 'user_id' => 1,
                 'doa_category_id' => 1,
@@ -165,5 +182,7 @@ class DoaSeeder extends Seeder
             ]
 
         ];
+
+        DB::table('doas')->insert($doas);
     }
 }
