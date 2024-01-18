@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PermanentCalendar;
 use Illuminate\Http\Request;
+use App\Models\MazhabWiseScheduleSetting;
 
 class PermanentCalendarController extends Controller
 {
@@ -18,8 +19,9 @@ class PermanentCalendarController extends Controller
         $day = date('d', strtotime($date));
 
         $mazhabId = 1;
-        $mazhabSetting = MazhabSetting::where('mazhab_id', $mazhabId)->first();
-        $permanentCalendars = PermanentCalendar::where('month_id', '>=', $month)->where('day', '>=', $day)->paginate(30);
+        $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
+        // $permanentCalendars = PermanentCalendar::where('month_id', '>=', $month)->where('day', '>=', $day)->paginate(30);
+        $permanentCalendars = PermanentCalendar::get();
 
 
         return response()->json([

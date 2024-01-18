@@ -118,3 +118,18 @@ exit
 php artisan migrate:refresh
 php artisan db:seed
 exit
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+exit
