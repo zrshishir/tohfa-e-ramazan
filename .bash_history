@@ -145,3 +145,28 @@ php artisan db:seed
 php artisan make:controller DoaCategoryController
 php artisan make:controller DoaController
 exit
+php artisan make:migration create_suras_table
+php artisan make:model Sura -rc
+php artisan make:seeder SuraTableSeeder
+php artisan make:filament resource Sura --generate
+php artisan make:filament-resource Sura --generate
+php artisan make:migration create_ayats_table
+php artisan make:model Ayat -rc
+php artisan make:seeder AyatTableSeeder
+exit
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+php artisan migrate:refresh
+php artisan db:seed
+exit
+php artisan make:filament-resource Sura --generate
+php artisan migrate:refresh
+php artisan make:filament-resource Sura --generate
+php artisan db:seed
+exit
+php artisan make:filament-resource Ayat --generate
+exit

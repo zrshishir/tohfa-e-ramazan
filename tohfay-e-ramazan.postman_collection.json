@@ -1,0 +1,674 @@
+{
+	"info": {
+		"_postman_id": "963dea26-f2b7-4fd1-9b00-012db9c920fc",
+		"name": "tohfay-e-ramazan",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1711936",
+		"_collection_link": "https://yosuite.postman.co/workspace/codetochill~23db4421-39f1-4e32-8a8f-a4616c235f98/collection/1711936-963dea26-f2b7-4fd1-9b00-012db9c920fc?action=share&source=collection_link&creator=1711936"
+	},
+	"item": [
+		{
+			"name": "tohfa-e-ramazan",
+			"item": [
+				{
+					"name": "mazhab",
+					"item": [
+						{
+							"name": "mazhabs",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "month_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "day",
+											"value": "12",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/mazhabs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"mazhabs"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "month_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "day",
+													"value": "12",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/mazhabs",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"mazhabs"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 14 Jan 2024 02:58:44 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-Ratelimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-Ratelimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Server",
+											"value": "swoole-http-server"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Length",
+											"value": "155"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"status_code\": 200,\n    \"message\": \"Mazhab Data\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Hanafi\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Shafi\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Maliki\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Hanbali\",\n            \"created_at\": null,\n            \"updated_at\": null\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "permanent-calendar",
+					"item": [
+						{
+							"name": "permanent-calendar",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "month_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "day",
+											"value": "13",
+											"type": "text"
+										},
+										{
+											"key": "mazhab_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/permanent-calendar",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"permanent-calendar"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "month_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "day",
+													"value": "13",
+													"type": "text"
+												},
+												{
+													"key": "mazhab_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/permanent-calendar",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"permanent-calendar"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 17 Jan 2024 17:03:56 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-Ratelimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-Ratelimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Server",
+											"value": "swoole-http-server"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Length",
+											"value": "852"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"status_code\": 200,\n    \"message\": \"Permanent Calendar Data\",\n    \"data\": {\n        \"mazhab_setting\": {\n            \"id\": 1,\n            \"mazhab_id\": 1,\n            \"sehri_time\": 15,\n            \"fazr_time\": 15,\n            \"ishraq_time\": 15,\n            \"johr_time\": 15,\n            \"asr_time\": 15,\n            \"magrib_time\": 15,\n            \"iftar_time\": 15,\n            \"esha_time\": 15,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        \"permanent_calendars\": [\n            {\n                \"id\": 1,\n                \"month_id\": 1,\n                \"day\": \"01\",\n                \"sehri\": \"{\\\"text_ar\\\": \\\"سحري\\\", \\\"text_bn\\\": \\\"সেহরী\\\", \\\"text_en\\\": \\\"Sehri\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"fazr\": \"{\\\"text_ar\\\": \\\"فجر\\\", \\\"text_bn\\\": \\\"ফজর\\\", \\\"text_en\\\": \\\"Fazr\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"sunrise\": \"{\\\"text_ar\\\": \\\"شروق الشمس\\\", \\\"text_bn\\\": \\\"সূর্যোদয়\\\", \\\"text_en\\\": \\\"Sunrise\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"ishraq\": \"{\\\"text_ar\\\": \\\"إشراق\\\", \\\"text_bn\\\": \\\"ইশরাক\\\", \\\"text_en\\\": \\\"Ishraq\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"johr\": \"{\\\"text_ar\\\": \\\"جوهر\\\", \\\"text_bn\\\": \\\"জোহর\\\", \\\"text_en\\\": \\\"Johr\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"asr\": \"{\\\"text_ar\\\": \\\"عصر\\\", \\\"text_bn\\\": \\\"আসর\\\", \\\"text_en\\\": \\\"Asr\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"magrib\": \"{\\\"text_ar\\\": \\\"مغرب\\\", \\\"text_bn\\\": \\\"মাগরিব\\\", \\\"text_en\\\": \\\"Magrib\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"esha\": \"{\\\"text_ar\\\": \\\"عشاء\\\", \\\"text_bn\\\": \\\"ঈশা\\\", \\\"text_en\\\": \\\"Esha\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"tahazzud\": \"{\\\"text_ar\\\": \\\"تهجد\\\", \\\"text_bn\\\": \\\"তাহাজ্জুদ\\\", \\\"text_en\\\": \\\"Tahazzud\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"jummah\": \"{\\\"text_ar\\\": \\\"جمعة\\\", \\\"text_bn\\\": \\\"জুম্মা\\\", \\\"text_en\\\": \\\"Jummah\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"forbidden\": \"{\\\"text_ar\\\": \\\"وقت محظور\\\", \\\"text_bn\\\": \\\"নিষিদ্ধ সময়\\\", \\\"text_en\\\": \\\"Forbidden Time\\\", \\\"end_time\\\": \\\"05:16 AM\\\", \\\"start_time\\\": \\\"05:16 AM\\\"}\",\n                \"created_at\": null,\n                \"updated_at\": null\n            },\n            {\n                \"id\": 2,\n                \"month_id\": 1,\n                \"day\": \"02\",\n                \"sehri\": \"{\\\"text_ar\\\": \\\"سحري\\\", \\\"text_bn\\\": \\\"সেহরী\\\", \\\"text_en\\\": \\\"Sehri\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"fazr\": \"{\\\"text_ar\\\": \\\"فجر\\\", \\\"text_bn\\\": \\\"ফজর\\\", \\\"text_en\\\": \\\"Fazr\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"sunrise\": \"{\\\"text_ar\\\": \\\"شروق الشمس\\\", \\\"text_bn\\\": \\\"সূর্যোদয়\\\", \\\"text_en\\\": \\\"Sunrise\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"ishraq\": \"{\\\"text_ar\\\": \\\"إشراق\\\", \\\"text_bn\\\": \\\"ইশরাক\\\", \\\"text_en\\\": \\\"Ishraq\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"johr\": \"{\\\"text_ar\\\": \\\"جوهر\\\", \\\"text_bn\\\": \\\"জোহর\\\", \\\"text_en\\\": \\\"Johr\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"asr\": \"{\\\"text_ar\\\": \\\"عصر\\\", \\\"text_bn\\\": \\\"আসর\\\", \\\"text_en\\\": \\\"Asr\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"magrib\": \"{\\\"text_ar\\\": \\\"مغرب\\\", \\\"text_bn\\\": \\\"মাগরিব\\\", \\\"text_en\\\": \\\"Magrib\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"esha\": \"{\\\"text_ar\\\": \\\"عشاء\\\", \\\"text_bn\\\": \\\"ঈশা\\\", \\\"text_en\\\": \\\"Esha\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"tahazzud\": \"{\\\"text_ar\\\": \\\"تهجد\\\", \\\"text_bn\\\": \\\"তাহাজ্জুদ\\\", \\\"text_en\\\": \\\"Tahazzud\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"jummah\": \"{\\\"text_ar\\\": \\\"جمعة\\\", \\\"text_bn\\\": \\\"জুম্মা\\\", \\\"text_en\\\": \\\"Jummah\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"forbidden\": \"{\\\"text_ar\\\": \\\"وقت محظور\\\", \\\"text_bn\\\": \\\"নিষিদ্ধ সময়\\\", \\\"text_en\\\": \\\"Forbidden Time\\\", \\\"end_time\\\": \\\"05:17 AM\\\", \\\"start_time\\\": \\\"05:17 AM\\\"}\",\n                \"created_at\": null,\n                \"updated_at\": null\n            },\n            {\n                \"id\": 3,\n                \"month_id\": 1,\n                \"day\": \"03\",\n                \"sehri\": \"{\\\"text_ar\\\": \\\"سحري\\\", \\\"text_bn\\\": \\\"সেহরী\\\", \\\"text_en\\\": \\\"Sehri\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"fazr\": \"{\\\"text_ar\\\": \\\"فجر\\\", \\\"text_bn\\\": \\\"ফজর\\\", \\\"text_en\\\": \\\"Fazr\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"sunrise\": \"{\\\"text_ar\\\": \\\"شروق الشمس\\\", \\\"text_bn\\\": \\\"সূর্যোদয়\\\", \\\"text_en\\\": \\\"Sunrise\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"ishraq\": \"{\\\"text_ar\\\": \\\"إشراق\\\", \\\"text_bn\\\": \\\"ইশরাক\\\", \\\"text_en\\\": \\\"Ishraq\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"johr\": \"{\\\"text_ar\\\": \\\"جوهر\\\", \\\"text_bn\\\": \\\"জোহর\\\", \\\"text_en\\\": \\\"Johr\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"asr\": \"{\\\"text_ar\\\": \\\"عصر\\\", \\\"text_bn\\\": \\\"আসর\\\", \\\"text_en\\\": \\\"Asr\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"magrib\": \"{\\\"text_ar\\\": \\\"مغرب\\\", \\\"text_bn\\\": \\\"মাগরিব\\\", \\\"text_en\\\": \\\"Magrib\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"esha\": \"{\\\"text_ar\\\": \\\"عشاء\\\", \\\"text_bn\\\": \\\"ঈশা\\\", \\\"text_en\\\": \\\"Esha\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"tahazzud\": \"{\\\"text_ar\\\": \\\"تهجد\\\", \\\"text_bn\\\": \\\"তাহাজ্জুদ\\\", \\\"text_en\\\": \\\"Tahazzud\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"jummah\": \"{\\\"text_ar\\\": \\\"جمعة\\\", \\\"text_bn\\\": \\\"জুম্মা\\\", \\\"text_en\\\": \\\"Jummah\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"forbidden\": \"{\\\"text_ar\\\": \\\"وقت محظور\\\", \\\"text_bn\\\": \\\"নিষিদ্ধ সময়\\\", \\\"text_en\\\": \\\"Forbidden Time\\\", \\\"end_time\\\": \\\"05:18 AM\\\", \\\"start_time\\\": \\\"05:18 AM\\\"}\",\n                \"created_at\": null,\n                \"updated_at\": null\n            }\n        ]\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "tasbih",
+					"item": [
+						{
+							"name": "tasbih",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/tasbih",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasbih"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/tasbih",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"tasbih"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 16 Jan 2024 19:53:23 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-Ratelimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-Ratelimit-Remaining",
+											"value": "57"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Server",
+											"value": "swoole-http-server"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Length",
+											"value": "655"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"status_code\": 200,\n    \"message\": \"Tasbih Data\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"subhanallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহ\\\", \\\"text_en\\\": \\\"Subhanallah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"alhamdulillah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الحمد لله\\\", \\\"text_bn\\\": \\\"আলহামদুলিল্লাহ\\\", \\\"text_en\\\": \\\"Alhamdulillah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"allahuakbar\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الله أكبر\\\", \\\"text_bn\\\": \\\"আল্লাহু আকবর\\\", \\\"text_en\\\": \\\"Allahuakbar\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"astagfirullah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"أستغفر الله\\\", \\\"text_bn\\\": \\\"আস্তাগফিরুল্লাহ\\\", \\\"text_en\\\": \\\"Astagfirullah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"la_ilaha_illallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"لا إله إلا الله\\\", \\\"text_bn\\\": \\\"লা ইলাহা ইল্লাল্লাহ\\\", \\\"text_en\\\": \\\"La-ila-ha illallah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله وبحمده، سبحان الله العظيم\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহি ও বিহামদিহি, সুবহানআল্লাহি লা ইলাহা ইল্লাল্লাহু আল আজিম\\\", \\\"text_en\\\": \\\"Subhanallahi Wabihamdihi Wa Subhanallahili Azeem\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"created_at\": null,\n        \"updated_at\": null\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "store tasbih",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "subhanallah",
+											"value": " \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহ\\\", \\\"text_en\\\": \\\"Subhanallah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\"",
+											"type": "text"
+										},
+										{
+											"key": "alhamdulillah",
+											"value": " \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الحمد لله\\\", \\\"text_bn\\\": \\\"আলহামদুলিল্লাহ\\\", \\\"text_en\\\": \\\"Alhamdulillah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\"",
+											"type": "text"
+										},
+										{
+											"key": "allahuakbar",
+											"value": " \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الله أكبر\\\", \\\"text_bn\\\": \\\"আল্লাহু আকবর\\\", \\\"text_en\\\": \\\"Allahuakbar\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\"",
+											"type": "text"
+										},
+										{
+											"key": "astagfirullah",
+											"value": " \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"أستغفر الله\\\", \\\"text_bn\\\": \\\"আস্তাগফিরুল্লাহ\\\", \\\"text_en\\\": \\\"Astagfirullah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",",
+											"type": "text"
+										},
+										{
+											"key": "la_ilaha_illallah",
+											"value": " \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"لا إله إلا الله\\\", \\\"text_bn\\\": \\\"লা ইলাহা ইল্লাল্লাহ\\\", \\\"text_en\\\": \\\"La-ila-ha illallah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\"",
+											"type": "text"
+										},
+										{
+											"key": "subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem",
+											"value": " \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله وبحمده، سبحان الله العظيم\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহি ও বিহামদিহি, সুবহানআল্লাহি লা ইলাহা ইল্লাল্লাহু আল আজিম\\\", \\\"text_en\\\": \\\"Subhanallahi Wabihamdihi Wa Subhanallahili Azeem\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\"",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/tasbih",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"tasbih"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/tasbih",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"tasbih"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 16 Jan 2024 19:53:23 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-Ratelimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-Ratelimit-Remaining",
+											"value": "57"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Server",
+											"value": "swoole-http-server"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Length",
+											"value": "655"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"status_code\": 200,\n    \"message\": \"Tasbih Data\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"subhanallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহ\\\", \\\"text_en\\\": \\\"Subhanallah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"alhamdulillah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الحمد لله\\\", \\\"text_bn\\\": \\\"আলহামদুলিল্লাহ\\\", \\\"text_en\\\": \\\"Alhamdulillah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"allahuakbar\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الله أكبر\\\", \\\"text_bn\\\": \\\"আল্লাহু আকবর\\\", \\\"text_en\\\": \\\"Allahuakbar\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"astagfirullah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"أستغفر الله\\\", \\\"text_bn\\\": \\\"আস্তাগফিরুল্লাহ\\\", \\\"text_en\\\": \\\"Astagfirullah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"la_ilaha_illallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"لا إله إلا الله\\\", \\\"text_bn\\\": \\\"লা ইলাহা ইল্লাল্লাহ\\\", \\\"text_en\\\": \\\"La-ila-ha illallah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله وبحمده، سبحان الله العظيم\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহি ও বিহামদিহি, সুবহানআল্লাহি লা ইলাহা ইল্লাল্লাহু আল আজিম\\\", \\\"text_en\\\": \\\"Subhanallahi Wabihamdihi Wa Subhanallahili Azeem\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"created_at\": null,\n        \"updated_at\": null\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "doa category",
+					"item": [
+						{
+							"name": "doa category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/doa-category",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"doa-category"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/tasbih",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"tasbih"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 16 Jan 2024 19:53:23 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-Ratelimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-Ratelimit-Remaining",
+											"value": "57"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Server",
+											"value": "swoole-http-server"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Length",
+											"value": "655"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"status_code\": 200,\n    \"message\": \"Tasbih Data\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"subhanallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহ\\\", \\\"text_en\\\": \\\"Subhanallah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"alhamdulillah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الحمد لله\\\", \\\"text_bn\\\": \\\"আলহামদুলিল্লাহ\\\", \\\"text_en\\\": \\\"Alhamdulillah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"allahuakbar\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الله أكبر\\\", \\\"text_bn\\\": \\\"আল্লাহু আকবর\\\", \\\"text_en\\\": \\\"Allahuakbar\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"astagfirullah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"أستغفر الله\\\", \\\"text_bn\\\": \\\"আস্তাগফিরুল্লাহ\\\", \\\"text_en\\\": \\\"Astagfirullah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"la_ilaha_illallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"لا إله إلا الله\\\", \\\"text_bn\\\": \\\"লা ইলাহা ইল্লাল্লাহ\\\", \\\"text_en\\\": \\\"La-ila-ha illallah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله وبحمده، سبحان الله العظيم\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহি ও বিহামদিহি, সুবহানআল্লাহি লা ইলাহা ইল্লাল্লাহু আল আজিম\\\", \\\"text_en\\\": \\\"Subhanallahi Wabihamdihi Wa Subhanallahili Azeem\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"created_at\": null,\n        \"updated_at\": null\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "doa",
+					"item": [
+						{
+							"name": "doa",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/doa",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"doa"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/tasbih",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"tasbih"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 16 Jan 2024 19:53:23 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-Ratelimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-Ratelimit-Remaining",
+											"value": "57"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Server",
+											"value": "swoole-http-server"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Length",
+											"value": "655"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"status_code\": 200,\n    \"message\": \"Tasbih Data\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"subhanallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহ\\\", \\\"text_en\\\": \\\"Subhanallah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"alhamdulillah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الحمد لله\\\", \\\"text_bn\\\": \\\"আলহামদুলিল্লাহ\\\", \\\"text_en\\\": \\\"Alhamdulillah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"allahuakbar\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الله أكبر\\\", \\\"text_bn\\\": \\\"আল্লাহু আকবর\\\", \\\"text_en\\\": \\\"Allahuakbar\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"astagfirullah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"أستغفر الله\\\", \\\"text_bn\\\": \\\"আস্তাগফিরুল্লাহ\\\", \\\"text_en\\\": \\\"Astagfirullah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"la_ilaha_illallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"لا إله إلا الله\\\", \\\"text_bn\\\": \\\"লা ইলাহা ইল্লাল্লাহ\\\", \\\"text_en\\\": \\\"La-ila-ha illallah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله وبحمده، سبحان الله العظيم\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহি ও বিহামদিহি, সুবহানআল্লাহি লা ইলাহা ইল্লাল্লাহু আল আজিম\\\", \\\"text_en\\\": \\\"Subhanallahi Wabihamdihi Wa Subhanallahili Azeem\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"created_at\": null,\n        \"updated_at\": null\n    }\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
