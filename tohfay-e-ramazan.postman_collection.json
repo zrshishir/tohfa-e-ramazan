@@ -561,28 +561,30 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/doa",
+									"raw": "{{base_url}}/doa/1",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
-										"doa"
+										"doa",
+										"1"
 									]
 								}
 							},
 							"response": [
 								{
-									"name": "success",
+									"name": "doa category success",
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{base_url}}/tasbih",
+											"raw": "{{base_url}}/doa/1",
 											"host": [
 												"{{base_url}}"
 											],
 											"path": [
-												"tasbih"
+												"doa",
+												"1"
 											]
 										}
 									},
@@ -596,7 +598,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Tue, 16 Jan 2024 19:53:23 GMT"
+											"value": "Thu, 18 Jan 2024 19:09:25 GMT"
 										},
 										{
 											"key": "Content-Type",
@@ -608,7 +610,7 @@
 										},
 										{
 											"key": "X-Ratelimit-Remaining",
-											"value": "57"
+											"value": "59"
 										},
 										{
 											"key": "Access-Control-Allow-Origin",
@@ -628,11 +630,185 @@
 										},
 										{
 											"key": "Content-Length",
-											"value": "655"
+											"value": "6711"
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"status\": \"success\",\n    \"status_code\": 200,\n    \"message\": \"Tasbih Data\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"subhanallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহ\\\", \\\"text_en\\\": \\\"Subhanallah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"alhamdulillah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الحمد لله\\\", \\\"text_bn\\\": \\\"আলহামদুলিল্লাহ\\\", \\\"text_en\\\": \\\"Alhamdulillah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"allahuakbar\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الله أكبر\\\", \\\"text_bn\\\": \\\"আল্লাহু আকবর\\\", \\\"text_en\\\": \\\"Allahuakbar\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"astagfirullah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"أستغفر الله\\\", \\\"text_bn\\\": \\\"আস্তাগফিরুল্লাহ\\\", \\\"text_en\\\": \\\"Astagfirullah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"la_ilaha_illallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"لا إله إلا الله\\\", \\\"text_bn\\\": \\\"লা ইলাহা ইল্লাল্লাহ\\\", \\\"text_en\\\": \\\"La-ila-ha illallah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله وبحمده، سبحان الله العظيم\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহি ও বিহামদিহি, সুবহানআল্লাহি লা ইলাহা ইল্লাল্লাহু আল আজিম\\\", \\\"text_en\\\": \\\"Subhanallahi Wabihamdihi Wa Subhanallahili Azeem\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"created_at\": null,\n        \"updated_at\": null\n    }\n}"
+									"body": "{\n    \"success\": true,\n    \"message\": \"Doas Index\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"দোয়া ছানা \",\n            \"doa_for\": \"দোয়া ছানা \",\n            \"description\": \"দোয়া ছানা \",\n            \"arabic_text\": \"سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، أَشْهَدُ أَنْ لا إِلَهَ إِلَّا أَنْتَ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ\",\n            \"bangla_text\": \"সুবহানাকাল্লাহুম্মা ওয়া বিহামদিকা আশহাদু আন লা ইলাহা ইল্লাআন্তা আসতাগফিরুকা ওয়া আতুবু ইলাইক।\",\n            \"english_text\": \"Subhanaka Allahumma wa bihamdika, ash-hadu an la ilaha illa anta, astaghfiruka wa atubu ilaik.\",\n            \"meaning\": \"হে আল্লাহ! আপনি পবিত্র, আপনি প্রশংসিত। আপনি আমার প্রভু, আপনি আমার প্রশংসিত। আমি আপনার কাছে পাপ করেছি, আপনি আমাকে ক্ষমা করুন এবং আপনার কাছে তাওবা করি।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ৬৩৪৮\",\n            \"when_to_use\": \"নামাজের প্রথম রাকাতে তাকবীরে তাহরীমার পরে সূরা ফাতিহা পাঠের পূর্বে এই দোয়াটি পাঠ করতে হয়।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"সালাতের দোয়া\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 2,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"রুকুর দোয়া\",\n            \"doa_for\": \"রুকুর দোয়া\",\n            \"description\": \"রুকুর দোয়া\",\n            \"arabic_text\": \"سُبْحَانَ رَبِّيَ الْعَظِيمِ\",\n            \"bangla_text\": \"সুবহানা রাব্বিয়াল আযীম\",\n            \"english_text\": \"Subhana Rabbiyal Azeem.\",\n            \"meaning\": \"মহান আল্লাহ পাক থাকে।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ৬৩৪৮\",\n            \"when_to_use\": \"রুকু করার পর এই দোয়াটি পাঠ করতে হয় তিনবার।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"সালাতের দোয়া\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 3,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"রুকু থেকে ওঠার দোয়া\",\n            \"doa_for\": \"রুকু থেকে ওঠার দোয়া\",\n            \"description\": \"রুকু থেকে ওঠার দোয়া\",\n            \"arabic_text\": \"سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ\",\n            \"bangla_text\": \"সামিয়াল্লাহু লিমান হামিদাহ\",\n            \"english_text\": \"Sami Allahu liman hamidah.\",\n            \"meaning\": \"আল্লাহ পাক শুনেছেন যার প্রশংসা করেছে।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ৬৩৪৮\",\n            \"when_to_use\": \"রুকু থেকে ওঠার পর এই দোয়াটি পাঠ করতে হয়।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"সালাতের দোয়া\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 4,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"রুকু থেকে ওঠার পরের দোয়া\",\n            \"doa_for\": \"রুকু থেকে ওঠার পরের দোয়া\",\n            \"description\": \"রুকু থেকে ওঠার পরের দোয়া\",\n            \"arabic_text\": \"رَبَّنَا وَلَكَ الْحَمْدُ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ\",\n            \"bangla_text\": \"রাব্বানা ওয়ালাকাল হামদু হামদান কাসীরান তাইয্যিবান মুবারাকান ফীহ\",\n            \"english_text\": \"Rabbana wa lakal hamd, hamdan kathiran tayyiban mubarakan fihi.\",\n            \"meaning\": \"হে আমাদের প্রভু! আপনার প্রশংসা আপনার জন্য। প্রশংসা যাবে অনেক এবং পবিত্র হবে এই প্রশংসা।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ৬৩৪৮\",\n            \"when_to_use\": \"রুকু থেকে ওঠার পর এই দোয়াটি পাঠ করতে হয়।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 5,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"সজদার দোয়া\",\n            \"doa_for\": \"সজদার দোয়া\",\n            \"description\": \"সজদার দোয়া\",\n            \"arabic_text\": \"سُبْحَانَ رَبِّيَ الْأَعْلَى\",\n            \"bangla_text\": \"সুবহানা রাব্বিয়াল আলা\",\n            \"english_text\": \"Subhana Rabbiyal A’la.\",\n            \"meaning\": \"মহান আল্লাহ পাক থাকে।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ৬৩৪৮\",\n            \"when_to_use\": \"সজদা করার পর এই দোয়াটি পাঠ করতে হয় তিনবার।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 6,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"দুই সাজদার মাঝের দোয়া\",\n            \"doa_for\": \"দুই সাজদার মাঝের দোয়া\",\n            \"description\": \"দুই সাজদার মাঝের দোয়া\",\n            \"arabic_text\": \"رَبِّ اغْفِرْ لِي وَارْحَمْنِي وَاجْبُرْنِي وَارْفَعْنِي وَارْزُقْنِي وَاهْدِنِي\",\n            \"bangla_text\": \"রাব্বিগফিরলী ওয়ারহামনী ওয়াজবুরনী ওয়ারফানী ওয়ারজুকনী ওয়াহদিনী\",\n            \"english_text\": \"Rabbighfirli warhamni wajburni warfa’ni warzuqni wahdini.\",\n            \"meaning\": \"হে আমার প্রভু! আমাকে ক্ষমা করুন, আমার উপর রহমত করুন, আমাকে সংকট থেকে মুক্ত করুন, আমাকে উত্তম স্থানে উঠিয়ে নিন, আমাকে রিয়ায়ত করুন, আমাকে নির্দেশ করুন।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ৬৩৪৮\",\n            \"when_to_use\": \"দুই সাজদার মাঝে এই দোয়াটি পাঠ করতে হয়।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 7,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"তাশাহহুদের দোয়া\",\n            \"doa_for\": \"তাশাহহুদের দোয়া\",\n            \"description\": \"তাশাহহুদের দোয়া\",\n            \"arabic_text\": \"التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلاَمُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلاَمُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ\",\n            \"bangla_text\": \"আসসালামু আলাইকা আইয়্যুহান্নবীউ ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু আসসালামু আলাইনা ওয়া আলা ইবাদিল্লাহিস সালেহ ইন্নি আশহাদু আল্লা ইলাহা ইল্লাল্লাহু ওয়া আশহাদু আন্না মুহাম্মাদান আব্দুহু ওয়া রাসূলুহু\",\n            \"english_text\": \"At-tahiyyatul lillahi was-salawatu wat-tayyibatu, As-salamu ‘alaika ayyuhan-Nabiyyu wa rahmatullahi wa barakatuhu, As-salamu ‘alaina wa ‘ala ‘ibadillahis-salihin, Ashhadu an la ilaha illallah wa ashhadu anna Muhammadan ‘abduhu wa Rasuluh.\",\n            \"meaning\": \"সমস্ত প্রশংসা আল্লাহ পাকের জন্য। সমস্ত সালাম আপনার জন্য, হে নবী! এবং আল্লাহ পাকের রহমত ও বরকত আপনার জন্য। সমস্ত সালাম আমাদের ও আল্লাহ পাকের সৎ বান্দাদের জন্য। আমি সাক্ষ্য দিচ্ছি যে, আল্লাহ পাকের সিরে কাদের ইলাহ নেই এবং আমি সাক্ষ্য দিচ্ছি যে, মুহাম্মাদ (সাঃ) তাঁর বান্দা ও রাসূল।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ৬৩৪৮\",\n            \"when_to_use\": \"তাশাহহুদের পর এই দোয়াটি পাঠ করতে হয়।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 8,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"দরুদ শরীফ\",\n            \"doa_for\": \"দরুদ শরীফ\",\n            \"description\": \"দরুদ শরীফ\",\n            \"arabic_text\": \"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ\",\n            \"bangla_text\": \"আল্লাহুম্মা সাল্লি আলা মুহাম্মাদিন ওয়া আলা আলি মুহাম্মাদিন কামা সাল্লাইতা আলা ইব্রাহীম ওয়া আলা আলি ইব্রাহীম ইন্নাকা হামিদুম মাজীদ। আল্লাহুম্মা বারিক আলা মুহাম্মাদিন ওয়া আলা আলি মুহাম্মাদিন কামা বারকতা আলা ইব্রাহীম ওয়া আলা আলি ইব্রাহীম ইন্নাকা হামিদুম মাজীদ।\",\n            \"english_text\": \"Allahumma salli ala muhammadin wa ala ali muhammadin kama sallaita ala ibrahima wa ala ali ibrahima innaka hamidum majid. Allahumma barik ala muhammadin wa ala ali muhammadin kama barakta ala ibrahima wa ala ali ibrahima innaka hamidum majid.\",\n            \"meaning\": \"হে আল্লাহ! আপনি মুহাম্মাদ ও মুহাম্মাদের পরিবারের উপর রহমত করুন, যেমন আপনি ইব্রাহীম ও ইব্রাহীমের পরিবারের উপর রহমত করেছেন। নিশ্চয়ই আপনি প্রশংসিত ও মহান। হে আল্লাহ! আপনি মুহাম্মাদ ও মুহাম্মাদের পরিবারের উপর বরকত করুন, যেমন আপনি ইব্রাহীম ও ইব্রাহীমের পরিবারের উপর বরকত করেছেন। নিশ্চয়ই আপনি প্রশংসিত ও মহান।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ১১৩৩\",\n            \"when_to_use\": \"দ্বিতীয় তাশাহহুদের পর দরুদ শরীফ পড়া হয়। এছাড়া যে কোন সময় পড়া যায়।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"সালাতের দোয়া\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 9,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"দোয়া মাছুরা\",\n            \"doa_for\": \"দোয়া মাছুরা\",\n            \"description\": \"দোয়া মাছুরা\",\n            \"arabic_text\": \"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عِلْمٍ لاَ يَنْفَعُ، وَمِنْ قَلْبٍ لاَ يَخْشَعُ، وَمِنْ نَفْسٍ لاَ تَشْبَعُ، وَمِنْ دَعْوَةٍ لاَ يُسْتَجَابُ لَهَا\",\n            \"bangla_text\": \"আল্লাহুম্মা ইন্নি আউযুবিকা মিন ইলমিন লা ইয়ানফা’উ ওয়া মিন কালবিন লা ইয়াখশা’উ ওয়া মিন নাফসিন লা তাশবা’উ ওয়া মিন দা’ওয়াতিন লা ইউস্তাজাবু লাহা\",\n            \"english_text\": \"Allahumma inni a’udhu bika min ‘ilmin la yanfa’u, wa min qalbin la yakhsha’u, wa min nafsin la tashba’u, wa min da’watin la yustajabu laha.\",\n            \"meaning\": \"হে আল্লাহ! আমি আপনার কাছে আশ্রয় চাই যে জ্ঞান যা কারো কাজে লাগে না, হৃদয় যা ভয় পায় না, নফস যা প্রতীক্ষা করে না এবং দোয়া যা কখনও কবুল হয় না।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ৬৩৪৮\",\n            \"when_to_use\": \"সালাতের শেষে এই দোয়াটি পাঠ করতে হয়।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 10,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"দোয়া কুনুত\",\n            \"doa_for\": \"দোয়া কুনুত\",\n            \"description\": \"দোয়া কুনুত\",\n            \"arabic_text\": \"اللَّهُمَّ إِنَّا نَسْتَعِينُكَ وَنَسْتَغْفِرُكَ وَنُؤْمِنُ بِكَ وَنَتَوَكَّلُ عَلَيْكَ وَنُثْنِئْ عَلَيْكَ الْخَيْرَ وَنَشْكُرُكَ وَلَا نَكْفُرُكَ وَنَخْلَعُ وَنَتْرُكُ مَنْ يَفْجُرُكَ اللَّهُمَّ إِيَّاكَ نَعْبُدُ وَلَكَ نُصَلِّي وَنَسْجُدُ وَإِلَيْكَ نَسْعَى وَنَحْفِدُ وَنَرْجُو رَحْمَتَكَ وَنَخْشَى عَذَابَكَ إِنَّ عَذَابَكَ بِالْكُفَّارِ مُلْحِقٌ\",\n            \"bangla_text\": \"আল্লাহুম্মা ইন্না নাসতা’ইনুকা ওয়া নাস্তাগফিরুকা ওয়া নুমিনু বিকা ওয়া নাতাওয়াক্কালু ‘আলাইকা ওয়া নুসনী ‘আলাইকাল খায়রা ওয়া নাশকুরুকা ওয়া লা নাকফুরুকা ওয়া নাখলা’উ ওয়া নাতরুকু মান ইয়াফজুরুকা আল্লাহুম্মা ইয়ায়্যা কা না’বুদু ওয়া লাকা নুসাল্লী ওয়া নাসজুদু ওয়া ইলাইকা নাস’আ ওয়া নাহফিদু ওয়া নারজু রাহমাতাকা ওয়া নাখশা ‘আযাবাকা ইন্না ‘আযাবাকা বিল কুফফারি মুলহিক\",\n            \"english_text\": \"Allahumma inna nastainuka wa nastaghfiruka wa nu’minu bika wa natawakkalu ‘alaika wa nuthni ‘alaikal khairi wa nashkuruka wa la nakfuruka wa nakhla’u wa natruku mai yafjuruka. Allahumma iyyaka na’budu wa laka nusalli wa nasjudu wa ilaika nas’a wa nahfidu wa narju rahmataka wa nakhsha ‘azabaka inna ‘azabaka bil kuffari mulhik.\",\n            \"meaning\": \"হে আল্লাহ! আমরা আপনার সাহায্য চাই, আপনার ক্ষমা চাই, আপনার বিশ্বাস করি, আপনার উপর আশ্রয় করি, আপনার উপর ভালোবাসা করি, আপনার উপর কৃতজ্ঞতা প্রকাশ করি, আপনার উপর অস্ত্রাণ্য করি, আপনার উপর ভরসা করি, আপনার রহমত প্রতীক্ষা করি এবং আপনার আযাব থেকে ভয় পাই। নিশ্চয়ই আপনার আযাব কাফেরদের জন্য অবসান হবে।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ১১৩৩\",\n            \"when_to_use\": \"সালাতের শেষে এই দোয়াটি পাঠ করতে হয়।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 11,\n            \"user_id\": 1,\n            \"doa_category_id\": 1,\n            \"title\": \"সাজদার দোয়া\",\n            \"doa_for\": \"সাজদার দোয়া\",\n            \"description\": \"সাজদার দোয়া\",\n            \"arabic_text\": \"سَجَدَ وَجْهِيَ لِلَّذِي خَلَقَهُ وَشَقَّ سَمْعَهُ وَبَصَرَهُ بِحَوْلِهِ وَقُوَّتِهِ\",\n            \"bangla_text\": \"সাজাদা ওয়াজহিয়া লিল্লাযি খালাকাহু ওয়াশাক্ব্বা সামহু ওয়াবাসারহু বিহাওলিহি ওয়া কুওয়াতিহি\",\n            \"english_text\": \"Sajada wajhiya lillazi khalaqahu wa shaqqa sam’ahu wa basarahu bihawlihi wa quwwatihi.\",\n            \"meaning\": \"আমার মুখ সেই আল্লাহ পাকের জন্য সজদা করেছে, যিনি আমাকে সৃষ্টি করেছেন এবং আমার শ্রবণ ও দৃষ্টি দেওয়ার ক্ষমতা দিয়েছেন।\",\n            \"reference\": \"সহীহ বুখারী, হাদিস নং ৬৩৪৮\",\n            \"when_to_use\": \"সাজদা করার পর এই দোয়াটি পাঠ করতে হয়।\",\n            \"notes\": \"সালাতের দোয়া\",\n            \"when_not_to_use\": \"\",\n            \"status\": 1,\n            \"deleted_at\": null,\n            \"created_at\": null,\n            \"updated_at\": null\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "suras",
+					"item": [
+						{
+							"name": "sura",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/sura",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"sura"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/sura",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"sura"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 18 Jan 2024 20:27:39 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-Ratelimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-Ratelimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Server",
+											"value": "swoole-http-server"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Length",
+											"value": "782"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Suras Index\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Al-Fatihah\",\n            \"arabic_name\": \"الفاتحة\",\n            \"english_name\": \"The Opening\",\n            \"meaning\": \"The Opening\",\n            \"ayat_count\": \"7\",\n            \"type\": \"Meccan\",\n            \"revelation_order\": \"5\",\n            \"rukus\": \"1\",\n            \"place_of_revelation\": \"Mecca\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/001.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Al-Baqarah\",\n            \"arabic_name\": \"البقرة\",\n            \"english_name\": \"The Cow\",\n            \"meaning\": \"The Cow\",\n            \"ayat_count\": \"286\",\n            \"type\": \"Medinan\",\n            \"revelation_order\": \"87\",\n            \"rukus\": \"40\",\n            \"place_of_revelation\": \"Medina\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/002.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Aal-E-Imran\",\n            \"arabic_name\": \"آل عمران\",\n            \"english_name\": \"The Family of Imran\",\n            \"meaning\": \"The Family of Imran\",\n            \"ayat_count\": \"200\",\n            \"type\": \"Medinan\",\n            \"revelation_order\": \"89\",\n            \"rukus\": \"20\",\n            \"place_of_revelation\": \"Medina\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/003.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 4,\n            \"name\": \"An-Nisa\",\n            \"arabic_name\": \"النساء\",\n            \"english_name\": \"The Women\",\n            \"meaning\": \"The Women\",\n            \"ayat_count\": \"176\",\n            \"type\": \"Medinan\",\n            \"revelation_order\": \"92\",\n            \"rukus\": \"24\",\n            \"place_of_revelation\": \"Medina\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/004.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Al-Ma'idah\",\n            \"arabic_name\": \"المائدة\",\n            \"english_name\": \"The Table Spread\",\n            \"meaning\": \"The Table Spread\",\n            \"ayat_count\": \"120\",\n            \"type\": \"Medinan\",\n            \"revelation_order\": \"112\",\n            \"rukus\": \"16\",\n            \"place_of_revelation\": \"Medina\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/005.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Al-An'am\",\n            \"arabic_name\": \"الأنعام\",\n            \"english_name\": \"The Cattle\",\n            \"meaning\": \"The Cattle\",\n            \"ayat_count\": \"165\",\n            \"type\": \"Meccan\",\n            \"revelation_order\": \"55\",\n            \"rukus\": \"20\",\n            \"place_of_revelation\": \"Mecca\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/006.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Al-A'raf\",\n            \"arabic_name\": \"الأعراف\",\n            \"english_name\": \"The Heights\",\n            \"meaning\": \"The Heights\",\n            \"ayat_count\": \"206\",\n            \"type\": \"Meccan\",\n            \"revelation_order\": \"39\",\n            \"rukus\": \"24\",\n            \"place_of_revelation\": \"Mecca\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/007.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Al-Anfal\",\n            \"arabic_name\": \"الأنفال\",\n            \"english_name\": \"The Spoils of War\",\n            \"meaning\": \"The Spoils of War\",\n            \"ayat_count\": \"75\",\n            \"type\": \"Medinan\",\n            \"revelation_order\": \"88\",\n            \"rukus\": \"10\",\n            \"place_of_revelation\": \"Medina\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/008.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "ayat",
+					"item": [
+						{
+							"name": "ayat",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/ayat/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"ayat",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/ayat/1",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"ayat",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 18 Jan 2024 20:28:41 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-Ratelimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-Ratelimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Server",
+											"value": "swoole-http-server"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										},
+										{
+											"key": "Content-Length",
+											"value": "776"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"Ayats Index\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"sura_id\": 1,\n            \"ayat_no\": 1,\n            \"arabic_text\": \"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\",\n            \"bangla_text\": \"আল্লাহর নামে যিনি পরম করুণাময়, অতি দয়ালু।\",\n            \"english_text\": \"In the name of Allah, the Entirely Merciful, the Especially Merciful.\",\n            \"meaning\": \"আল্লাহর নামে যিনি পরম করুণাময়, অতি দয়ালু।\",\n            \"reference\": \"সূরা আল ফাতিহা ১:১\",\n            \"notes\": \"আল্লাহর নামে যিনি পরম করুণাময়, অতি দয়ালু।\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/001.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 2,\n            \"sura_id\": 1,\n            \"ayat_no\": 2,\n            \"arabic_text\": \"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ\",\n            \"bangla_text\": \"সকল প্রশংসা আল্লাহর, পৃথিবীর প্রভুর,\",\n            \"english_text\": \"All praise is [due] to Allah, Lord of the worlds -\",\n            \"meaning\": \"সকল প্রশংসা আল্লাহর, পৃথিবীর প্রভুর,\",\n            \"reference\": \"সূরা আল ফাতিহা ১:২\",\n            \"notes\": \"সকল প্রশংসা আল্লাহর, পৃথিবীর প্রভুর,\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/002.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        },\n        {\n            \"id\": 3,\n            \"sura_id\": 1,\n            \"ayat_no\": 3,\n            \"arabic_text\": \"الرَّحْمَٰنِ الرَّحِيمِ\",\n            \"bangla_text\": \"যিনি পরম করুণাময়, অতি দয়ালু।\",\n            \"english_text\": \"The Entirely Merciful, the Especially Merciful,\",\n            \"meaning\": \"যিনি পরম করুণাময়, অতি দয়ালু।\",\n            \"reference\": \"সূরা আল ফাতিহা ১:৩\",\n            \"notes\": \"যিনি পরম করুণাময়, অতি দয়ালু।\",\n            \"status\": \"active\",\n            \"audio\": \"https://server8.mp3quran.net/basit/003.mp3\",\n            \"video\": \"https://www.youtube.com/watch?v=VHfJY3YpLj8\",\n            \"image\": \"https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg\",\n            \"created_at\": null,\n            \"updated_at\": null\n        }\n    ]\n}"
 								}
 							]
 						}
