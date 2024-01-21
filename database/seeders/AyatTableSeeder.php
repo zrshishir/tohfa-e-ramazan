@@ -57,6 +57,35 @@ class AyatTableSeeder extends Seeder
                 'video' => 'https://www.youtube.com/watch?v=VHfJY3YpLj8',
                 'image' => 'https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg',
             ],
+            [
+                'sura_id' => 1,
+                'ayat_no' => 4,
+                'arabic_text' => 'اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِينُ',
+                'bangla_text' => 'আপনি ইয়াক নাছুয়াদু এবং আপনার কাছে আমরা সাহায্য চাই।',
+                'english_text' => 'You alone we worship, and You alone we ask for help.',
+                'meaning' => 'আপনি ইয়াক নাছুয়াদু এবং আপনার কাছে আমরা সাহায্য চাই।',
+                'reference' => 'সূরা আল ফাতিহা ১:৪',
+                'notes' => 'আপনি ইয়াক নাছুয়াদু এবং আপনার কাছে আমরা সাহায্য চাই।',
+                'status' => 'active',
+                'audio' => 'https://server8.mp3quran.net/basit/004.mp3', // Update with the correct audio URL
+                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+            ],
+            [
+                'sura_id' => 1,
+                'ayat_no' => 5,
+                'arabic_text' => 'اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ',
+                'bangla_text' => 'আমাদেরকে সরল পথে প্রবৃদ্ধি কর।',
+                'english_text' => 'Guide us to the straight path.',
+                'meaning' => 'আমাদেরকে সরল পথে প্রবৃদ্ধি কর।',
+                'reference' => 'সূরা আল ফাতিহা ১:৫',
+                'notes' => 'আমাদেরকে সরল পথে প্রবৃদ্ধি কর।',
+                'status' => 'active',
+                'audio' => 'https://server8.mp3quran.net/basit/005.mp3', // Update with the correct audio URL
+                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+            ],
+
 
         ];
 
