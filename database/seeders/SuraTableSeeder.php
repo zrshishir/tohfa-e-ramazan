@@ -178,7 +178,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/011.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Yusuf',
@@ -192,7 +193,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/012.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Ar-Ra\'d',
@@ -206,7 +208,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Medina',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/013.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Ibrahim',
@@ -220,7 +223,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/014.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Al-Hijr',
@@ -234,7 +238,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/015.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'An-Nahl',
@@ -248,7 +253,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/016.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Al-Isra',
@@ -262,7 +268,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/017.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Al-Kahf',
@@ -276,7 +283,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/018.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Maryam',
@@ -290,7 +298,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/019.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Ta-Ha',
@@ -304,7 +313,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/020.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Al-Anbiya',
@@ -318,7 +328,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/021.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Al-Hajj',
@@ -332,7 +343,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Medina',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/022.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -347,7 +359,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/023.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Az-Zumar',
@@ -361,7 +374,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/024.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -376,7 +390,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/025.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -391,7 +406,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/026.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Ash-Shura',
@@ -405,7 +421,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/027.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -420,7 +437,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/028.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -435,7 +453,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/029.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Al-Jathiyah',
@@ -449,7 +468,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://server8.mp3quran.net/basit/045.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -464,7 +484,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/046.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -479,7 +500,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Medina',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/047.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Al-Fath',
@@ -493,7 +515,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Medina',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/048.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -508,7 +531,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Medina',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/049.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -523,7 +547,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/050.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Adh-Dhariyat',
@@ -537,7 +562,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/051.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -552,7 +578,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/052.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -567,7 +594,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/053.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
             [
                 'name' => 'Al-Qamar',
@@ -581,7 +609,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/054.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -596,7 +625,8 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Medina',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/055.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
@@ -611,12 +641,197 @@ class SuraTableSeeder extends Seeder
                 'place_of_revelation' => 'Mecca',
                 'status' => 'active',
                 'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/056.mp3',
-                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp'
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+            [
+                'name' => 'Al-Hadid',
+                'arabic_name' => 'الحديد',
+                'english_name' => 'The Iron',
+                'meaning' => 'The Iron',
+                'ayat_count' => '29',
+                'type' => 'Medinan',
+                'revelation_order' => '76',
+                'rukus' => '4',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/057.mp3',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+            [
+                'name' => 'Al-Mujadila',
+                'arabic_name' => 'المجادلة',
+                'english_name' => 'Al-Mujadila',
+                'meaning' => 'Al-Mujadila',
+                'ayat_count' => '22',
+                'type' => 'Medinan',
+                'revelation_order' => '83',
+                'rukus' => '3',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/058.mp3',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+            [
+                'name' => 'Al-Hashr',
+                'arabic_name' => 'الحشر',
+                'english_name' => 'The Exile',
+                'meaning' => 'The Exile',
+                'ayat_count' => '24',
+                'type' => 'Medinan',
+                'revelation_order' => '27',
+                'rukus' => '3',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/059.mp3',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+            [
+                'name' => '\'Al-Mumtahanah',
+                'arabic_name' => 'الممتحنة',
+                'english_name' => 'She that is to be examined',
+                'meaning' => 'She that is to be examined',
+                'ayat_count' => '13',
+                'type' => 'Medinan',
+                'revelation_order' => '101',
+                'rukus' => '2',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/060.mp3',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+            [
+                'name' => '\'As-Saff',
+                'arabic_name' => 'الصف',
+                'english_name' => 'The Ranks',
+                'meaning' => 'The Ranks',
+                'ayat_count' => '14',
+                'type' => 'Medinan',
+                'revelation_order' => '91',
+                'rukus' => '2',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/061.mp3',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
             ],
 
             [
+                'name' => 'Al-Jumu\'ah',
+                'arabic_name' => 'الجمعة',
+                'english_name' => 'The Congregation',
+                'meaning' => 'The Congregation',
+                'ayat_count' => '11',
+                'type' => 'Medinan',
+                'revelation_order' => '106',
+                'rukus' => '2',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/062.mp3',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
 
-            ]
+            [
+                'name' => '\'Al-Munafiqun',
+                'arabic_name' => 'المنافقون',
+                'english_name' => 'The Hypocrites',
+                'meaning' => 'The Hypocrites',
+                'ayat_count' => '11',
+                'type' => 'Medinan',
+                'revelation_order' => '104',
+                'rukus' => '2',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/063.mp3',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+
+            [
+                'name' => '\'At-Taghabun',
+                'arabic_name' => 'التغابن',
+                'english_name' => 'Mutual Disillusion',
+                'meaning' => 'Mutual Disillusion',
+                'ayat_count' => '18',
+                'type' => 'Medinan',
+                'revelation_order' => '108',
+                'rukus' => '2',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => 'https://cdn.islamic.network/quran/audio/128/ar.basit/064.mp3',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+            [
+                'name' => '\'At-Talaq',
+                'arabic_name' => 'الطلاق',
+                'english_name' => 'Divorce',
+                'meaning' => 'Divorce',
+                'ayat_count' => '12',
+                'type' => 'Medinan',
+                'revelation_order' => '99',
+                'rukus' => '2',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => '',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+
+            [
+                'name' => '\'At-Tahrim',
+                'arabic_name' => 'التحريم',
+                'english_name' => 'The Prohibition',
+                'meaning' => 'The Prohibition',
+                'ayat_count' => '12',
+                'type' => 'Medinan',
+                'revelation_order' => '107',
+                'rukus' => '2',
+                'place_of_revelation' => 'Medina',
+                'status' => 'active',
+                'audio' => '',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+
+            [
+                'name' => 'Al-Mulk',
+                'arabic_name' => 'الملك',
+                'english_name' => 'The Sovereignty',
+                'meaning' => 'The Sovereignty',
+                'ayat_count' => '30',
+                'type' => 'Meccan',
+                'revelation_order' => '77',
+                'rukus' => '2',
+                'place_of_revelation' => 'Mecca',
+                'status' => 'active',
+                'audio' => '',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+
+            [
+                'name' => 'Al-Qalam',
+                'arabic_name' => 'القلم',
+                'english_name' => 'The Pen',
+                'meaning' => 'The Pen',
+                'ayat_count' => '52',
+                'type' => 'Meccan',
+                'revelation_order' => '2',
+                'rukus' => '2',
+                'place_of_revelation' => 'Mecca',
+                'status' => 'active',
+                'audio' => '',
+                'video' => 'https://www.youtube.com/watch?v=VHfJY3Yp',
+                'image' => ''
+            ],
+
+
             // [
             //     'name' => 'At-Tawbah',
             //     'arabic_name' => 'التوبة',

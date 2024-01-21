@@ -279,7 +279,7 @@
 							},
 							"response": [
 								{
-									"name": "success",
+									"name": "tasbih success",
 									"originalRequest": {
 										"method": "GET",
 										"header": [],
@@ -303,7 +303,7 @@
 										},
 										{
 											"key": "Date",
-											"value": "Tue, 16 Jan 2024 19:53:23 GMT"
+											"value": "Sun, 21 Jan 2024 17:28:53 GMT"
 										},
 										{
 											"key": "Content-Type",
@@ -315,7 +315,7 @@
 										},
 										{
 											"key": "X-Ratelimit-Remaining",
-											"value": "57"
+											"value": "59"
 										},
 										{
 											"key": "Access-Control-Allow-Origin",
@@ -335,11 +335,11 @@
 										},
 										{
 											"key": "Content-Length",
-											"value": "655"
+											"value": "614"
 										}
 									],
 									"cookie": [],
-									"body": "{\n    \"status\": \"success\",\n    \"status_code\": 200,\n    \"message\": \"Tasbih Data\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"subhanallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহ\\\", \\\"text_en\\\": \\\"Subhanallah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"alhamdulillah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الحمد لله\\\", \\\"text_bn\\\": \\\"আলহামদুলিল্লাহ\\\", \\\"text_en\\\": \\\"Alhamdulillah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"allahuakbar\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"الله أكبر\\\", \\\"text_bn\\\": \\\"আল্লাহু আকবর\\\", \\\"text_en\\\": \\\"Allahuakbar\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"astagfirullah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"أستغفر الله\\\", \\\"text_bn\\\": \\\"আস্তাগফিরুল্লাহ\\\", \\\"text_en\\\": \\\"Astagfirullah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"la_ilaha_illallah\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"لا إله إلا الله\\\", \\\"text_bn\\\": \\\"লা ইলাহা ইল্লাল্লাহ\\\", \\\"text_en\\\": \\\"La-ila-ha illallah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem\": \"{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله وبحمده، سبحان الله العظيم\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহি ও বিহামদিহি, সুবহানআল্লাহি লা ইলাহা ইল্লাল্লাহু আল আজিম\\\", \\\"text_en\\\": \\\"Subhanallahi Wabihamdihi Wa Subhanallahili Azeem\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}\",\n        \"created_at\": null,\n        \"updated_at\": null\n    }\n}"
+									"body": "{\n    \"status\": \"success\",\n    \"status_code\": 200,\n    \"message\": \"Tasbih Data\",\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 1,\n        \"tasbih\": \"[{\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহ\\\", \\\"text_en\\\": \\\"Subhanallah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}, {\\\"count\\\": 0, \\\"text_ar\\\": \\\"الحمد لله\\\", \\\"text_bn\\\": \\\"আলহামদুলিল্লাহ\\\", \\\"text_en\\\": \\\"Alhamdulillah\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}, {\\\"count\\\": 0, \\\"text_ar\\\": \\\"الله أكبر\\\", \\\"text_bn\\\": \\\"আল্লাহু আকবর\\\", \\\"text_en\\\": \\\"Allahuakbar\\\", \\\"reset_on\\\": 33, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}, {\\\"count\\\": 0, \\\"text_ar\\\": \\\"أستغفر الله\\\", \\\"text_bn\\\": \\\"আস্তাগফিরুল্লাহ\\\", \\\"text_en\\\": \\\"Astagfirullah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}, {\\\"count\\\": 0, \\\"text_ar\\\": \\\"لا إله إلا الله\\\", \\\"text_bn\\\": \\\"লা ইলাহা ইল্লাল্লাহ\\\", \\\"text_en\\\": \\\"La-ila-ha illallah\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}, {\\\"count\\\": 0, \\\"text_ar\\\": \\\"سبحان الله وبحمده، سبحان الله العظيم\\\", \\\"text_bn\\\": \\\"সুবহানআল্লাহি ও বিহামদিহি, সুবহানআল্লাহিল আজিম\\\", \\\"text_en\\\": \\\"Subhanallahi Wabihamdihi Wa Subhanallahili Azeem\\\", \\\"reset_on\\\": 0, \\\"today_count\\\": 0, \\\"total_count\\\": 0, \\\"yearly_count\\\": 0, \\\"monthly_count\\\": 0}]\",\n        \"created_at\": null,\n        \"updated_at\": null\n    }\n}"
 								}
 							]
 						},

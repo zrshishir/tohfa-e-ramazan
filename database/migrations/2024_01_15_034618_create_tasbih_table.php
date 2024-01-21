@@ -14,12 +14,7 @@ return new class extends Migration
         Schema::create('tasbih', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
-            $table->json('subhanallah')->nullable();
-            $table->json('alhamdulillah')->nullable();
-            $table->json('allahuakbar')->nullable();
-            $table->json('astagfirullah')->nullable();
-            $table->json('la_ilaha_illallah')->nullable();
-            $table->json('subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem')->nullable();
+            $table->json('tasbih')->nullable();
 
             $table->timestamps();
         });
