@@ -14,7 +14,7 @@ class AyatController extends Controller
      */
     public function index($sura_id)
     {
-        $ayats = Ayat::where('sura_id', $sura_id)->get();
+        $ayats = Ayat::with('sura')->where('sura_id', $sura_id)->get();
 
         if (empty($ayats)) {
 
