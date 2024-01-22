@@ -4,21 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Ayat;
 use Illuminate\Http\Request;
+use App\Traits\HelperTrait;
 
 class AyatController extends Controller
 {
+    use HelperTrait;
     /**
      * Display a listing of the resource.
      */
     public function index($sura_id)
     {
         $ayats = Ayat::where('sura_id', $sura_id)->get();
+return $ayats;
+        if (empty($ayats)) {
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Ayats Index',
-            'data' => $ayats,
-        ]);
+            return $this->noContentResponse($message = 'Ayats not found', $data = [], $statusCode = 204);
+        }
+
+        return $this->successResponse('Ayats retrieved successfully', $ayats);
     }
 
     /**
