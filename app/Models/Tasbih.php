@@ -20,4 +20,9 @@ class Tasbih extends Model
         'laillahaillallah',
         'subhanallahiwalhamdulillahi'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

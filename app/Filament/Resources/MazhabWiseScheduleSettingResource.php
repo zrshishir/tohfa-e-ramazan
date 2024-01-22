@@ -50,7 +50,7 @@ class MazhabWiseScheduleSettingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('mazhab_id'),
+                Tables\Columns\TextColumn::make('mazhab.name'),
                 Tables\Columns\TextColumn::make('sehri_time'),
                 Tables\Columns\TextColumn::make('fazr_time'),
                 Tables\Columns\TextColumn::make('ishraq_time'),

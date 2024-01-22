@@ -52,7 +52,7 @@ class PermanentCalendarResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('month_id'),
+                Tables\Columns\TextColumn::make('month.name'),
                 Tables\Columns\TextColumn::make('day'),
                 Tables\Columns\TextColumn::make('sehri_time'),
                 Tables\Columns\TextColumn::make('fazr_time'),

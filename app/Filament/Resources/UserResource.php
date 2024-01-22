@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -20,84 +19,84 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user';
     protected static ?string $navigationGroup = 'User Management';
 
-    public static function form(Form $form): Form
+    public static function form( Form $form ): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('country_id'),
-                Forms\Components\TextInput::make('name')
+            ->schema( [
+                Forms\Components\TextInput::make( 'country_id' ),
+                Forms\Components\TextInput::make( 'name' )
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
+                    ->maxLength( 255 ),
+                Forms\Components\TextInput::make( 'email' )
                     ->email()
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
+                    ->maxLength( 255 ),
+                Forms\Components\TextInput::make( 'phone' )
                     ->tel()
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
+                    ->maxLength( 255 ),
+                Forms\Components\DateTimePicker::make( 'email_verified_at' ),
+                Forms\Components\TextInput::make( 'password' )
                     ->password()
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('role')
-                    ->maxLength(255),
-            ]);
+                    ->maxLength( 255 ),
+                Forms\Components\TextInput::make( 'role' )
+                    ->maxLength( 255 ),
+            ] );
     }
 
-    public static function table(Table $table): Table
+    public static function table( Table $table ): Table
     {
         return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('country_id'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('phone'),
-                Tables\Columns\TextColumn::make('email_verified_at')
+            ->columns( [
+                Tables\Columns\TextColumn::make( 'country.nice_name' ),
+                Tables\Columns\TextColumn::make( 'name' ),
+                Tables\Columns\TextColumn::make( 'email' ),
+                Tables\Columns\TextColumn::make( 'phone' ),
+                Tables\Columns\TextColumn::make( 'email_verified_at' )
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('role'),
-                Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make( 'role' ),
+                Tables\Columns\TextColumn::make( 'created_at' )
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
+                Tables\Columns\TextColumn::make( 'updated_at' )
                     ->dateTime(),
-            ])
-            ->filters([
+            ] )
+            ->filters( [
                 Tables\Filters\TrashedFilter::make(),
-            ])
-            ->actions([
+            ] )
+            ->actions( [
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
+            ] )
+            ->bulkActions( [
                 Tables\Actions\DeleteBulkAction::make(),
                 Tables\Actions\ForceDeleteBulkAction::make(),
                 Tables\Actions\RestoreBulkAction::make(),
-            ]);
+            ] );
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'view' => Pages\ViewUser::route('/{record}'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route( '/' ),
+            'create' => Pages\CreateUser::route( '/create' ),
+            'view' => Pages\ViewUser::route( '/{record}' ),
+            'edit' => Pages\EditUser::route( '/{record}/edit' ),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
+            ->withoutGlobalScopes( [
                 SoftDeletingScope::class,
-            ]);
+            ] );
     }
 }
