@@ -63,7 +63,7 @@ class AyatResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('sura_id'),
+                Tables\Columns\TextColumn::make('sura.name'),
                 Tables\Columns\TextColumn::make('ayat_no'),
                 Tables\Columns\TextColumn::make('arabic_text'),
                 Tables\Columns\TextColumn::make('bangla_text'),

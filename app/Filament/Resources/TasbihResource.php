@@ -40,7 +40,7 @@ class TasbihResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('subhanallah'),
                 Tables\Columns\TextColumn::make('alhamdulillah'),
                 Tables\Columns\TextColumn::make('allahuakbar'),

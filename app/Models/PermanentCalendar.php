@@ -21,4 +21,9 @@ class PermanentCalendar extends Model
         'magrib_and_iftar_time',
         'esha_time',
     ];
+
+    public function month()
+    {
+        return $this->belongsTo(Month::class);
+    }
 }
