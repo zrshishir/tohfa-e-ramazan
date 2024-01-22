@@ -15,7 +15,7 @@ class AyatController extends Controller
     public function index($sura_id)
     {
         $ayats = Ayat::where('sura_id', $sura_id)->get();
-return $ayats;
+
         if (empty($ayats)) {
 
             return $this->noContentResponse($message = 'Ayats not found', $data = [], $statusCode = 204);
