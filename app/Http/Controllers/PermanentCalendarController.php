@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MazhabWiseScheduleSetting;
 use App\Models\PermanentCalendar;
 use Illuminate\Http\Request;
-use App\Models\MazhabWiseScheduleSetting;
 
 class PermanentCalendarController extends Controller
 {
@@ -13,26 +13,24 @@ class PermanentCalendarController extends Controller
      */
     public function index()
     {
-        date_default_timezone_set('Asia/Dhaka');
-        $date = date('Y-m-d');
-        $month = date('m', strtotime($date));
-        $day = date('d', strtotime($date));
+        date_default_timezone_set( 'Asia/Dhaka' );
+        $date = date( 'Y-m-d' );
+        $month = date( 'm', strtotime( $date ) );
+        $day = date( 'd', strtotime( strtotime( 'tomorrow' )) );
 
         $mazhabId = 1;
-        $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
-        // $permanentCalendars = PermanentCalendar::where('month_id', '>=', $month)->where('day', '>=', $day)->paginate(30);
-        $permanentCalendars = PermanentCalendar::get();
+        $mazhabSetting = MazhabWiseScheduleSetting::where( 'mazhab_id', $mazhabId )->first();
+        $permanentCalendars = PermanentCalendar::where( 'month_id', '>=', 1 )->whereBetween( 'day', [1,3] )->paginate( 30 );
 
-
-        return response()->json([
+        return response()->json( [
             'status' => 'success',
             'status_code' => 200,
             'message' => 'Permanent Calendar Data',
             'data' => [
                 'mazhab_setting' => $mazhabSetting,
                 'permanent_calendars' => $permanentCalendars,
-            ]
-        ]);
+            ],
+        ] );
     }
 
     /**
@@ -46,7 +44,7 @@ class PermanentCalendarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store( Request $request )
     {
         //
     }
@@ -54,7 +52,7 @@ class PermanentCalendarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PermanentCalendar $permanentCalendar)
+    public function show( PermanentCalendar $permanentCalendar )
     {
         //
     }
@@ -62,7 +60,7 @@ class PermanentCalendarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PermanentCalendar $permanentCalendar)
+    public function edit( PermanentCalendar $permanentCalendar )
     {
         //
     }
@@ -70,7 +68,7 @@ class PermanentCalendarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PermanentCalendar $permanentCalendar)
+    public function update( Request $request, PermanentCalendar $permanentCalendar )
     {
         //
     }
@@ -78,7 +76,7 @@ class PermanentCalendarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PermanentCalendar $permanentCalendar)
+    public function destroy( PermanentCalendar $permanentCalendar )
     {
         //
     }
