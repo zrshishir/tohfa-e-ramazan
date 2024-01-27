@@ -11,19 +11,34 @@ class PermanentCalendarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index( Request $request )
     {
-        date_default_timezone_set( 'Asia/Dhaka' );
-        $date = date( 'Y-m-d' );
-        $month = date( 'm', strtotime( $date ) );
-        $day = date( 'd', strtotime( strtotime( 'tomorrow' )) );
 
-        $mazhabId = 1;
+        date_default_timezone_set( 'Asia/Dhaka' );
+
+        $to = $request->input( 'to' );
+        $mazhabId = $request->input( 'mazhab_id', 1 );
+        $date = date( 'Y-m-d' );
+        $today = date( 'd', strtotime( $date ) ); //
+        $month = date( 'm', strtotime( $date ) );
+
+        $environment = config( 'app.env' );
+
+        if ( $environment === 'local' ) {
+            // only for development purpose will be changed
+            $today = 1;
+            $month = 1;
+        }
+
+        $nextDay = $to ?? date( 'd', strtotime( 'tomorrow' ));
         $mazhabSetting = MazhabWiseScheduleSetting::where( 'mazhab_id', $mazhabId )->first();
-        $permanentCalendars = PermanentCalendar::where( 'month_id', '>=', 1 )->whereBetween( 'day', [1,3] )->paginate( 30 );
+        $permanentCalendars = PermanentCalendar::where( 'month_id', '>=', $month )->whereBetween( 'day', [$today, $nextDay] )->paginate( 30 );
 
         return response()->json( [
             'status' => 'success',
+            'today' => $today,
+            'nextDay' =>  $nextDay,
+            'env' => $environment,
             'status_code' => 200,
             'message' => 'Permanent Calendar Data',
             'data' => [
@@ -80,4 +95,5 @@ class PermanentCalendarController extends Controller
     {
         //
     }
+
 }
