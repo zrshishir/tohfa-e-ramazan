@@ -19,26 +19,21 @@ class PermanentCalendarController extends Controller
         $to = $request->input( 'to' );
         $mazhabId = $request->input( 'mazhab_id', 1 );
         $date = date( 'Y-m-d' );
-        $today = date( 'd', strtotime( $date ) ); //
+        $today = date( 'd', strtotime( $date ) );
         $month = date( 'm', strtotime( $date ) );
+        $month_id = $request->input( 'month_id', $month );
 
-        $environment = config( 'app.env' );
+        
 
-        if ( $environment === 'local' ) {
-            // only for development purpose will be changed
-            $today = 1;
-            $month = 1;
-        }
 
         $nextDay = $to ?? date( 'd', strtotime( 'tomorrow' ));
         $mazhabSetting = MazhabWiseScheduleSetting::where( 'mazhab_id', $mazhabId )->first();
-        $permanentCalendars = PermanentCalendar::where( 'month_id', '>=', $month )->whereBetween( 'day', [$today, $nextDay] )->paginate( 30 );
+        $permanentCalendars = PermanentCalendar::where( 'month_id', '>=', $month_id )->whereBetween( 'day', [$today, $nextDay] )->paginate( 30 );
 
         return response()->json( [
             'status' => 'success',
             'today' => $today,
             'nextDay' =>  $nextDay,
-            'env' => $environment,
             'status_code' => 200,
             'message' => 'Permanent Calendar Data',
             'data' => [
