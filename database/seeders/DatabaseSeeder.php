@@ -4,9 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Doa;
-use App\Models\DoaCategory;
-use App\Models\Sura;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -40,6 +37,7 @@ class DatabaseSeeder extends Seeder
             DoaSeeder::class,
             SuraTableSeeder::class,
             AyatTableSeeder::class,
+            AsmaulHusnaTableSeeder::class,
         ]);
     }
 }
