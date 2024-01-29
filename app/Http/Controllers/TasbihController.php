@@ -2,32 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tasbih;
+use App\Traits\HelperTrait;
+use Illuminate\Http\Request;
 
 class TasbihController extends Controller
 {
+    use HelperTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        // $tasbih = Tasbih::where('user_id', auth()->user()->id)->first();
         $tasbih = Tasbih::first();
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
-    }
+        if (empty($tasbih)) {
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+            return $this->noContentResponse('No tasbih data found', $tasbih, 204);
+        }
+
+        return $this->successResponse('Tasbih Data', $tasbih, 200);
     }
 
     /**
@@ -37,15 +32,14 @@ class TasbihController extends Controller
     {
         // validate json data
         $validator = $request->validate([
-            'user_id' => 'required',
-            'subhanallah' => 'required',
-            'alhamdulillah' => 'required',
-            'allahuakbar' => 'required',
-            'astagfirullah' => 'required',
-            'la_ilaha_illallah' => 'required',
+            'user_id'                                          => 'required',
+            'subhanallah'                                      => 'required',
+            'alhamdulillah'                                    => 'required',
+            'allahuakbar'                                      => 'required',
+            'astagfirullah'                                    => 'required',
+            'la_ilaha_illallah'                                => 'required',
             'subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem' => 'required',
         ]);
-
 
         $tasbih = Tasbih::where('user_id', $request->user_id)->first();
 
@@ -55,12 +49,7 @@ class TasbihController extends Controller
             $tasbih = Tasbih::create($request->all());
         }
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
+        return $this->successResponse('Your tasbih data has been updated.', $tasbih, 200);
     }
 
     /**
@@ -71,12 +60,12 @@ class TasbihController extends Controller
         // show tasbih data by user id
         $tasbih = Tasbih::where('user_id', $id)->first();
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
+        if (empty($tasbih)) {
+
+            return $this->noContentResponse('No tasbih data found', $tasbih, 204);
+        }
+
+        return $this->successResponse('Your tasbih Data', $tasbih, 200);
     }
 
     /**
@@ -86,12 +75,7 @@ class TasbihController extends Controller
     {
         $tasbih = Tasbih::where('user_id', $id)->first();
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
+        return $this->successResponse('Tasbih Data', $tasbih, 200);
     }
 
     /**
@@ -101,33 +85,25 @@ class TasbihController extends Controller
     {
         // validate json data
         $validator = $request->validate([
-            'user_id' => 'required',
-            'subhanallah' => 'required',
-            'alhamdulillah' => 'required',
-            'allahuakbar' => 'required',
-            'astagfirullah' => 'required',
-            'la_ilaha_illallah' => 'required',
-            'subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem' => 'required',
+            'user_id'                                                 => 'required',
+            'tasbih'                                                  => 'required',
+            'tasbih.subhanallah'                                      => 'required',
+            'tasbih.alhamdulillah'                                    => 'required',
+            'tasbih.allahuakbar'                                      => 'required',
+            'tasbih.astagfirullah'                                    => 'required',
+            'tasbih.la_ilaha_illallah'                                => 'required',
+            'tasbih.subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'status_code' => 400,
-                'message' => 'Validation Error',
-                'errors' => $validator->errors(),
-            ]);
+
+            return $this->validationErrorResponse('Validation Error', $validator->errors(), 400);
         }
 
         $tasbih = Tasbih::where('user_id', $id)->first();
         $tasbih->update($request->all());
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
+        return $this->successResponse('Your tasbeeh data has been updated.', $tasbih, 200);
     }
 
     /**
@@ -138,11 +114,6 @@ class TasbihController extends Controller
         $tasbih = Tasbih::where('user_id', $id)->first();
         $tasbih->delete();
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
+        return $this->successResponse('Your tasbih has been deleted', $tasbih, 200);
     }
 }
