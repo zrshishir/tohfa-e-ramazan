@@ -176,3 +176,29 @@ php artisan migrate:refresh
 php artisan db:seed
 git status
 exit
+php artisan migrate
+php artisan db:seed
+exit
+php artisan mgirate:refresh
+php artisan migrate:refresh
+php artisan db:seed
+exit
+php artisan migrate:refresh
+php artisan db:seed
+php artisan make:migration create_asmaul_husnas_table
+php artisan make:model AsmaulHusna -mrc
+php artisan make:seeder AsmaulHusnaTableSeeder
+php artisan make:filament-resource AsmaulHusna
+exit
+php artisan migrate:refresh
+php artisan migrate:refresh
+exit
+php artisan migrate:refresh
+php artisan db:seed
+exit
+php artisan migrate:refresh
+php artisan db:seed
+exit
+php artisan migrate:refresh
+php artisan db:seed
+exit
