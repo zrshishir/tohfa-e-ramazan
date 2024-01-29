@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "api" middleware group. Make something great!
 |
-*/
+ */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -39,3 +39,6 @@ Route::get('/sura', 'App\Http\Controllers\SuraController@index');
 
 // write ayat routes here
 Route::get('/ayat/{id}', 'App\Http\Controllers\AyatController@index');
+
+// asmaul husna
+Route::get('/asmaul-husna', 'App\Http\Controllers\AsmaulHusnaController@index');
