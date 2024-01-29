@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,144 +13,494 @@ class PermanentCalendarSeeder extends Seeder
      */
     public function run(): void
     {
+        $permanentCalendars = [
+            ['month_id' => 1, 'day' => '01', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '03:46 PM', 'magrib_and_iftar_time' => '05:27 PM', 'esha_time' => '06:45 PM'],
+            ['month_id' => 1, 'day' => '02', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '03:46 PM', 'magrib_and_iftar_time' => '05:27 PM', 'esha_time' => '06:45 PM'],
+            ['month_id' => 1, 'day' => '03', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '03:46 PM', 'magrib_and_iftar_time' => '05:27 PM', 'esha_time' => '06:45 PM'],
+            ['month_id' => 1, 'day' => '04', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '03:46 PM', 'magrib_and_iftar_time' => '05:27 PM', 'esha_time' => '06:45 PM'],
+            ['month_id' => 1, 'day' => '05', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '03:46 PM', 'magrib_and_iftar_time' => '05:27 PM', 'esha_time' => '06:45 PM'],
 
-// make the following array according to the $sample
+            ['month_id' => 1, 'day' => '06', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:42 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '03:50 PM', 'magrib_and_iftar_time' => '05:30 PM', 'esha_time' => '06:48 PM'],
+            ['month_id' => 1, 'day' => '07', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:42 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '03:50 PM', 'magrib_and_iftar_time' => '05:30 PM', 'esha_time' => '06:48 PM'],
+            ['month_id' => 1, 'day' => '08', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:42 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '03:50 PM', 'magrib_and_iftar_time' => '05:30 PM', 'esha_time' => '06:48 PM'],
+            ['month_id' => 1, 'day' => '09', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:42 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '03:50 PM', 'magrib_and_iftar_time' => '05:30 PM', 'esha_time' => '06:48 PM'],
+            ['month_id' => 1, 'day' => '10', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:42 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '03:50 PM', 'magrib_and_iftar_time' => '05:30 PM', 'esha_time' => '06:48 PM'],
+            ['month_id' => 1, 'day' => '11', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:42 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '03:50 PM', 'magrib_and_iftar_time' => '05:30 PM', 'esha_time' => '06:48 PM'],
 
-// $permanentCalendars = [
+            ['month_id' => 1, 'day' => '12', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '03:54 PM', 'magrib_and_iftar_time' => '05:34 PM', 'esha_time' => '06:51 PM'],
+            ['month_id' => 1, 'day' => '13', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '03:54 PM', 'magrib_and_iftar_time' => '05:34 PM', 'esha_time' => '06:51 PM'],
+            ['month_id' => 1, 'day' => '14', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '03:54 PM', 'magrib_and_iftar_time' => '05:34 PM', 'esha_time' => '06:51 PM'],
+            ['month_id' => 1, 'day' => '15', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '03:54 PM', 'magrib_and_iftar_time' => '05:34 PM', 'esha_time' => '06:51 PM'],
+            ['month_id' => 1, 'day' => '16', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '03:54 PM', 'magrib_and_iftar_time' => '05:34 PM', 'esha_time' => '06:51 PM'],
+            ['month_id' => 1, 'day' => '17', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '03:54 PM', 'magrib_and_iftar_time' => '05:34 PM', 'esha_time' => '06:51 PM'],
 
-//     [
+            ['month_id' => 1, 'day' => '18', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '03:58 PM', 'magrib_and_iftar_time' => '05:38 PM', 'esha_time' => '06:55 PM'],
+            ['month_id' => 1, 'day' => '19', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '03:58 PM', 'magrib_and_iftar_time' => '05:38 PM', 'esha_time' => '06:55 PM'],
+            ['month_id' => 1, 'day' => '20', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '03:58 PM', 'magrib_and_iftar_time' => '05:38 PM', 'esha_time' => '06:55 PM'],
+            ['month_id' => 1, 'day' => '21', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '03:58 PM', 'magrib_and_iftar_time' => '05:38 PM', 'esha_time' => '06:55 PM'],
+            ['month_id' => 1, 'day' => '22', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '03:58 PM', 'magrib_and_iftar_time' => '05:38 PM', 'esha_time' => '06:55 PM'],
+            ['month_id' => 1, 'day' => '23', 'sehri_time' => '5:20 AM', 'fazr_time' => '5:26 AM', 'sunrise_time' => '06:43 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '03:58 PM', 'magrib_and_iftar_time' => '05:38 PM', 'esha_time' => '06:55 PM'],
 
-//         'month_id' => 1,
+            ['month_id' => 1, 'day' => '24', 'sehri_time' => '5:19 AM', 'fazr_time' => '5:25 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:03 PM', 'magrib_and_iftar_time' => '05:43 PM', 'esha_time' => '06:59 PM'],
+            ['month_id' => 1, 'day' => '25', 'sehri_time' => '5:19 AM', 'fazr_time' => '5:25 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:03 PM', 'magrib_and_iftar_time' => '05:43 PM', 'esha_time' => '06:59 PM'],
+            ['month_id' => 1, 'day' => '26', 'sehri_time' => '5:19 AM', 'fazr_time' => '5:25 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:03 PM', 'magrib_and_iftar_time' => '05:43 PM', 'esha_time' => '06:59 PM'],
+            ['month_id' => 1, 'day' => '27', 'sehri_time' => '5:19 AM', 'fazr_time' => '5:25 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:03 PM', 'magrib_and_iftar_time' => '05:43 PM', 'esha_time' => '06:59 PM'],
+            ['month_id' => 1, 'day' => '28', 'sehri_time' => '5:19 AM', 'fazr_time' => '5:25 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:03 PM', 'magrib_and_iftar_time' => '05:43 PM', 'esha_time' => '06:59 PM'],
+            ['month_id' => 1, 'day' => '29', 'sehri_time' => '5:19 AM', 'fazr_time' => '5:25 AM', 'sunrise_time' => '06:41 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:03 PM', 'magrib_and_iftar_time' => '05:43 PM', 'esha_time' => '06:59 PM'],
 
-//         'day' => '01',
+            ['month_id' => 1, 'day' => '30', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:40 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:07 PM', 'magrib_and_iftar_time' => '05:47 PM', 'esha_time' => '07:03 PM'],
+            ['month_id' => 1, 'day' => '30', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:40 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:07 PM', 'magrib_and_iftar_time' => '05:47 PM', 'esha_time' => '07:03 PM'],
 
-//         'sehri' => json_encode(['text_en' => 'Sehri', 'text_bn' => 'সেহরী', 'text_ar' => 'سحري', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']),
+            ['month_id' => 2, 'day' => '01', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:39 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:08 PM', 'magrib_and_iftar_time' => '05:48 PM', 'esha_time' => '07:04 PM'],
+            ['month_id' => 2, 'day' => '02', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:39 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:08 PM', 'magrib_and_iftar_time' => '05:48 PM', 'esha_time' => '07:04 PM'],
+            ['month_id' => 2, 'day' => '03', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:39 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:08 PM', 'magrib_and_iftar_time' => '05:48 PM', 'esha_time' => '07:04 PM'],
+            ['month_id' => 2, 'day' => '04', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:39 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:08 PM', 'magrib_and_iftar_time' => '05:48 PM', 'esha_time' => '07:04 PM'],
+            ['month_id' => 2, 'day' => '05', 'sehri_time' => '5:18 AM', 'fazr_time' => '5:24 AM', 'sunrise_time' => '06:39 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:08 PM', 'magrib_and_iftar_time' => '05:48 PM', 'esha_time' => '07:04 PM'],
 
-//         'fazr' => json_encode(['text_en' => 'Fazr', 'text_bn' => 'ফজর', 'text_ar' => 'فجر', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']),
+            ['month_id' => 2, 'day' => '06', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:37 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:11 PM', 'magrib_and_iftar_time' => '05:52 PM', 'esha_time' => '07:07 PM'],
+            ['month_id' => 2, 'day' => '07', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:37 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:11 PM', 'magrib_and_iftar_time' => '05:52 PM', 'esha_time' => '07:07 PM'],
+            ['month_id' => 2, 'day' => '08', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:37 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:11 PM', 'magrib_and_iftar_time' => '05:52 PM', 'esha_time' => '07:07 PM'],
+            ['month_id' => 2, 'day' => '09', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:37 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:11 PM', 'magrib_and_iftar_time' => '05:52 PM', 'esha_time' => '07:07 PM'],
+            ['month_id' => 2, 'day' => '10', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:37 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:11 PM', 'magrib_and_iftar_time' => '05:52 PM', 'esha_time' => '07:07 PM'],
+            ['month_id' => 2, 'day' => '11', 'sehri_time' => '5:16 AM', 'fazr_time' => '5:22 AM', 'sunrise_time' => '06:37 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:11 PM', 'magrib_and_iftar_time' => '05:52 PM', 'esha_time' => '07:07 PM'],
 
-//         'sunrise' => json_encode(['text_en' => 'Sunrise', 'text_bn' => 'সূর্যোদয়', 'text_ar' => 'شروق الشمس', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']),
+            ['month_id' => 2, 'day' => '12', 'sehri_time' => '5:13 AM', 'fazr_time' => '5:19 AM', 'sunrise_time' => '06:33 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:15 PM', 'magrib_and_iftar_time' => '05:55 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 2, 'day' => '13', 'sehri_time' => '5:13 AM', 'fazr_time' => '5:19 AM', 'sunrise_time' => '06:33 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:15 PM', 'magrib_and_iftar_time' => '05:55 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 2, 'day' => '14', 'sehri_time' => '5:13 AM', 'fazr_time' => '5:19 AM', 'sunrise_time' => '06:33 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:15 PM', 'magrib_and_iftar_time' => '05:55 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 2, 'day' => '15', 'sehri_time' => '5:13 AM', 'fazr_time' => '5:19 AM', 'sunrise_time' => '06:33 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:15 PM', 'magrib_and_iftar_time' => '05:55 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 2, 'day' => '16', 'sehri_time' => '5:13 AM', 'fazr_time' => '5:19 AM', 'sunrise_time' => '06:33 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:15 PM', 'magrib_and_iftar_time' => '05:55 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 2, 'day' => '17', 'sehri_time' => '5:13 AM', 'fazr_time' => '5:19 AM', 'sunrise_time' => '06:33 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:15 PM', 'magrib_and_iftar_time' => '05:55 PM', 'esha_time' => '07:10 PM'],
 
-//         'johr' => json_encode(['text_en' => 'Johr', 'text_bn' => 'জোহর', 'text_ar' => 'جوهر', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']),
+            ['month_id' => 2, 'day' => '18', 'sehri_time' => '5:09 AM', 'fazr_time' => '5:15 AM', 'sunrise_time' => '06:29 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:18 PM', 'magrib_and_iftar_time' => '05:59 PM', 'esha_time' => '07:13 PM'],
+            ['month_id' => 2, 'day' => '19', 'sehri_time' => '5:09 AM', 'fazr_time' => '5:15 AM', 'sunrise_time' => '06:29 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:18 PM', 'magrib_and_iftar_time' => '05:59 PM', 'esha_time' => '07:13 PM'],
+            ['month_id' => 2, 'day' => '20', 'sehri_time' => '5:09 AM', 'fazr_time' => '5:15 AM', 'sunrise_time' => '06:29 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:18 PM', 'magrib_and_iftar_time' => '05:59 PM', 'esha_time' => '07:13 PM'],
+            ['month_id' => 2, 'day' => '21', 'sehri_time' => '5:09 AM', 'fazr_time' => '5:15 AM', 'sunrise_time' => '06:29 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:18 PM', 'magrib_and_iftar_time' => '05:59 PM', 'esha_time' => '07:13 PM'],
+            ['month_id' => 2, 'day' => '22', 'sehri_time' => '5:09 AM', 'fazr_time' => '5:15 AM', 'sunrise_time' => '06:29 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:18 PM', 'magrib_and_iftar_time' => '05:59 PM', 'esha_time' => '07:13 PM'],
+            ['month_id' => 2, 'day' => '23', 'sehri_time' => '5:09 AM', 'fazr_time' => '5:15 AM', 'sunrise_time' => '06:29 PM', 'ishraq_time' => '', 'johr_time' => '12:16 PM', 'asr_time' => '04:18 PM', 'magrib_and_iftar_time' => '05:59 PM', 'esha_time' => '07:13 PM'],
 
-//         'asr' => json_encode(['text_en' => 'Asr', 'text_bn' => 'আসর', 'text_ar' => 'عصر', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']),
+            ['month_id' => 2, 'day' => '24', 'sehri_time' => '5:05 AM', 'fazr_time' => '5:11 AM', 'sunrise_time' => '06:25 PM', 'ishraq_time' => '', 'johr_time' => '12:15 PM', 'asr_time' => '04:20 PM', 'magrib_and_iftar_time' => '06:02 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 2, 'day' => '25', 'sehri_time' => '5:05 AM', 'fazr_time' => '5:11 AM', 'sunrise_time' => '06:25 PM', 'ishraq_time' => '', 'johr_time' => '12:15 PM', 'asr_time' => '04:20 PM', 'magrib_and_iftar_time' => '06:02 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 2, 'day' => '26', 'sehri_time' => '5:05 AM', 'fazr_time' => '5:11 AM', 'sunrise_time' => '06:25 PM', 'ishraq_time' => '', 'johr_time' => '12:15 PM', 'asr_time' => '04:20 PM', 'magrib_and_iftar_time' => '06:02 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 2, 'day' => '27', 'sehri_time' => '5:05 AM', 'fazr_time' => '5:11 AM', 'sunrise_time' => '06:25 PM', 'ishraq_time' => '', 'johr_time' => '12:15 PM', 'asr_time' => '04:20 PM', 'magrib_and_iftar_time' => '06:02 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 2, 'day' => '28', 'sehri_time' => '5:05 AM', 'fazr_time' => '5:11 AM', 'sunrise_time' => '06:25 PM', 'ishraq_time' => '', 'johr_time' => '12:15 PM', 'asr_time' => '04:20 PM', 'magrib_and_iftar_time' => '06:02 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 2, 'day' => '29', 'sehri_time' => '5:05 AM', 'fazr_time' => '5:11 AM', 'sunrise_time' => '06:25 PM', 'ishraq_time' => '', 'johr_time' => '12:15 PM', 'asr_time' => '04:20 PM', 'magrib_and_iftar_time' => '06:02 PM', 'esha_time' => '07:16 PM'],
 
-//         'magrib' => json_encode(['text_en' => 'Magrib', 'text_bn' => 'মাগরিব', 'text_ar' => 'مغرب', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']),
+            ['month_id' => 2, 'day' => '30', 'sehri_time' => '5:02 AM', 'fazr_time' => '5:08 AM', 'sunrise_time' => '06:21 PM', 'ishraq_time' => '', 'johr_time' => '12:15 PM', 'asr_time' => '04:22 PM', 'magrib_and_iftar_time' => '06:04 PM', 'esha_time' => '07:17 PM'],
 
-//         'esha' => json_encode(['text_en' => 'Esha', 'text_bn' => 'ঈশা', 'text_ar' => 'عشاء', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']),
+            ['month_id' => 3, 'day' => '01', 'sehri_time' => '5:01 AM', 'fazr_time' => '5:07 AM', 'sunrise_time' => '06:20 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:22 PM', 'magrib_and_iftar_time' => '06:05 PM', 'esha_time' => '07:18 PM'],
+            ['month_id' => 3, 'day' => '02', 'sehri_time' => '5:01 AM', 'fazr_time' => '5:07 AM', 'sunrise_time' => '06:20 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:22 PM', 'magrib_and_iftar_time' => '06:05 PM', 'esha_time' => '07:18 PM'],
+            ['month_id' => 3, 'day' => '03', 'sehri_time' => '5:01 AM', 'fazr_time' => '5:07 AM', 'sunrise_time' => '06:20 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:22 PM', 'magrib_and_iftar_time' => '06:05 PM', 'esha_time' => '07:18 PM'],
+            ['month_id' => 3, 'day' => '04', 'sehri_time' => '5:01 AM', 'fazr_time' => '5:07 AM', 'sunrise_time' => '06:20 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:22 PM', 'magrib_and_iftar_time' => '06:05 PM', 'esha_time' => '07:18 PM'],
+            ['month_id' => 3, 'day' => '05', 'sehri_time' => '5:01 AM', 'fazr_time' => '5:07 AM', 'sunrise_time' => '06:20 PM', 'ishraq_time' => '', 'johr_time' => '12:14 PM', 'asr_time' => '04:22 PM', 'magrib_and_iftar_time' => '06:05 PM', 'esha_time' => '07:18 PM'],
 
-//         'jummah' => json_encode(['text_en' => 'Jummah', 'text_bn' => 'জুম্মা', 'text_ar' => 'جمعة', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']), 'tahazzud' => json_encode(['text_en' => 'Tahazzud', 'text_bn' => 'তাহাজ্জুদ', 'text_ar' => 'تهجد', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']), 'ishraq' => json_encode(['text_en' => 'Ishraq', 'text_bn' => 'ইশরাক', 'text_ar' => 'إشراق', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM']), 'forbidden' => json_encode(['text_en' => 'Forbidden Time', 'text_bn' => 'নিষিদ্ধ সময়', 'text_ar' => 'وقت محظور', 'start_time' => '05:16 AM', 'end_time' => '05:16 AM'])
+            ['month_id' => 3, 'day' => '06', 'sehri_time' => '04:57 AM', 'fazr_time' => '05:03 AM', 'sunrise_time' => '06:16 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '04:24 PM', 'magrib_and_iftar_time' => '06:07 PM', 'esha_time' => '07:20 PM'],
+            ['month_id' => 3, 'day' => '07', 'sehri_time' => '04:57 AM', 'fazr_time' => '05:03 AM', 'sunrise_time' => '06:16 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '04:24 PM', 'magrib_and_iftar_time' => '06:07 PM', 'esha_time' => '07:20 PM'],
+            ['month_id' => 3, 'day' => '08', 'sehri_time' => '04:57 AM', 'fazr_time' => '05:03 AM', 'sunrise_time' => '06:16 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '04:24 PM', 'magrib_and_iftar_time' => '06:07 PM', 'esha_time' => '07:20 PM'],
+            ['month_id' => 3, 'day' => '09', 'sehri_time' => '04:57 AM', 'fazr_time' => '05:03 AM', 'sunrise_time' => '06:16 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '04:24 PM', 'magrib_and_iftar_time' => '06:07 PM', 'esha_time' => '07:20 PM'],
+            ['month_id' => 3, 'day' => '10', 'sehri_time' => '04:57 AM', 'fazr_time' => '05:03 AM', 'sunrise_time' => '06:16 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '04:24 PM', 'magrib_and_iftar_time' => '06:07 PM', 'esha_time' => '07:20 PM'],
+            ['month_id' => 3, 'day' => '11', 'sehri_time' => '04:57 AM', 'fazr_time' => '05:03 AM', 'sunrise_time' => '06:16 PM', 'ishraq_time' => '', 'johr_time' => '12:13 PM', 'asr_time' => '04:24 PM', 'magrib_and_iftar_time' => '06:07 PM', 'esha_time' => '07:20 PM'],
 
-//     ],
+            ['month_id' => 3, 'day' => '12', 'sehri_time' => '04:51 AM', 'fazr_time' => '04:57 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:12 PM', 'asr_time' => '04:26 PM', 'magrib_and_iftar_time' => '06:10 PM', 'esha_time' => '07:23 PM'],
+            ['month_id' => 3, 'day' => '13', 'sehri_time' => '04:51 AM', 'fazr_time' => '04:57 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:12 PM', 'asr_time' => '04:26 PM', 'magrib_and_iftar_time' => '06:10 PM', 'esha_time' => '07:23 PM'],
+            ['month_id' => 3, 'day' => '14', 'sehri_time' => '04:51 AM', 'fazr_time' => '04:57 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '04:27 PM', 'magrib_and_iftar_time' => '06:12 PM', 'esha_time' => '07:25 PM'],
+            ['month_id' => 3, 'day' => '15', 'sehri_time' => '04:51 AM', 'fazr_time' => '04:57 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:12 PM', 'asr_time' => '04:26 PM', 'magrib_and_iftar_time' => '06:10 PM', 'esha_time' => '07:23 PM'],
+            ['month_id' => 3, 'day' => '16', 'sehri_time' => '04:51 AM', 'fazr_time' => '04:57 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:12 PM', 'asr_time' => '04:26 PM', 'magrib_and_iftar_time' => '06:10 PM', 'esha_time' => '07:23 PM'],
+            ['month_id' => 3, 'day' => '17', 'sehri_time' => '04:51 AM', 'fazr_time' => '04:57 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:12 PM', 'asr_time' => '04:26 PM', 'magrib_and_iftar_time' => '06:10 PM', 'esha_time' => '07:23 PM'],
 
-//     [
+            ['month_id' => 3, 'day' => '18', 'sehri_time' => '04:45 AM', 'fazr_time' => '04:51 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '04:27 PM', 'magrib_and_iftar_time' => '06:12 PM', 'esha_time' => '07:25 PM'],
+            ['month_id' => 3, 'day' => '19', 'sehri_time' => '04:45 AM', 'fazr_time' => '04:51 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '04:27 PM', 'magrib_and_iftar_time' => '06:12 PM', 'esha_time' => '07:25 PM'],
+            ['month_id' => 3, 'day' => '20', 'sehri_time' => '04:45 AM', 'fazr_time' => '04:51 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '04:27 PM', 'magrib_and_iftar_time' => '06:12 PM', 'esha_time' => '07:25 PM'],
+            ['month_id' => 3, 'day' => '21', 'sehri_time' => '04:45 AM', 'fazr_time' => '04:51 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '04:27 PM', 'magrib_and_iftar_time' => '06:12 PM', 'esha_time' => '07:25 PM'],
+            ['month_id' => 3, 'day' => '22', 'sehri_time' => '04:45 AM', 'fazr_time' => '04:51 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '04:27 PM', 'magrib_and_iftar_time' => '06:12 PM', 'esha_time' => '07:25 PM'],
+            ['month_id' => 3, 'day' => '23', 'sehri_time' => '04:45 AM', 'fazr_time' => '04:51 AM', 'sunrise_time' => '06:10 PM', 'ishraq_time' => '', 'johr_time' => '12:10 PM', 'asr_time' => '04:27 PM', 'magrib_and_iftar_time' => '06:12 PM', 'esha_time' => '07:25 PM'],
 
-//         'month_id' => 1,
+            ['month_id' => 3, 'day' => '24', 'sehri_time' => '04:39 AM', 'fazr_time' => '04:45 AM', 'sunrise_time' => '05:58 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:28 PM', 'magrib_and_iftar_time' => '06:14 PM', 'esha_time' => '07:28 PM'],
+            ['month_id' => 3, 'day' => '25', 'sehri_time' => '04:39 AM', 'fazr_time' => '04:45 AM', 'sunrise_time' => '05:58 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:28 PM', 'magrib_and_iftar_time' => '06:14 PM', 'esha_time' => '07:28 PM'],
+            ['month_id' => 3, 'day' => '26', 'sehri_time' => '04:39 AM', 'fazr_time' => '04:45 AM', 'sunrise_time' => '05:58 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:28 PM', 'magrib_and_iftar_time' => '06:14 PM', 'esha_time' => '07:28 PM'],
+            ['month_id' => 3, 'day' => '27', 'sehri_time' => '04:39 AM', 'fazr_time' => '04:45 AM', 'sunrise_time' => '05:58 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:28 PM', 'magrib_and_iftar_time' => '06:14 PM', 'esha_time' => '07:28 PM'],
+            ['month_id' => 3, 'day' => '28', 'sehri_time' => '04:39 AM', 'fazr_time' => '04:45 AM', 'sunrise_time' => '05:58 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:28 PM', 'magrib_and_iftar_time' => '06:14 PM', 'esha_time' => '07:28 PM'],
+            ['month_id' => 3, 'day' => '29', 'sehri_time' => '04:39 AM', 'fazr_time' => '04:45 AM', 'sunrise_time' => '05:58 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:28 PM', 'magrib_and_iftar_time' => '06:14 PM', 'esha_time' => '07:28 PM'],
+            ['month_id' => 3, 'day' => '30', 'sehri_time' => '04:31 AM', 'fazr_time' => '04:37 AM', 'sunrise_time' => '05:52 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:17 PM', 'esha_time' => '07:32 PM'],
+            ['month_id' => 3, 'day' => '31', 'sehri_time' => '04:31 AM', 'fazr_time' => '04:37 AM', 'sunrise_time' => '05:52 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:17 PM', 'esha_time' => '07:32 PM'],
 
-//         'day' => '02',
+            ['month_id' => 4, 'day' => '01', 'sehri_time' => '04:29 AM', 'fazr_time' => '04:35 AM', 'sunrise_time' => '05:50 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:18 PM', 'esha_time' => '07:33 PM'],
+            ['month_id' => 4, 'day' => '02', 'sehri_time' => '04:29 AM', 'fazr_time' => '04:35 AM', 'sunrise_time' => '05:50 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:18 PM', 'esha_time' => '07:33 PM'],
+            ['month_id' => 4, 'day' => '03', 'sehri_time' => '04:29 AM', 'fazr_time' => '04:35 AM', 'sunrise_time' => '05:50 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:18 PM', 'esha_time' => '07:33 PM'],
+            ['month_id' => 4, 'day' => '04', 'sehri_time' => '04:29 AM', 'fazr_time' => '04:35 AM', 'sunrise_time' => '05:50 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:18 PM', 'esha_time' => '07:33 PM'],
+            ['month_id' => 4, 'day' => '05', 'sehri_time' => '04:29 AM', 'fazr_time' => '04:35 AM', 'sunrise_time' => '05:50 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:18 PM', 'esha_time' => '07:33 PM'],
 
-//         'sehri' => json_encode(['text_en' => 'Sehri', 'text_bn' => 'সেহরী', 'text_ar' => 'سحري', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']),
+            ['month_id' => 4, 'day' => '06', 'sehri_time' => '04:24 AM', 'fazr_time' => '04:30 AM', 'sunrise_time' => '05:45 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
+            ['month_id' => 4, 'day' => '07', 'sehri_time' => '04:24 AM', 'fazr_time' => '04:30 AM', 'sunrise_time' => '05:45 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
+            ['month_id' => 4, 'day' => '08', 'sehri_time' => '04:24 AM', 'fazr_time' => '04:30 AM', 'sunrise_time' => '05:45 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
+            ['month_id' => 4, 'day' => '09', 'sehri_time' => '04:24 AM', 'fazr_time' => '04:30 AM', 'sunrise_time' => '05:45 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
+            ['month_id' => 4, 'day' => '10', 'sehri_time' => '04:24 AM', 'fazr_time' => '04:30 AM', 'sunrise_time' => '05:45 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
+            ['month_id' => 4, 'day' => '11', 'sehri_time' => '04:24 AM', 'fazr_time' => '04:30 AM', 'sunrise_time' => '05:45 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
 
-//         'fazr' => json_encode(['text_en' => 'Fazr', 'text_bn' => 'ফজর', 'text_ar' => 'فجر', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']),
+            ['month_id' => 4, 'day' => '12', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:23 PM', 'esha_time' => '07:38 PM'],
+            ['month_id' => 4, 'day' => '13', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:23 PM', 'esha_time' => '07:38 PM'],
+            ['month_id' => 4, 'day' => '14', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:23 PM', 'esha_time' => '07:38 PM'],
+            ['month_id' => 4, 'day' => '15', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:23 PM', 'esha_time' => '07:38 PM'],
+            ['month_id' => 4, 'day' => '16', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:23 PM', 'esha_time' => '07:38 PM'],
+            ['month_id' => 4, 'day' => '17', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:23 PM', 'esha_time' => '07:38 PM'],
 
-//         'sunrise' => json_encode(['text_en' => 'Sunrise', 'text_bn' => 'সূর্যোদয়', 'text_ar' => 'شروق الشمس', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']),
+            ['month_id' => 4, 'day' => '18', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:25 PM', 'esha_time' => '07:42 PM'],
+            ['month_id' => 4, 'day' => '19', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:25 PM', 'esha_time' => '07:42 PM'],
+            ['month_id' => 4, 'day' => '20', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:25 PM', 'esha_time' => '07:42 PM'],
+            ['month_id' => 4, 'day' => '21', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:25 PM', 'esha_time' => '07:42 PM'],
+            ['month_id' => 4, 'day' => '22', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:25 PM', 'esha_time' => '07:42 PM'],
+            ['month_id' => 4, 'day' => '23', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:25 PM', 'esha_time' => '07:42 PM'],
 
-//         'johr' => json_encode(['text_en' => 'Johr', 'text_bn' => 'জোহর', 'text_ar' => 'جوهر', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']),
+            ['month_id' => 4, 'day' => '24', 'sehri_time' => '04:05 AM', 'fazr_time' => '04:11 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:45 PM'],
+            ['month_id' => 4, 'day' => '25', 'sehri_time' => '04:05 AM', 'fazr_time' => '04:11 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:45 PM'],
+            ['month_id' => 4, 'day' => '26', 'sehri_time' => '04:05 AM', 'fazr_time' => '04:11 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:45 PM'],
+            ['month_id' => 4, 'day' => '27', 'sehri_time' => '04:05 AM', 'fazr_time' => '04:11 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:45 PM'],
+            ['month_id' => 4, 'day' => '28', 'sehri_time' => '04:05 AM', 'fazr_time' => '04:11 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:45 PM'],
+            ['month_id' => 4, 'day' => '29', 'sehri_time' => '04:05 AM', 'fazr_time' => '04:11 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:45 PM'],
 
-//         'asr' => json_encode(['text_en' => 'Asr', 'text_bn' => 'আসর', 'text_ar' => 'عصر', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']),
+            ['month_id' => 4, 'day' => '30', 'sehri_time' => '04:00 AM', 'fazr_time' => '04:06 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:30 PM', 'esha_time' => '07:49 PM'],
 
-//         'magrib' => json_encode(['text_en' => 'Magrib', 'text_bn' => 'মাগরিব', 'text_ar' => 'مغرب', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']),
+            ['month_id' => 5, 'day' => '01', 'sehri_time' => '03:59 AM', 'fazr_time' => '04:05 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:31 PM', 'esha_time' => '07:50 PM'],
+            ['month_id' => 5, 'day' => '02', 'sehri_time' => '03:59 AM', 'fazr_time' => '04:05 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:31 PM', 'esha_time' => '07:50 PM'],
+            ['month_id' => 5, 'day' => '03', 'sehri_time' => '03:59 AM', 'fazr_time' => '04:05 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:31 PM', 'esha_time' => '07:50 PM'],
+            ['month_id' => 5, 'day' => '04', 'sehri_time' => '03:59 AM', 'fazr_time' => '04:05 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:31 PM', 'esha_time' => '07:50 PM'],
+            ['month_id' => 5, 'day' => '05', 'sehri_time' => '03:59 AM', 'fazr_time' => '04:05 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:31 PM', 'esha_time' => '07:50 PM'],
 
-//         'esha' => json_encode(['text_en' => 'Esha', 'text_bn' => 'ঈশা', 'text_ar' => 'عشاء', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']),
+            ['month_id' => 5, 'day' => '06', 'sehri_time' => '03:53 AM', 'fazr_time' => '03:59 AM', 'sunrise_time' => '05:20 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:54 PM'],
+            ['month_id' => 5, 'day' => '07', 'sehri_time' => '03:53 AM', 'fazr_time' => '03:59 AM', 'sunrise_time' => '05:20 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:54 PM'],
+            ['month_id' => 5, 'day' => '08', 'sehri_time' => '03:53 AM', 'fazr_time' => '03:59 AM', 'sunrise_time' => '05:20 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:54 PM'],
+            ['month_id' => 5, 'day' => '09', 'sehri_time' => '03:53 AM', 'fazr_time' => '03:59 AM', 'sunrise_time' => '05:20 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:54 PM'],
+            ['month_id' => 5, 'day' => '10', 'sehri_time' => '03:53 AM', 'fazr_time' => '03:59 AM', 'sunrise_time' => '05:20 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:54 PM'],
+            ['month_id' => 5, 'day' => '11', 'sehri_time' => '03:53 AM', 'fazr_time' => '03:59 AM', 'sunrise_time' => '05:20 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:31 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:54 PM'],
 
-//         'jummah' => json_encode(['text_en' => 'Jummah', 'text_bn' => 'জুম্মা', 'text_ar' => 'جمعة', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']), 'tahazzud' => json_encode(['text_en' => 'Tahazzud', 'text_bn' => 'তাহাজ্জুদ', 'text_ar' => 'تهجد', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']), 'ishraq' => json_encode(['text_en' => 'Ishraq', 'text_bn' => 'ইশরাক', 'text_ar' => 'إشراق', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM']), 'forbidden' => json_encode(['text_en' => 'Forbidden Time', 'text_bn' => 'নিষিদ্ধ সময়', 'text_ar' => 'وقت محظور', 'start_time' => '05:17 AM', 'end_time' => '05:17 AM'])
+            ['month_id' => 5, 'day' => '12', 'sehri_time' => '03:49 AM', 'fazr_time' => '03:55 AM', 'sunrise_time' => '05:17 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:32 PM', 'magrib_and_iftar_time' => '06:36 PM', 'esha_time' => '07:58 PM'],
+            ['month_id' => 5, 'day' => '13', 'sehri_time' => '03:49 AM', 'fazr_time' => '03:55 AM', 'sunrise_time' => '05:17 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:32 PM', 'magrib_and_iftar_time' => '06:36 PM', 'esha_time' => '07:58 PM'],
+            ['month_id' => 5, 'day' => '14', 'sehri_time' => '03:49 AM', 'fazr_time' => '03:55 AM', 'sunrise_time' => '05:17 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:32 PM', 'magrib_and_iftar_time' => '06:36 PM', 'esha_time' => '07:58 PM'],
+            ['month_id' => 5, 'day' => '15', 'sehri_time' => '03:49 AM', 'fazr_time' => '03:55 AM', 'sunrise_time' => '05:17 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:32 PM', 'magrib_and_iftar_time' => '06:36 PM', 'esha_time' => '07:58 PM'],
+            ['month_id' => 5, 'day' => '16', 'sehri_time' => '03:49 AM', 'fazr_time' => '03:55 AM', 'sunrise_time' => '05:17 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:32 PM', 'magrib_and_iftar_time' => '06:36 PM', 'esha_time' => '07:58 PM'],
+            ['month_id' => 5, 'day' => '17', 'sehri_time' => '03:49 AM', 'fazr_time' => '03:55 AM', 'sunrise_time' => '05:17 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:32 PM', 'magrib_and_iftar_time' => '06:36 PM', 'esha_time' => '07:58 PM'],
 
-//     ],
+            ['month_id' => 5, 'day' => '18', 'sehri_time' => '03:46 AM', 'fazr_time' => '03:52 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:33 PM', 'magrib_and_iftar_time' => '06:39 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 5, 'day' => '19', 'sehri_time' => '03:46 AM', 'fazr_time' => '03:52 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:33 PM', 'magrib_and_iftar_time' => '06:39 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 5, 'day' => '20', 'sehri_time' => '03:46 AM', 'fazr_time' => '03:52 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:33 PM', 'magrib_and_iftar_time' => '06:39 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 5, 'day' => '21', 'sehri_time' => '03:46 AM', 'fazr_time' => '03:52 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:33 PM', 'magrib_and_iftar_time' => '06:39 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 5, 'day' => '22', 'sehri_time' => '03:46 AM', 'fazr_time' => '03:52 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:33 PM', 'magrib_and_iftar_time' => '06:39 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 5, 'day' => '23', 'sehri_time' => '03:46 AM', 'fazr_time' => '03:52 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:33 PM', 'magrib_and_iftar_time' => '06:39 PM', 'esha_time' => '08:01 PM'],
 
-//     [
+            ['month_id' => 5, 'day' => '24', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:12 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:06 PM'],
+            ['month_id' => 5, 'day' => '25', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:12 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:06 PM'],
+            ['month_id' => 5, 'day' => '26', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:12 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:06 PM'],
+            ['month_id' => 5, 'day' => '27', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:12 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:06 PM'],
+            ['month_id' => 5, 'day' => '28', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:12 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:06 PM'],
+            ['month_id' => 5, 'day' => '29', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:12 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:06 PM'],
 
-//         'month_id' => 1,
+            ['month_id' => 5, 'day' => '30', 'sehri_time' => '03:40 AM', 'fazr_time' => '03:46 AM', 'sunrise_time' => '05:12 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:35 PM', 'magrib_and_iftar_time' => '06:45 PM', 'esha_time' => '08:09 PM'],
+            ['month_id' => 5, 'day' => '31', 'sehri_time' => '03:40 AM', 'fazr_time' => '03:46 AM', 'sunrise_time' => '05:12 PM', 'ishraq_time' => '', 'johr_time' => '11:59 PM', 'asr_time' => '04:35 PM', 'magrib_and_iftar_time' => '06:45 PM', 'esha_time' => '08:09 PM'],
 
-//         'day' => '03',
+            ['month_id' => 6, 'day' => '01', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:35 PM', 'magrib_and_iftar_time' => '06:46 PM', 'esha_time' => '08:11 PM'],
+            ['month_id' => 6, 'day' => '02', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:35 PM', 'magrib_and_iftar_time' => '06:46 PM', 'esha_time' => '08:11 PM'],
+            ['month_id' => 6, 'day' => '03', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:35 PM', 'magrib_and_iftar_time' => '06:46 PM', 'esha_time' => '08:11 PM'],
+            ['month_id' => 6, 'day' => '04', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:35 PM', 'magrib_and_iftar_time' => '06:46 PM', 'esha_time' => '08:11 PM'],
+            ['month_id' => 6, 'day' => '05', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:35 PM', 'magrib_and_iftar_time' => '06:46 PM', 'esha_time' => '08:11 PM'],
 
-//         'sehri' => json_encode(['text_en' => 'Sehri', 'text_bn' => 'সেহরী', 'text_ar' => 'سحري', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']),
+            ['month_id' => 6, 'day' => '06', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:36 PM', 'magrib_and_iftar_time' => '06:47 PM', 'esha_time' => '08:13 PM'],
+            ['month_id' => 6, 'day' => '07', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:36 PM', 'magrib_and_iftar_time' => '06:47 PM', 'esha_time' => '08:13 PM'],
+            ['month_id' => 6, 'day' => '08', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:36 PM', 'magrib_and_iftar_time' => '06:47 PM', 'esha_time' => '08:13 PM'],
+            ['month_id' => 6, 'day' => '09', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:36 PM', 'magrib_and_iftar_time' => '06:47 PM', 'esha_time' => '08:13 PM'],
+            ['month_id' => 6, 'day' => '10', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:36 PM', 'magrib_and_iftar_time' => '06:47 PM', 'esha_time' => '08:13 PM'],
+            ['month_id' => 6, 'day' => '11', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:01 PM', 'asr_time' => '04:36 PM', 'magrib_and_iftar_time' => '06:47 PM', 'esha_time' => '08:13 PM'],
 
-//         'fazr' => json_encode(['text_en' => 'Fazr', 'text_bn' => 'ফজর', 'text_ar' => 'فجر', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']),
+            ['month_id' => 6, 'day' => '12', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:38 PM', 'magrib_and_iftar_time' => '06:50 PM', 'esha_time' => '08:16 PM'],
+            ['month_id' => 6, 'day' => '13', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:38 PM', 'magrib_and_iftar_time' => '06:50 PM', 'esha_time' => '08:16 PM'],
+            ['month_id' => 6, 'day' => '14', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:38 PM', 'magrib_and_iftar_time' => '06:50 PM', 'esha_time' => '08:16 PM'],
+            ['month_id' => 6, 'day' => '15', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:38 PM', 'magrib_and_iftar_time' => '06:50 PM', 'esha_time' => '08:16 PM'],
+            ['month_id' => 6, 'day' => '16', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:38 PM', 'magrib_and_iftar_time' => '06:50 PM', 'esha_time' => '08:16 PM'],
+            ['month_id' => 6, 'day' => '17', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:10 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:38 PM', 'magrib_and_iftar_time' => '06:50 PM', 'esha_time' => '08:16 PM'],
 
-//         'sunrise' => json_encode(['text_en' => 'Sunrise', 'text_bn' => 'সূর্যোদয়', 'text_ar' => 'شروق الشمس', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']),
+            ['month_id' => 6, 'day' => '18', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:51 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 6, 'day' => '19', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:51 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 6, 'day' => '20', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:51 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 6, 'day' => '21', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:51 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 6, 'day' => '22', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:51 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 6, 'day' => '23', 'sehri_time' => '03:38 AM', 'fazr_time' => '03:44 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:03 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:51 PM', 'esha_time' => '08:18 PM'],
 
-//         'johr' => json_encode(['text_en' => 'Johr', 'text_bn' => 'জোহর', 'text_ar' => 'جوهر', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']),
+            ['month_id' => 6, 'day' => '24', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:40 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:19 PM'],
+            ['month_id' => 6, 'day' => '25', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:40 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:19 PM'],
+            ['month_id' => 6, 'day' => '26', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:40 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:19 PM'],
+            ['month_id' => 6, 'day' => '27', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:40 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:19 PM'],
+            ['month_id' => 6, 'day' => '28', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:40 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:19 PM'],
+            ['month_id' => 6, 'day' => '29', 'sehri_time' => '03:39 AM', 'fazr_time' => '03:45 AM', 'sunrise_time' => '05:11 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:40 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:19 PM'],
 
-//         'asr' => json_encode(['text_en' => 'Asr', 'text_bn' => 'আসর', 'text_ar' => 'عصر', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']),
+            ['month_id' => 6, 'day' => '30', 'sehri_time' => '03:43 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:20 PM'],
 
-//         'magrib' => json_encode(['text_en' => 'Magrib', 'text_bn' => 'মাগরিব', 'text_ar' => 'مغرب', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']),
+            ['month_id' => 7, 'day' => '01', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
+            ['month_id' => 7, 'day' => '02', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
+            ['month_id' => 7, 'day' => '03', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
+            ['month_id' => 7, 'day' => '04', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
+            ['month_id' => 7, 'day' => '05', 'sehri_time' => '03:42 AM', 'fazr_time' => '03:48 AM', 'sunrise_time' => '05:14 PM', 'ishraq_time' => '', 'johr_time' => '12:06 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
 
-//         'esha' => json_encode(['text_en' => 'Esha', 'text_bn' => 'ঈশা', 'text_ar' => 'عشاء', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']),
+            ['month_id' => 7, 'day' => '06', 'sehri_time' => '03:44 AM', 'fazr_time' => '03:50 AM', 'sunrise_time' => '05:16 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
+            ['month_id' => 7, 'day' => '07', 'sehri_time' => '03:44 AM', 'fazr_time' => '03:50 AM', 'sunrise_time' => '05:16 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
+            ['month_id' => 7, 'day' => '08', 'sehri_time' => '03:44 AM', 'fazr_time' => '03:50 AM', 'sunrise_time' => '05:16 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
+            ['month_id' => 7, 'day' => '09', 'sehri_time' => '03:44 AM', 'fazr_time' => '03:50 AM', 'sunrise_time' => '05:16 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
+            ['month_id' => 7, 'day' => '10', 'sehri_time' => '03:44 AM', 'fazr_time' => '03:50 AM', 'sunrise_time' => '05:16 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
+            ['month_id' => 7, 'day' => '11', 'sehri_time' => '03:44 AM', 'fazr_time' => '03:50 AM', 'sunrise_time' => '05:16 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:54 PM', 'esha_time' => '08:20 PM'],
 
-//         'jummah' => json_encode(['text_en' => 'Jummah', 'text_bn' => 'জুম্মা', 'text_ar' => 'جمعة', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']), 'tahazzud' => json_encode(['text_en' => 'Tahazzud', 'text_bn' => 'তাহাজ্জুদ', 'text_ar' => 'تهجد', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']), 'ishraq' => json_encode(['text_en' => 'Ishraq', 'text_bn' => 'ইশরাক', 'text_ar' => 'إشراق', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM']), 'forbidden' => json_encode(['text_en' => 'Forbidden Time', 'text_bn' => 'নিষিদ্ধ সময়', 'text_ar' => 'وقت محظور', 'start_time' => '05:18 AM', 'end_time' => '05:18 AM'])
+            ['month_id' => 7, 'day' => '12', 'sehri_time' => '03:48 AM', 'fazr_time' => '03:54 AM', 'sunrise_time' => '05:18 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 7, 'day' => '13', 'sehri_time' => '03:48 AM', 'fazr_time' => '03:54 AM', 'sunrise_time' => '05:18 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 7, 'day' => '14', 'sehri_time' => '03:48 AM', 'fazr_time' => '03:54 AM', 'sunrise_time' => '05:18 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 7, 'day' => '15', 'sehri_time' => '03:48 AM', 'fazr_time' => '03:54 AM', 'sunrise_time' => '05:18 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 7, 'day' => '16', 'sehri_time' => '03:48 AM', 'fazr_time' => '03:54 AM', 'sunrise_time' => '05:18 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:18 PM'],
+            ['month_id' => 7, 'day' => '17', 'sehri_time' => '03:48 AM', 'fazr_time' => '03:54 AM', 'sunrise_time' => '05:18 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:53 PM', 'esha_time' => '08:18 PM'],
 
-//     ]
+            ['month_id' => 7, 'day' => '18', 'sehri_time' => '03:51 AM', 'fazr_time' => '03:57 AM', 'sunrise_time' => '05:21 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:52 PM', 'esha_time' => '08:15 PM'],
+            ['month_id' => 7, 'day' => '19', 'sehri_time' => '03:51 AM', 'fazr_time' => '03:57 AM', 'sunrise_time' => '05:21 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:52 PM', 'esha_time' => '08:15 PM'],
+            ['month_id' => 7, 'day' => '20', 'sehri_time' => '03:51 AM', 'fazr_time' => '03:57 AM', 'sunrise_time' => '05:21 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:52 PM', 'esha_time' => '08:15 PM'],
+            ['month_id' => 7, 'day' => '21', 'sehri_time' => '03:51 AM', 'fazr_time' => '03:57 AM', 'sunrise_time' => '05:21 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:52 PM', 'esha_time' => '08:15 PM'],
+            ['month_id' => 7, 'day' => '22', 'sehri_time' => '03:51 AM', 'fazr_time' => '03:57 AM', 'sunrise_time' => '05:21 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:52 PM', 'esha_time' => '08:15 PM'],
+            ['month_id' => 7, 'day' => '23', 'sehri_time' => '03:51 AM', 'fazr_time' => '03:57 AM', 'sunrise_time' => '05:21 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:52 PM', 'esha_time' => '08:15 PM'],
 
-// ];
+            ['month_id' => 7, 'day' => '24', 'sehri_time' => '03:55 AM', 'fazr_time' => '04:01 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:49 PM', 'esha_time' => '08:12 PM'],
+            ['month_id' => 7, 'day' => '25', 'sehri_time' => '03:55 AM', 'fazr_time' => '04:01 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:49 PM', 'esha_time' => '08:12 PM'],
+            ['month_id' => 7, 'day' => '26', 'sehri_time' => '03:55 AM', 'fazr_time' => '04:01 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:49 PM', 'esha_time' => '08:12 PM'],
+            ['month_id' => 7, 'day' => '27', 'sehri_time' => '03:55 AM', 'fazr_time' => '04:01 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:49 PM', 'esha_time' => '08:12 PM'],
+            ['month_id' => 7, 'day' => '28', 'sehri_time' => '03:55 AM', 'fazr_time' => '04:01 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:49 PM', 'esha_time' => '08:12 PM'],
+            ['month_id' => 7, 'day' => '29', 'sehri_time' => '03:55 AM', 'fazr_time' => '04:01 AM', 'sunrise_time' => '05:24 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:43 PM', 'magrib_and_iftar_time' => '06:49 PM', 'esha_time' => '08:12 PM'],
 
-// Loop through 12 months and insert data into the database
-        for ($monthId = 1; $monthId <= 12; $monthId++) {
-            // Calculate the number of days dynamically based on your requirements
-            // $numberOfDays = cal_days_in_month(CAL_GREGORIAN, $monthId, date('Y'));
-            $numberOfDays = $this->days_in_month($monthId, date('Y'));
+            ['month_id' => 7, 'day' => '30', 'sehri_time' => '03:59 AM', 'fazr_time' => '04:05 AM', 'sunrise_time' => '05:26 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:46 PM', 'esha_time' => '08:07 PM'],
+            ['month_id' => 7, 'day' => '31', 'sehri_time' => '03:59 AM', 'fazr_time' => '04:05 AM', 'sunrise_time' => '05:26 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:46 PM', 'esha_time' => '08:07 PM'],
 
-            // Generate data for the current month
-            $monthData = $this->generatePermanentCalendarData($monthId, $numberOfDays);
+            ['month_id' => 8, 'day' => '01', 'sehri_time' => '04:00 AM', 'fazr_time' => '04:06 AM', 'sunrise_time' => '05:27 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:45 PM', 'esha_time' => '08:05 PM'],
+            ['month_id' => 8, 'day' => '02', 'sehri_time' => '04:00 AM', 'fazr_time' => '04:06 AM', 'sunrise_time' => '05:27 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:45 PM', 'esha_time' => '08:05 PM'],
+            ['month_id' => 8, 'day' => '03', 'sehri_time' => '04:00 AM', 'fazr_time' => '04:06 AM', 'sunrise_time' => '05:27 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:45 PM', 'esha_time' => '08:05 PM'],
+            ['month_id' => 8, 'day' => '04', 'sehri_time' => '04:00 AM', 'fazr_time' => '04:06 AM', 'sunrise_time' => '05:27 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:45 PM', 'esha_time' => '08:05 PM'],
+            ['month_id' => 8, 'day' => '05', 'sehri_time' => '04:00 AM', 'fazr_time' => '04:06 AM', 'sunrise_time' => '05:27 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:42 PM', 'magrib_and_iftar_time' => '06:45 PM', 'esha_time' => '08:05 PM'],
 
-            // Insert data into the database
-            DB::table('permanent_calendars')->insert($monthData);
-        }
+            ['month_id' => 8, 'day' => '06', 'sehri_time' => '04:04 AM', 'fazr_time' => '04:10 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:41 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 8, 'day' => '07', 'sehri_time' => '04:04 AM', 'fazr_time' => '04:10 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:41 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 8, 'day' => '08', 'sehri_time' => '04:04 AM', 'fazr_time' => '04:10 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:41 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 8, 'day' => '09', 'sehri_time' => '04:04 AM', 'fazr_time' => '04:10 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:41 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 8, 'day' => '10', 'sehri_time' => '04:04 AM', 'fazr_time' => '04:10 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:41 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:01 PM'],
+            ['month_id' => 8, 'day' => '11', 'sehri_time' => '04:04 AM', 'fazr_time' => '04:10 AM', 'sunrise_time' => '05:29 PM', 'ishraq_time' => '', 'johr_time' => '12:08 PM', 'asr_time' => '04:41 PM', 'magrib_and_iftar_time' => '06:42 PM', 'esha_time' => '08:01 PM'],
 
-        // DB::table('permanent_calendars')->insert($permanentCalendars);
-    }
+            ['month_id' => 8, 'day' => '12', 'sehri_time' => '04:07 AM', 'fazr_time' => '04:13 AM', 'sunrise_time' => '05:32 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:38 PM', 'esha_time' => '07:56 PM'],
+            ['month_id' => 8, 'day' => '13', 'sehri_time' => '04:07 AM', 'fazr_time' => '04:13 AM', 'sunrise_time' => '05:32 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:38 PM', 'esha_time' => '07:56 PM'],
+            ['month_id' => 8, 'day' => '14', 'sehri_time' => '04:07 AM', 'fazr_time' => '04:13 AM', 'sunrise_time' => '05:32 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:38 PM', 'esha_time' => '07:56 PM'],
+            ['month_id' => 8, 'day' => '15', 'sehri_time' => '04:07 AM', 'fazr_time' => '04:13 AM', 'sunrise_time' => '05:32 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:38 PM', 'esha_time' => '07:56 PM'],
+            ['month_id' => 8, 'day' => '16', 'sehri_time' => '04:07 AM', 'fazr_time' => '04:13 AM', 'sunrise_time' => '05:32 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:38 PM', 'esha_time' => '07:56 PM'],
+            ['month_id' => 8, 'day' => '17', 'sehri_time' => '04:07 AM', 'fazr_time' => '04:13 AM', 'sunrise_time' => '05:32 PM', 'ishraq_time' => '', 'johr_time' => '12:07 PM', 'asr_time' => '04:39 PM', 'magrib_and_iftar_time' => '06:38 PM', 'esha_time' => '07:56 PM'],
 
-    public function days_in_month($month, $year)
-    {
-        // calculate number of days in a month
-        return $month == 2 ? ($year % 4 ? 28 : ($year % 100 ? 29 : ($year % 400 ? 28 : 29))) : (($month - 1) % 7 % 2 ? 30 : 31);
-    }
+            ['month_id' => 8, 'day' => '18', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:37 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:50 PM'],
+            ['month_id' => 8, 'day' => '19', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:37 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:50 PM'],
+            ['month_id' => 8, 'day' => '20', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:37 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:50 PM'],
+            ['month_id' => 8, 'day' => '21', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:37 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:50 PM'],
+            ['month_id' => 8, 'day' => '22', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:37 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:50 PM'],
+            ['month_id' => 8, 'day' => '23', 'sehri_time' => '04:11 AM', 'fazr_time' => '04:17 AM', 'sunrise_time' => '05:34 PM', 'ishraq_time' => '', 'johr_time' => '12:05 PM', 'asr_time' => '04:37 PM', 'magrib_and_iftar_time' => '06:33 PM', 'esha_time' => '07:50 PM'],
 
-    public function generatePermanentCalendarData($monthId, $numberOfDays)
-    {
-        $permanentCalendars = [];
+            ['month_id' => 8, 'day' => '24', 'sehri_time' => '04:14 AM', 'fazr_time' => '04:20 AM', 'sunrise_time' => '05:36 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:44 PM'],
+            ['month_id' => 8, 'day' => '25', 'sehri_time' => '04:14 AM', 'fazr_time' => '04:20 AM', 'sunrise_time' => '05:36 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:44 PM'],
+            ['month_id' => 8, 'day' => '26', 'sehri_time' => '04:14 AM', 'fazr_time' => '04:20 AM', 'sunrise_time' => '05:36 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:44 PM'],
+            ['month_id' => 8, 'day' => '27', 'sehri_time' => '04:14 AM', 'fazr_time' => '04:20 AM', 'sunrise_time' => '05:36 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:44 PM'],
+            ['month_id' => 8, 'day' => '28', 'sehri_time' => '04:14 AM', 'fazr_time' => '04:20 AM', 'sunrise_time' => '05:36 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:44 PM'],
+            ['month_id' => 8, 'day' => '29', 'sehri_time' => '04:14 AM', 'fazr_time' => '04:20 AM', 'sunrise_time' => '05:36 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '04:34 PM', 'magrib_and_iftar_time' => '06:28 PM', 'esha_time' => '07:44 PM'],
 
-        date_default_timezone_set('Asia/Dhaka');
+            ['month_id' => 8, 'day' => '30', 'sehri_time' => '04:17 AM', 'fazr_time' => '04:23 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:22 PM', 'esha_time' => '07:44 PM'],
+            ['month_id' => 8, 'day' => '31', 'sehri_time' => '04:17 AM', 'fazr_time' => '04:23 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:30 PM', 'magrib_and_iftar_time' => '06:22 PM', 'esha_time' => '07:44 PM'],
 
-        for ($day = 1; $day <= $numberOfDays; $day++) {
-            $sehriTime     = date('h:i A', strtotime("03:15 AM +$day minutes"));
-            $fazrTime      = date('h:i A', strtotime("05:00 AM +$day minutes"));
-            $sunriseTime   = date('h:i A', strtotime("05:00 AM +$day minutes"));
-            $johrTime      = date('h:i A', strtotime("01:10 PM +$day minutes"));
-            $asrTime       = date('h:i A', strtotime("04:20 PM +$day minutes"));
-            $magribTime    = date('h:i A', strtotime("05:00 PM +$day minutes"));
-            $eshaTime      = date('h:i A', strtotime("05:00 PM +$day minutes"));
-            $jummahTime    = date('h:i A', strtotime("05:00 PM +$day minutes"));
-            $tahazzudTime  = date('h:i A', strtotime("05:00 PM +$day minutes"));
-            $ishraqTime    = date('h:i A', strtotime("05:00 PM +$day minutes"));
-            $forbiddenTime = date('h:i A', strtotime("05:00 PM +$day minutes"));
+            ['month_id' => 9, 'day' => '01', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
+            ['month_id' => 9, 'day' => '02', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
+            ['month_id' => 9, 'day' => '03', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
+            ['month_id' => 9, 'day' => '04', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
+            ['month_id' => 9, 'day' => '05', 'sehri_time' => '04:18 AM', 'fazr_time' => '04:24 AM', 'sunrise_time' => '05:39 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '04:29 PM', 'magrib_and_iftar_time' => '06:20 PM', 'esha_time' => '07:35 PM'],
 
-            $permanentCalendars[] = [
-                'month_id'  => $monthId,
-                'day'       => str_pad($day, 2, '0', STR_PAD_LEFT),
-                'sehri'     => json_encode(['text_en' => 'Sehri', 'text_bn' => 'সেহরী', 'text_ar' => 'سحري', 'start_time' => $sehriTime, 'end_time' => $sehriTime]),
-                'fazr'      => json_encode(['text_en' => 'Fazr', 'text_bn' => 'ফজর', 'text_ar' => 'فجر', 'start_time' => $fazrTime, 'end_time' => $fazrTime]),
-                'sunrise'   => json_encode(['text_en' => 'Sunrise', 'text_bn' => 'সূর্যোদয়', 'text_ar' => 'شروق الشمس', 'start_time' => $sunriseTime, 'end_time' => $sunriseTime]),
-                'johr'      => json_encode(['text_en' => 'Johr', 'text_bn' => 'জোহর', 'text_ar' => 'جوهر', 'start_time' => $johrTime, 'end_time' => $johrTime]),
-                'asr'       => json_encode(['text_en' => 'Asr', 'text_bn' => 'আসর', 'text_ar' => 'عصر', 'start_time' => $asrTime, 'end_time' => $asrTime]),
-                'magrib'    => json_encode(['text_en' => 'Magrib', 'text_bn' => 'মাগরিব', 'text_ar' => 'مغرب', 'start_time' => $magribTime, 'end_time' => $magribTime]),
-                'esha'      => json_encode(['text_en' => 'Esha', 'text_bn' => 'ঈশা', 'text_ar' => 'عشاء', 'start_time' => $eshaTime, 'end_time' => $eshaTime]),
-                'jummah'    => json_encode(['text_en' => 'Jummah', 'text_bn' => 'জুম্মা', 'text_ar' => 'جمعة', 'start_time' => $jummahTime, 'end_time' => $jummahTime]),
-                'tahazzud'  => json_encode(['text_en' => 'Tahazzud', 'text_bn' => 'তাহাজ্জুদ', 'text_ar' => 'تهجد', 'start_time' => $tahazzudTime, 'end_time' => $tahazzudTime]),
-                'ishraq'    => json_encode(['text_en' => 'Ishraq', 'text_bn' => 'ইশরাক', 'text_ar' => 'إشراق', 'start_time' => $ishraqTime, 'end_time' => $ishraqTime]),
-                'forbidden' => json_encode(['text_en' => 'Forbidden Time', 'text_bn' => 'নিষিদ্ধ সময়', 'text_ar' => 'وقت محظور', 'start_time' => $forbiddenTime, 'end_time' => $forbiddenTime]),
+            ['month_id' => 9, 'day' => '06', 'sehri_time' => '04:21 AM', 'fazr_time' => '04:27 AM', 'sunrise_time' => '05:41 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:25 PM', 'magrib_and_iftar_time' => '06:15 PM', 'esha_time' => '07:30 PM'],
+            ['month_id' => 9, 'day' => '07', 'sehri_time' => '04:21 AM', 'fazr_time' => '04:27 AM', 'sunrise_time' => '05:41 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:25 PM', 'magrib_and_iftar_time' => '06:15 PM', 'esha_time' => '07:30 PM'],
+            ['month_id' => 9, 'day' => '08', 'sehri_time' => '04:21 AM', 'fazr_time' => '04:27 AM', 'sunrise_time' => '05:41 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:25 PM', 'magrib_and_iftar_time' => '06:15 PM', 'esha_time' => '07:30 PM'],
+            ['month_id' => 9, 'day' => '09', 'sehri_time' => '04:21 AM', 'fazr_time' => '04:27 AM', 'sunrise_time' => '05:41 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:25 PM', 'magrib_and_iftar_time' => '06:15 PM', 'esha_time' => '07:30 PM'],
+            ['month_id' => 9, 'day' => '10', 'sehri_time' => '04:21 AM', 'fazr_time' => '04:27 AM', 'sunrise_time' => '05:41 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:25 PM', 'magrib_and_iftar_time' => '06:15 PM', 'esha_time' => '07:30 PM'],
+            ['month_id' => 9, 'day' => '11', 'sehri_time' => '04:21 AM', 'fazr_time' => '04:27 AM', 'sunrise_time' => '05:41 PM', 'ishraq_time' => '', 'johr_time' => '12:00 PM', 'asr_time' => '04:25 PM', 'magrib_and_iftar_time' => '06:15 PM', 'esha_time' => '07:30 PM'],
+
+            ['month_id' => 9, 'day' => '12', 'sehri_time' => '04:23 AM', 'fazr_time' => '04:29 AM', 'sunrise_time' => '05:43 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:21 PM', 'magrib_and_iftar_time' => '06:09 PM', 'esha_time' => '07:23 PM'],
+            ['month_id' => 9, 'day' => '13', 'sehri_time' => '04:23 AM', 'fazr_time' => '04:29 AM', 'sunrise_time' => '05:43 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:21 PM', 'magrib_and_iftar_time' => '06:09 PM', 'esha_time' => '07:23 PM'],
+            ['month_id' => 9, 'day' => '14', 'sehri_time' => '04:23 AM', 'fazr_time' => '04:29 AM', 'sunrise_time' => '05:43 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:21 PM', 'magrib_and_iftar_time' => '06:09 PM', 'esha_time' => '07:23 PM'],
+            ['month_id' => 9, 'day' => '15', 'sehri_time' => '04:23 AM', 'fazr_time' => '04:29 AM', 'sunrise_time' => '05:43 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:21 PM', 'magrib_and_iftar_time' => '06:09 PM', 'esha_time' => '07:23 PM'],
+            ['month_id' => 9, 'day' => '16', 'sehri_time' => '04:23 AM', 'fazr_time' => '04:29 AM', 'sunrise_time' => '05:43 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:21 PM', 'magrib_and_iftar_time' => '06:09 PM', 'esha_time' => '07:23 PM'],
+            ['month_id' => 9, 'day' => '17', 'sehri_time' => '04:23 AM', 'fazr_time' => '04:29 AM', 'sunrise_time' => '05:43 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '04:21 PM', 'magrib_and_iftar_time' => '06:09 PM', 'esha_time' => '07:23 PM'],
+
+            ['month_id' => 9, 'day' => '18', 'sehri_time' => '04:26 AM', 'fazr_time' => '04:32 AM', 'sunrise_time' => '05:46 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '04:17 PM', 'magrib_and_iftar_time' => '06:03 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 9, 'day' => '19', 'sehri_time' => '04:26 AM', 'fazr_time' => '04:32 AM', 'sunrise_time' => '05:46 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '04:17 PM', 'magrib_and_iftar_time' => '06:03 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 9, 'day' => '20', 'sehri_time' => '04:26 AM', 'fazr_time' => '04:32 AM', 'sunrise_time' => '05:46 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '04:17 PM', 'magrib_and_iftar_time' => '06:03 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 9, 'day' => '21', 'sehri_time' => '04:26 AM', 'fazr_time' => '04:32 AM', 'sunrise_time' => '05:46 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '04:17 PM', 'magrib_and_iftar_time' => '06:03 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 9, 'day' => '22', 'sehri_time' => '04:26 AM', 'fazr_time' => '04:32 AM', 'sunrise_time' => '05:46 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '04:17 PM', 'magrib_and_iftar_time' => '06:03 PM', 'esha_time' => '07:16 PM'],
+            ['month_id' => 9, 'day' => '23', 'sehri_time' => '04:26 AM', 'fazr_time' => '04:32 AM', 'sunrise_time' => '05:46 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '04:17 PM', 'magrib_and_iftar_time' => '06:03 PM', 'esha_time' => '07:16 PM'],
+
+            ['month_id' => 9, 'day' => '24', 'sehri_time' => '04:28 AM', 'fazr_time' => '04:34 AM', 'sunrise_time' => '05:47 PM', 'ishraq_time' => '', 'johr_time' => '11:54 PM', 'asr_time' => '04:12 PM', 'magrib_and_iftar_time' => '05:57 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 9, 'day' => '25', 'sehri_time' => '04:28 AM', 'fazr_time' => '04:34 AM', 'sunrise_time' => '05:47 PM', 'ishraq_time' => '', 'johr_time' => '11:54 PM', 'asr_time' => '04:12 PM', 'magrib_and_iftar_time' => '05:57 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 9, 'day' => '26', 'sehri_time' => '04:28 AM', 'fazr_time' => '04:34 AM', 'sunrise_time' => '05:47 PM', 'ishraq_time' => '', 'johr_time' => '11:54 PM', 'asr_time' => '04:12 PM', 'magrib_and_iftar_time' => '05:57 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 9, 'day' => '27', 'sehri_time' => '04:28 AM', 'fazr_time' => '04:34 AM', 'sunrise_time' => '05:47 PM', 'ishraq_time' => '', 'johr_time' => '11:54 PM', 'asr_time' => '04:12 PM', 'magrib_and_iftar_time' => '05:57 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 9, 'day' => '28', 'sehri_time' => '04:28 AM', 'fazr_time' => '04:34 AM', 'sunrise_time' => '05:47 PM', 'ishraq_time' => '', 'johr_time' => '11:54 PM', 'asr_time' => '04:12 PM', 'magrib_and_iftar_time' => '05:57 PM', 'esha_time' => '07:10 PM'],
+            ['month_id' => 9, 'day' => '29', 'sehri_time' => '04:28 AM', 'fazr_time' => '04:34 AM', 'sunrise_time' => '05:47 PM', 'ishraq_time' => '', 'johr_time' => '11:54 PM', 'asr_time' => '04:12 PM', 'magrib_and_iftar_time' => '05:57 PM', 'esha_time' => '07:10 PM'],
+
+            ['month_id' => 9, 'day' => '30', 'sehri_time' => '04:30 AM', 'fazr_time' => '04:36 AM', 'sunrise_time' => '05:49 PM', 'ishraq_time' => '', 'johr_time' => '11:52 PM', 'asr_time' => '04:07 PM', 'magrib_and_iftar_time' => '05:50 PM', 'esha_time' => '07:03 PM'],
+
+            ['month_id' => 10, 'day' => '01', 'sehri_time' => '04:31 AM', 'fazr_time' => '04:37 AM', 'sunrise_time' => '05:49 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '04:06 PM', 'magrib_and_iftar_time' => '05:49 PM', 'esha_time' => '07:02 PM'],
+            ['month_id' => 10, 'day' => '02', 'sehri_time' => '04:31 AM', 'fazr_time' => '04:37 AM', 'sunrise_time' => '05:49 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '04:06 PM', 'magrib_and_iftar_time' => '05:49 PM', 'esha_time' => '07:02 PM'],
+            ['month_id' => 10, 'day' => '03', 'sehri_time' => '04:31 AM', 'fazr_time' => '04:37 AM', 'sunrise_time' => '05:49 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '04:06 PM', 'magrib_and_iftar_time' => '05:49 PM', 'esha_time' => '07:02 PM'],
+            ['month_id' => 10, 'day' => '04', 'sehri_time' => '04:31 AM', 'fazr_time' => '04:37 AM', 'sunrise_time' => '05:49 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '04:06 PM', 'magrib_and_iftar_time' => '05:49 PM', 'esha_time' => '07:02 PM'],
+            ['month_id' => 10, 'day' => '05', 'sehri_time' => '04:31 AM', 'fazr_time' => '04:37 AM', 'sunrise_time' => '05:49 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '04:06 PM', 'magrib_and_iftar_time' => '05:49 PM', 'esha_time' => '07:02 PM'],
+
+            ['month_id' => 10, 'day' => '06', 'sehri_time' => '04:33 AM', 'fazr_time' => '04:39 AM', 'sunrise_time' => '05:51 PM', 'ishraq_time' => '', 'johr_time' => '11:50 PM', 'asr_time' => '04:02 PM', 'magrib_and_iftar_time' => '05:44 PM', 'esha_time' => '06:57 PM'],
+            ['month_id' => 10, 'day' => '07', 'sehri_time' => '04:33 AM', 'fazr_time' => '04:39 AM', 'sunrise_time' => '05:51 PM', 'ishraq_time' => '', 'johr_time' => '11:50 PM', 'asr_time' => '04:02 PM', 'magrib_and_iftar_time' => '05:44 PM', 'esha_time' => '06:57 PM'],
+            ['month_id' => 10, 'day' => '08', 'sehri_time' => '04:33 AM', 'fazr_time' => '04:39 AM', 'sunrise_time' => '05:51 PM', 'ishraq_time' => '', 'johr_time' => '11:50 PM', 'asr_time' => '04:02 PM', 'magrib_and_iftar_time' => '05:44 PM', 'esha_time' => '06:57 PM'],
+            ['month_id' => 10, 'day' => '09', 'sehri_time' => '04:33 AM', 'fazr_time' => '04:39 AM', 'sunrise_time' => '05:51 PM', 'ishraq_time' => '', 'johr_time' => '11:50 PM', 'asr_time' => '04:02 PM', 'magrib_and_iftar_time' => '05:44 PM', 'esha_time' => '06:57 PM'],
+            ['month_id' => 10, 'day' => '10', 'sehri_time' => '04:33 AM', 'fazr_time' => '04:39 AM', 'sunrise_time' => '05:51 PM', 'ishraq_time' => '', 'johr_time' => '11:50 PM', 'asr_time' => '04:02 PM', 'magrib_and_iftar_time' => '05:44 PM', 'esha_time' => '06:57 PM'],
+            ['month_id' => 10, 'day' => '11', 'sehri_time' => '04:33 AM', 'fazr_time' => '04:39 AM', 'sunrise_time' => '05:51 PM', 'ishraq_time' => '', 'johr_time' => '11:50 PM', 'asr_time' => '04:02 PM', 'magrib_and_iftar_time' => '05:44 PM', 'esha_time' => '06:57 PM'],
+
+            ['month_id' => 10, 'day' => '12', 'sehri_time' => '04:35 AM', 'fazr_time' => '04:41 AM', 'sunrise_time' => '05:54 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:57 PM', 'magrib_and_iftar_time' => '05:39 PM', 'esha_time' => '06:52 PM'],
+            ['month_id' => 10, 'day' => '13', 'sehri_time' => '04:35 AM', 'fazr_time' => '04:41 AM', 'sunrise_time' => '05:54 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:57 PM', 'magrib_and_iftar_time' => '05:39 PM', 'esha_time' => '06:52 PM'],
+            ['month_id' => 10, 'day' => '14', 'sehri_time' => '04:35 AM', 'fazr_time' => '04:41 AM', 'sunrise_time' => '05:54 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:57 PM', 'magrib_and_iftar_time' => '05:39 PM', 'esha_time' => '06:52 PM'],
+            ['month_id' => 10, 'day' => '15', 'sehri_time' => '04:35 AM', 'fazr_time' => '04:41 AM', 'sunrise_time' => '05:54 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:57 PM', 'magrib_and_iftar_time' => '05:39 PM', 'esha_time' => '06:52 PM'],
+            ['month_id' => 10, 'day' => '16', 'sehri_time' => '04:35 AM', 'fazr_time' => '04:41 AM', 'sunrise_time' => '05:54 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:57 PM', 'magrib_and_iftar_time' => '05:39 PM', 'esha_time' => '06:52 PM'],
+            ['month_id' => 10, 'day' => '17', 'sehri_time' => '04:35 AM', 'fazr_time' => '04:41 AM', 'sunrise_time' => '05:54 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:57 PM', 'magrib_and_iftar_time' => '05:39 PM', 'esha_time' => '06:52 PM'],
+
+            ['month_id' => 10, 'day' => '18', 'sehri_time' => '04:37 AM', 'fazr_time' => '04:43 AM', 'sunrise_time' => '05:57 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:53 PM', 'magrib_and_iftar_time' => '05:33 PM', 'esha_time' => '06:47 PM'],
+            ['month_id' => 10, 'day' => '19', 'sehri_time' => '04:37 AM', 'fazr_time' => '04:43 AM', 'sunrise_time' => '05:57 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:53 PM', 'magrib_and_iftar_time' => '05:33 PM', 'esha_time' => '06:47 PM'],
+            ['month_id' => 10, 'day' => '20', 'sehri_time' => '04:37 AM', 'fazr_time' => '04:43 AM', 'sunrise_time' => '05:57 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:53 PM', 'magrib_and_iftar_time' => '05:33 PM', 'esha_time' => '06:47 PM'],
+            ['month_id' => 10, 'day' => '21', 'sehri_time' => '04:37 AM', 'fazr_time' => '04:43 AM', 'sunrise_time' => '05:57 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:53 PM', 'magrib_and_iftar_time' => '05:33 PM', 'esha_time' => '06:47 PM'],
+            ['month_id' => 10, 'day' => '22', 'sehri_time' => '04:37 AM', 'fazr_time' => '04:43 AM', 'sunrise_time' => '05:57 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:53 PM', 'magrib_and_iftar_time' => '05:33 PM', 'esha_time' => '06:47 PM'],
+            ['month_id' => 10, 'day' => '23', 'sehri_time' => '04:37 AM', 'fazr_time' => '04:43 AM', 'sunrise_time' => '05:57 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:53 PM', 'magrib_and_iftar_time' => '05:33 PM', 'esha_time' => '06:47 PM'],
+
+            ['month_id' => 10, 'day' => '24', 'sehri_time' => '04:40 AM', 'fazr_time' => '04:46 AM', 'sunrise_time' => '06:00 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:48 PM', 'magrib_and_iftar_time' => '05:28 PM', 'esha_time' => '06:42 PM'],
+            ['month_id' => 10, 'day' => '25', 'sehri_time' => '04:40 AM', 'fazr_time' => '04:46 AM', 'sunrise_time' => '06:00 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:48 PM', 'magrib_and_iftar_time' => '05:28 PM', 'esha_time' => '06:42 PM'],
+            ['month_id' => 10, 'day' => '26', 'sehri_time' => '04:40 AM', 'fazr_time' => '04:46 AM', 'sunrise_time' => '06:00 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:48 PM', 'magrib_and_iftar_time' => '05:28 PM', 'esha_time' => '06:42 PM'],
+            ['month_id' => 10, 'day' => '27', 'sehri_time' => '04:40 AM', 'fazr_time' => '04:46 AM', 'sunrise_time' => '06:00 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:48 PM', 'magrib_and_iftar_time' => '05:28 PM', 'esha_time' => '06:42 PM'],
+            ['month_id' => 10, 'day' => '28', 'sehri_time' => '04:40 AM', 'fazr_time' => '04:46 AM', 'sunrise_time' => '06:00 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:48 PM', 'magrib_and_iftar_time' => '05:28 PM', 'esha_time' => '06:42 PM'],
+            ['month_id' => 10, 'day' => '29', 'sehri_time' => '04:40 AM', 'fazr_time' => '04:46 AM', 'sunrise_time' => '06:00 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:48 PM', 'magrib_and_iftar_time' => '05:28 PM', 'esha_time' => '06:42 PM'],
+
+            ['month_id' => 10, 'day' => '30', 'sehri_time' => '04:42 AM', 'fazr_time' => '04:48 AM', 'sunrise_time' => '06:03 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:44 PM', 'magrib_and_iftar_time' => '05:24 PM', 'esha_time' => '06:39 PM'],
+            ['month_id' => 10, 'day' => '31', 'sehri_time' => '04:42 AM', 'fazr_time' => '04:48 AM', 'sunrise_time' => '06:03 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:44 PM', 'magrib_and_iftar_time' => '05:24 PM', 'esha_time' => '06:39 PM'],
+
+            ['month_id' => 11, 'day' => '01', 'sehri_time' => '04:43 AM', 'fazr_time' => '04:49 AM', 'sunrise_time' => '06:04 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:43 PM', 'magrib_and_iftar_time' => '05:23 PM', 'esha_time' => '06:38 PM'],
+            ['month_id' => 11, 'day' => '02', 'sehri_time' => '04:43 AM', 'fazr_time' => '04:49 AM', 'sunrise_time' => '06:04 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:43 PM', 'magrib_and_iftar_time' => '05:23 PM', 'esha_time' => '06:38 PM'],
+            ['month_id' => 11, 'day' => '03', 'sehri_time' => '04:43 AM', 'fazr_time' => '04:49 AM', 'sunrise_time' => '06:04 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:43 PM', 'magrib_and_iftar_time' => '05:23 PM', 'esha_time' => '06:38 PM'],
+            ['month_id' => 11, 'day' => '04', 'sehri_time' => '04:43 AM', 'fazr_time' => '04:49 AM', 'sunrise_time' => '06:04 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:43 PM', 'magrib_and_iftar_time' => '05:23 PM', 'esha_time' => '06:38 PM'],
+            ['month_id' => 11, 'day' => '05', 'sehri_time' => '04:43 AM', 'fazr_time' => '04:49 AM', 'sunrise_time' => '06:04 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:43 PM', 'magrib_and_iftar_time' => '05:23 PM', 'esha_time' => '06:38 PM'],
+
+            ['month_id' => 11, 'day' => '06', 'sehri_time' => '04:46 AM', 'fazr_time' => '04:52 AM', 'sunrise_time' => '06:07 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:41 PM', 'magrib_and_iftar_time' => '05:20 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 11, 'day' => '07', 'sehri_time' => '04:46 AM', 'fazr_time' => '04:52 AM', 'sunrise_time' => '06:07 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:41 PM', 'magrib_and_iftar_time' => '05:20 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 11, 'day' => '08', 'sehri_time' => '04:46 AM', 'fazr_time' => '04:52 AM', 'sunrise_time' => '06:07 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:41 PM', 'magrib_and_iftar_time' => '05:20 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 11, 'day' => '09', 'sehri_time' => '04:46 AM', 'fazr_time' => '04:52 AM', 'sunrise_time' => '06:07 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:41 PM', 'magrib_and_iftar_time' => '05:20 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 11, 'day' => '10', 'sehri_time' => '04:46 AM', 'fazr_time' => '04:52 AM', 'sunrise_time' => '06:07 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:41 PM', 'magrib_and_iftar_time' => '05:20 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 11, 'day' => '11', 'sehri_time' => '04:46 AM', 'fazr_time' => '04:52 AM', 'sunrise_time' => '06:07 PM', 'ishraq_time' => '', 'johr_time' => '11:45 PM', 'asr_time' => '03:41 PM', 'magrib_and_iftar_time' => '05:20 PM', 'esha_time' => '06:35 PM'],
+
+            ['month_id' => 11, 'day' => '12', 'sehri_time' => '04:49 AM', 'fazr_time' => '04:55 AM', 'sunrise_time' => '06:11 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:38 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 11, 'day' => '13', 'sehri_time' => '04:49 AM', 'fazr_time' => '04:55 AM', 'sunrise_time' => '06:11 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:38 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 11, 'day' => '14', 'sehri_time' => '04:49 AM', 'fazr_time' => '04:55 AM', 'sunrise_time' => '06:11 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:38 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 11, 'day' => '15', 'sehri_time' => '04:49 AM', 'fazr_time' => '04:55 AM', 'sunrise_time' => '06:11 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:38 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 11, 'day' => '16', 'sehri_time' => '04:49 AM', 'fazr_time' => '04:55 AM', 'sunrise_time' => '06:11 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:38 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 11, 'day' => '17', 'sehri_time' => '04:49 AM', 'fazr_time' => '04:55 AM', 'sunrise_time' => '06:11 PM', 'ishraq_time' => '', 'johr_time' => '11:46 PM', 'asr_time' => '03:38 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:33 PM'],
+
+            ['month_id' => 11, 'day' => '18', 'sehri_time' => '04:52  AM', 'fazr_time' => '04:58 AM', 'sunrise_time' => '06:15 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:36 PM', 'magrib_and_iftar_time' => '05:15 PM', 'esha_time' => '06:32 PM'],
+            ['month_id' => 11, 'day' => '19', 'sehri_time' => '04:52  AM', 'fazr_time' => '04:58 AM', 'sunrise_time' => '06:15 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:36 PM', 'magrib_and_iftar_time' => '05:15 PM', 'esha_time' => '06:32 PM'],
+            ['month_id' => 11, 'day' => '20', 'sehri_time' => '04:52  AM', 'fazr_time' => '04:58 AM', 'sunrise_time' => '06:15 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:36 PM', 'magrib_and_iftar_time' => '05:15 PM', 'esha_time' => '06:32 PM'],
+            ['month_id' => 11, 'day' => '21', 'sehri_time' => '04:52  AM', 'fazr_time' => '04:58 AM', 'sunrise_time' => '06:15 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:36 PM', 'magrib_and_iftar_time' => '05:15 PM', 'esha_time' => '06:32 PM'],
+            ['month_id' => 11, 'day' => '22', 'sehri_time' => '04:52  AM', 'fazr_time' => '04:58 AM', 'sunrise_time' => '06:15 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:36 PM', 'magrib_and_iftar_time' => '05:15 PM', 'esha_time' => '06:32 PM'],
+            ['month_id' => 11, 'day' => '23', 'sehri_time' => '04:52  AM', 'fazr_time' => '04:58 AM', 'sunrise_time' => '06:15 PM', 'ishraq_time' => '', 'johr_time' => '11:47 PM', 'asr_time' => '03:36 PM', 'magrib_and_iftar_time' => '05:15 PM', 'esha_time' => '06:32 PM'],
+
+            ['month_id' => 11, 'day' => '24', 'sehri_time' => '04:56  AM', 'fazr_time' => '05:00 AM', 'sunrise_time' => '06:19 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:31 PM'],
+            ['month_id' => 11, 'day' => '25', 'sehri_time' => '04:56  AM', 'fazr_time' => '05:00 AM', 'sunrise_time' => '06:19 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:31 PM'],
+            ['month_id' => 11, 'day' => '26', 'sehri_time' => '04:56  AM', 'fazr_time' => '05:00 AM', 'sunrise_time' => '06:19 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:31 PM'],
+            ['month_id' => 11, 'day' => '27', 'sehri_time' => '04:56  AM', 'fazr_time' => '05:00 AM', 'sunrise_time' => '06:19 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:31 PM'],
+            ['month_id' => 11, 'day' => '28', 'sehri_time' => '04:56  AM', 'fazr_time' => '05:00 AM', 'sunrise_time' => '06:19 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:31 PM'],
+            ['month_id' => 11, 'day' => '29', 'sehri_time' => '04:56  AM', 'fazr_time' => '05:00 AM', 'sunrise_time' => '06:19 PM', 'ishraq_time' => '', 'johr_time' => '11:49 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:31 PM'],
+
+            ['month_id' => 11, 'day' => '30', 'sehri_time' => '04:59  AM', 'fazr_time' => '05:05 AM', 'sunrise_time' => '06:23 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:32 PM'],
+
+            ['month_id' => 12, 'day' => '01', 'sehri_time' => '05:00  AM', 'fazr_time' => '05:06 AM', 'sunrise_time' => '06:24 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:32 PM'],
+            ['month_id' => 12, 'day' => '02', 'sehri_time' => '05:00  AM', 'fazr_time' => '05:06 AM', 'sunrise_time' => '06:24 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:32 PM'],
+            ['month_id' => 12, 'day' => '03', 'sehri_time' => '05:00  AM', 'fazr_time' => '05:06 AM', 'sunrise_time' => '06:24 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:32 PM'],
+            ['month_id' => 12, 'day' => '04', 'sehri_time' => '05:00  AM', 'fazr_time' => '05:06 AM', 'sunrise_time' => '06:24 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:32 PM'],
+            ['month_id' => 12, 'day' => '05', 'sehri_time' => '05:00  AM', 'fazr_time' => '05:06 AM', 'sunrise_time' => '06:24 PM', 'ishraq_time' => '', 'johr_time' => '11:51 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:32 PM'],
+
+            ['month_id' => 12, 'day' => '06', 'sehri_time' => '05:03  AM', 'fazr_time' => '05:09 AM', 'sunrise_time' => '06:28 PM', 'ishraq_time' => '', 'johr_time' => '11:53 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 12, 'day' => '07', 'sehri_time' => '05:03  AM', 'fazr_time' => '05:09 AM', 'sunrise_time' => '06:28 PM', 'ishraq_time' => '', 'johr_time' => '11:53 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 12, 'day' => '08', 'sehri_time' => '05:03  AM', 'fazr_time' => '05:09 AM', 'sunrise_time' => '06:28 PM', 'ishraq_time' => '', 'johr_time' => '11:53 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 12, 'day' => '09', 'sehri_time' => '05:03  AM', 'fazr_time' => '05:09 AM', 'sunrise_time' => '06:28 PM', 'ishraq_time' => '', 'johr_time' => '11:53 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 12, 'day' => '10', 'sehri_time' => '05:03  AM', 'fazr_time' => '05:09 AM', 'sunrise_time' => '06:28 PM', 'ishraq_time' => '', 'johr_time' => '11:53 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:33 PM'],
+            ['month_id' => 12, 'day' => '11', 'sehri_time' => '05:03  AM', 'fazr_time' => '05:09 AM', 'sunrise_time' => '06:28 PM', 'ishraq_time' => '', 'johr_time' => '11:53 PM', 'asr_time' => '03:35 PM', 'magrib_and_iftar_time' => '05:14 PM', 'esha_time' => '06:33 PM'],
+
+            ['month_id' => 12, 'day' => '12', 'sehri_time' => '05:07  AM', 'fazr_time' => '05:13 AM', 'sunrise_time' => '06:31 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '03:37 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 12, 'day' => '13', 'sehri_time' => '05:07  AM', 'fazr_time' => '05:13 AM', 'sunrise_time' => '06:31 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '03:37 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 12, 'day' => '14', 'sehri_time' => '05:07  AM', 'fazr_time' => '05:13 AM', 'sunrise_time' => '06:31 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '03:37 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 12, 'day' => '15', 'sehri_time' => '05:07  AM', 'fazr_time' => '05:13 AM', 'sunrise_time' => '06:31 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '03:37 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 12, 'day' => '16', 'sehri_time' => '05:07  AM', 'fazr_time' => '05:13 AM', 'sunrise_time' => '06:31 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '03:37 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:35 PM'],
+            ['month_id' => 12, 'day' => '17', 'sehri_time' => '05:07  AM', 'fazr_time' => '05:13 AM', 'sunrise_time' => '06:31 PM', 'ishraq_time' => '', 'johr_time' => '11:56 PM', 'asr_time' => '03:37 PM', 'magrib_and_iftar_time' => '05:16 PM', 'esha_time' => '06:35 PM'],
+
+            ['month_id' => 12, 'day' => '18', 'sehri_time' => '05:10  AM', 'fazr_time' => '05:16 AM', 'sunrise_time' => '06:35 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '03:39 PM', 'magrib_and_iftar_time' => '05:18 PM', 'esha_time' => '06:37 PM'],
+            ['month_id' => 12, 'day' => '19', 'sehri_time' => '05:10  AM', 'fazr_time' => '05:16 AM', 'sunrise_time' => '06:35 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '03:39 PM', 'magrib_and_iftar_time' => '05:18 PM', 'esha_time' => '06:37 PM'],
+            ['month_id' => 12, 'day' => '20', 'sehri_time' => '05:10  AM', 'fazr_time' => '05:16 AM', 'sunrise_time' => '06:35 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '03:39 PM', 'magrib_and_iftar_time' => '05:18 PM', 'esha_time' => '06:37 PM'],
+            ['month_id' => 12, 'day' => '21', 'sehri_time' => '05:10  AM', 'fazr_time' => '05:16 AM', 'sunrise_time' => '06:35 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '03:39 PM', 'magrib_and_iftar_time' => '05:18 PM', 'esha_time' => '06:37 PM'],
+            ['month_id' => 12, 'day' => '22', 'sehri_time' => '05:10  AM', 'fazr_time' => '05:16 AM', 'sunrise_time' => '06:35 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '03:39 PM', 'magrib_and_iftar_time' => '05:18 PM', 'esha_time' => '06:37 PM'],
+            ['month_id' => 12, 'day' => '23', 'sehri_time' => '05:10  AM', 'fazr_time' => '05:16 AM', 'sunrise_time' => '06:35 PM', 'ishraq_time' => '', 'johr_time' => '11:58 PM', 'asr_time' => '03:39 PM', 'magrib_and_iftar_time' => '05:18 PM', 'esha_time' => '06:37 PM'],
+
+            ['month_id' => 12, 'day' => '24', 'sehri_time' => '05:13  AM', 'fazr_time' => '05:19 AM', 'sunrise_time' => '06:38 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '03:42 PM', 'magrib_and_iftar_time' => '05:21 PM', 'esha_time' => '06:40 PM'],
+            ['month_id' => 12, 'day' => '25', 'sehri_time' => '05:13  AM', 'fazr_time' => '05:19 AM', 'sunrise_time' => '06:38 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '03:42 PM', 'magrib_and_iftar_time' => '05:21 PM', 'esha_time' => '06:40 PM'],
+            ['month_id' => 12, 'day' => '26', 'sehri_time' => '05:13  AM', 'fazr_time' => '05:19 AM', 'sunrise_time' => '06:38 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '03:42 PM', 'magrib_and_iftar_time' => '05:21 PM', 'esha_time' => '06:40 PM'],
+            ['month_id' => 12, 'day' => '27', 'sehri_time' => '05:13  AM', 'fazr_time' => '05:19 AM', 'sunrise_time' => '06:38 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '03:42 PM', 'magrib_and_iftar_time' => '05:21 PM', 'esha_time' => '06:40 PM'],
+            ['month_id' => 12, 'day' => '28', 'sehri_time' => '05:13  AM', 'fazr_time' => '05:19 AM', 'sunrise_time' => '06:38 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '03:42 PM', 'magrib_and_iftar_time' => '05:21 PM', 'esha_time' => '06:40 PM'],
+            ['month_id' => 12, 'day' => '29', 'sehri_time' => '05:13  AM', 'fazr_time' => '05:19 AM', 'sunrise_time' => '06:38 PM', 'ishraq_time' => '', 'johr_time' => '12:02 PM', 'asr_time' => '03:42 PM', 'magrib_and_iftar_time' => '05:21 PM', 'esha_time' => '06:40 PM'],
+
+            ['month_id' => 12, 'day' => '30', 'sehri_time' => '05:15  AM', 'fazr_time' => '05:21 AM', 'sunrise_time' => '06:40 PM', 'ishraq_time' => '', 'johr_time' => '12:04 PM', 'asr_time' => '03:45 PM', 'magrib_and_iftar_time' => '05:25 PM', 'esha_time' => '06:44 PM'],
+        ];
+
+        foreach ($permanentCalendars as $calendar) {
+            $updatedCalendars[] = [
+                'month_id'  => $calendar['month_id'],
+                'day'       => $calendar['day'],
+                'sehri'     => json_encode(['text_en' => 'Sehri', 'text_bn' => 'সেহরী', 'text_ar' => 'سحري', 'start_time' => $this->substractMinutes($calendar['sehri_time'], 40), 'end_time' => $this->addMinutes($calendar['sehri_time'], 3)]),
+                'fazr'      => json_encode(['text_en' => 'Fazr', 'text_bn' => 'ফজর', 'text_ar' => 'فجر', 'start_time' => $this->substractMinutes($calendar['fazr_time'], 3), 'end_time' => $calendar['sunrise_time']]),
+                'sunrise'   => json_encode(['text_en' => 'Sunrise', 'text_bn' => 'সূর্যোদয়', 'text_ar' => 'شروق الشمس', 'start_time' => $calendar['sunrise_time'], 'end_time' => $calendar['sunrise_time']]),
+                'johr'      => json_encode(['text_en' => 'Johr', 'text_bn' => 'জোহর', 'text_ar' => 'جوهر', 'start_time' => $calendar['johr_time'], 'end_time' => $this->substractMinutes($calendar['asr_time'], 15)]),
+                'asr'       => json_encode(['text_en' => 'Asr', 'text_bn' => 'আসর', 'text_ar' => 'عصر', 'start_time' => $calendar['asr_time'], 'end_time' => $this->substractMinutes($calendar['magrib_and_iftar_time'], 10)]),
+                'magrib'    => json_encode(['text_en' => 'Magrib', 'text_bn' => 'মাগরিব', 'text_ar' => 'مغرب', 'start_time' => $this->substractMinutes($calendar['magrib_and_iftar_time'], 3), 'end_time' => $calendar['esha_time']]),
+                'esha'      => json_encode(['text_en' => 'Esha', 'text_bn' => 'ঈশা', 'text_ar' => 'عشاء', 'start_time' => $calendar['esha_time'], 'end_time' => "till subhe sadik"]),
+                'jummah'    => json_encode(['text_en' => 'Jummah', 'text_bn' => 'জুম্মা', 'text_ar' => 'جمعة', 'start_time' => $calendar['johr_time'], 'end_time' => $this->substractMinutes($calendar['asr_time'], 15)]),
+                'tahazzud'  => json_encode(['text_en' => 'Tahazzud', 'text_bn' => 'তাহাজ্জুদ', 'text_ar' => 'تهجد', 'start_time' => "12:00 AM (approx better time)", 'end_time' => $this->substractMinutes($calendar['fazr_time'], 10)]),
+                'ishraq'    => json_encode(['text_en' => 'Ishraq', 'text_bn' => 'ইশরাক', 'text_ar' => 'إشراق', 'start_time' => $this->addMinutes($calendar['sunrise_time'], 26), 'end_time' => "10:00 AM (approx better time)"]),
+                'forbidden' => json_encode(['text_en' => 'Forbidden Time', 'text_bn' => 'নিষিদ্ধ সময়', 'text_ar' => 'وقت محظور', 'morning_time' => $calendar['sunrise_time'] . ' to ' . $this->addMinutes($calendar['sunrise_time'], 24), 'noon_time' => $this->substractMinutes($calendar['johr_time'], 9) . ' to ' . $this->substractMinutes($calendar['johr_time'], 1), 'evening_time' => $this->substractMinutes($calendar['magrib_and_iftar_time'], 25) . ' to ' . $calendar['magrib_and_iftar_time']]),
             ];
+
         }
 
-        return $permanentCalendars;
+        DB::table('permanent_calendars')->insert($updatedCalendars);
     }
 
+    /**
+     * minutes subtraction
+     *
+     * @param string $time
+     * @param integer $minutes
+     * @return string
+     */
+    private function substractMinutes($time, $minutes = 3): string
+    {
+        $time = Carbon::parse($time);
+        $time = $time->subMinutes($minutes);
+
+        return $time->format('h:i A');
+    }
+
+    /**
+     * minutes addition
+     *
+     * @param string $time
+     * @param integer $minutes
+     * @return string
+     */
+    private function addMinutes($time, $minutes = 3): string
+    {
+        $time = Carbon::parse($time);
+        $time = $time->addMinutes($minutes);
+
+        return $time->format('h:i A');
+    }
 }
