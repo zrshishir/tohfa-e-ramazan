@@ -42,3 +42,14 @@ Route::get('/ayat/{id}', 'App\Http\Controllers\AyatController@index');
 
 // asmaul husna
 Route::get('/asmaul-husna', 'App\Http\Controllers\AsmaulHusnaController@index');
+
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login');
+Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@register');
+
+// Route::group(['middleware'=>'auth:sanctum'], function(){
+    Route::get('/logout', 'App\Http\Controllers\Auth\LogoutController@logout');//logout
+// });
+
+Route::middleware('auth:sanctum')->get('/slogout', function (Request $request) {
+    return $request->user();
+});
