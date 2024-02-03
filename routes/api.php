@@ -42,3 +42,5 @@ Route::get('/ayat/{id}', 'App\Http\Controllers\AyatController@index');
 
 // asmaul husna
 Route::get('/asmaul-husna', 'App\Http\Controllers\AsmaulHusnaController@index');
+
+Route::post('quran-seeder', 'App\Http\Controllers\QuranAndHadithSeederController@index');
