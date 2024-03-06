@@ -465,7 +465,7 @@ class PermanentCalendarSeeder extends Seeder
                 'esha'      => json_encode(['text_en' => 'Esha', 'text_bn' => 'ঈশা', 'text_ar' => 'عشاء', 'start_time' => $calendar['esha_time'], 'end_time' => "11:55 PM"]),
                 'jummah'    => json_encode(['text_en' => 'Jummah', 'text_bn' => 'জুম্মা', 'text_ar' => 'جمعة', 'start_time' => $calendar['johr_time'], 'end_time' => $this->substractMinutes($calendar['asr_time'], 15)]),
                 'tahazzud'  => json_encode(['text_en' => 'Tahazzud', 'text_bn' => 'তাহাজ্জুদ', 'text_ar' => 'تهجد', 'start_time' => "11:58 AM", 'end_time' => $this->substractMinutes($calendar['fazr_time'], 10)]),
-                'ishraq'    => json_encode(['text_en' => 'Ishraq', 'text_bn' => 'ইশরাক', 'text_ar' => 'إشراق', 'start_time' => $this->addMinutes($calendar['sunrise_time'], 26), 'end_time' => "10:00 AM (approx better time)"]),
+                'ishraq'    => json_encode(['text_en' => 'Ishraq', 'text_bn' => 'ইশরাক', 'text_ar' => 'إشراق', 'start_time' => $this->addMinutes($calendar['sunrise_time'], 26), 'end_time' => "10:00 AM"]),
                 'forbidden' => json_encode(['text_en' => 'Forbidden Time', 'text_bn' => 'নিষিদ্ধ সময়', 'text_ar' => 'وقت محظور', 'morning_time' => $calendar['sunrise_time'] . ' to ' . $this->addMinutes($calendar['sunrise_time'], 24), 'noon_time' => $this->substractMinutes($calendar['johr_time'], 9) . ' to ' . $this->substractMinutes($calendar['johr_time'], 1), 'evening_time' => $this->substractMinutes($calendar['magrib_and_iftar_time'], 25) . ' to ' . $calendar['magrib_and_iftar_time']]),
             ];
 

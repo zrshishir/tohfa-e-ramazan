@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,10 +13,38 @@ class DoaCategorySeeder extends Seeder
     public function run(): void
     {
         $doaCategories = [
-            ['user_id' => 1, 'name' => 'Salat'],
-            ['user_id' => 1, 'name' => 'Siam'],
-            ['user_id' => 1, 'name' => 'Zikir'],
-            ['user_id' => 1, 'name' => 'Every Day'],
+            [
+                'user_id'     => 1,
+                'name'        => 'Salat',
+                'bangla_text' => 'নামাজ',
+                'arabic_text' => 'الصلاة',
+                'icon'        => 'fas fa-praying-hands',
+                'url'         => '',
+            ],
+            [
+                'user_id'     => 1,
+                'name'        => 'Siam',
+                'bangla_text' => 'রোজা',
+                'arabic_text' => 'الصيام',
+                'icon'        => 'fas fa-star-and-crescent',
+                'url'         => '',
+            ],
+            [
+                'user_id'     => 1,
+                'name'        => 'Zikr',
+                'bangla_text' => 'যিকর',
+                'arabic_text' => 'الذِّكْر',
+                'icon'        => 'fas fa-praying-hands',
+                'url'         => '',
+            ],
+            [
+                'user_id'     => 1,
+                'name'        => 'Hajj',
+                'bangla_text' => 'হজ্জ',
+                'arabic_text' => 'الحج',
+                'icon'        => 'fas fa-praying-hands',
+                'url'         => '',
+            ],
         ];
 
         DB::table('doa_categories')->insert($doaCategories);
