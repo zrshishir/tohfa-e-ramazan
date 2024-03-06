@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post("/permanent-calendar", "App\Http\Controllers\PermanentCalendarController@index");
+Route::get("/ramazan-calendar", "App\Http\Controllers\PermanentCalendarController@ramazanCalendar");
 Route::get('/mazhabs', 'App\Http\Controllers\MazhabController@index');
 
 // write tasbih routes here

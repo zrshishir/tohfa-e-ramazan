@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('arabic_name');
             $table->string('english_name');
+            $table->string('bangla_text');
             $table->string('meaning');
             $table->string('ayat_count')->nullable();
             $table->string('type')->nullable();

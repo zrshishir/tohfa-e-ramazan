@@ -27,10 +27,9 @@ class PermanentCalendarController extends Controller
         $nextDay       = $to ?? date('d', strtotime('tomorrow'));
         $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
 
-        $permanentCalendars = PermanentCalendar::where('month_id', $month_id)
+        $permanentCalendars = PermanentCalendar::where('month_id', '>=', $month_id)
             ->where(DB::raw('CAST(day AS UNSIGNED)'), '>=', $today)
-            ->where(DB::raw('CAST(day AS UNSIGNED)'), '<=', $nextDay)
-            ->paginate(30);
+            ->paginate($to);
 
         return response()->json([
             'status'      => 'success',
@@ -40,6 +39,24 @@ class PermanentCalendarController extends Controller
             'message'     => 'Permanent Calendar Data',
             'data'        => [
                 'mazhab_setting'      => $mazhabSetting,
+                'permanent_calendars' => $permanentCalendars,
+            ],
+        ]);
+    }
+
+    public function ramazanCalendar()
+    {
+        $permanentCalendars = PermanentCalendar::where('id', '>=', '73')
+            ->where('id', '<=', '103')
+            ->select('id', 'day', 'month_id', 'sehri', 'magrib')
+            ->get();
+        // eloquent query to get 30 data from permanent calendar
+
+        return response()->json([
+            'status'      => 'success',
+            'status_code' => 200,
+            'message'     => 'Permanent Calendar Data',
+            'data'        => [
                 'permanent_calendars' => $permanentCalendars,
             ],
         ]);
