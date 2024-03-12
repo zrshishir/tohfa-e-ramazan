@@ -148,7 +148,7 @@
 										},
 										{
 											"key": "to",
-											"value": "12",
+											"value": "2",
 											"type": "text"
 										},
 										{
@@ -256,8 +256,11 @@
 						},
 						{
 							"name": "ramazan calendar",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "formdata",
@@ -280,12 +283,12 @@
 									]
 								},
 								"url": {
-									"raw": "{{base_url}}/permanent-calendar",
+									"raw": "{{base_url}}/ramazan-calendar",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
-										"permanent-calendar"
+										"ramazan-calendar"
 									]
 								}
 							},
@@ -1132,6 +1135,39 @@
 								{
 									"key": "sura_no",
 									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get quran ayat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api.alquran.cloud/v1/juz/1/quran-uthmani?offset=3&limit=10",
+							"protocol": "http",
+							"host": [
+								"api",
+								"alquran",
+								"cloud"
+							],
+							"path": [
+								"v1",
+								"juz",
+								"1",
+								"quran-uthmani"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "3"
+								},
+								{
+									"key": "limit",
+									"value": "10"
 								}
 							]
 						}
