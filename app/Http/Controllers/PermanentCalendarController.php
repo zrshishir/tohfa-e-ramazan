@@ -47,7 +47,7 @@ class PermanentCalendarController extends Controller
     public function ramazanCalendar()
     {
         $permanentCalendars = PermanentCalendar::where('id', '>=', '73')
-            ->where('id', '<=', '103')
+            ->where('id', '<', '103')
             ->select('id', 'day', 'month_id', 'sehri', 'magrib')
             ->get();
         // eloquent query to get 30 data from permanent calendar

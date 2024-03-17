@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('sura_id')->constrained();
             $table->integer('ayat_no');
-            $table->string('arabic_text');
-            $table->string('bangla_text');
-            $table->string('english_text');
-            $table->string('meaning');
+            $table->text('arabic_text');
+            $table->text('bangla_text');
+            $table->text('english_text');
+            $table->text('meaning');
             $table->string('reference');
-            $table->string('notes');
+            $table->text('notes');
             $table->string('status');
             $table->string('audio')->nullable();
             $table->string('video')->nullable();

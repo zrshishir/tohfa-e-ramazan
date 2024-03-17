@@ -45,6 +45,14 @@ class DoaCategorySeeder extends Seeder
                 'icon'        => 'fas fa-praying-hands',
                 'url'         => '',
             ],
+            [
+                'user_id'     => 1,
+                'name'        => 'Ruquiya',
+                'bangla_text' => 'রুকইয়া',
+                'arabic_text' => 'الرقية',
+                'icon'        => 'fas fa-praying-hands',
+                'url'         => '',
+            ],
         ];
 
         DB::table('doa_categories')->insert($doaCategories);
