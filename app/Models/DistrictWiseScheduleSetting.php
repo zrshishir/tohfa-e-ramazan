@@ -12,12 +12,13 @@ class DistrictWiseScheduleSetting extends Model
 
     protected $fillable = [
         'district_id',
-        'time_addition_subtraction',
-        'am_pm',
-        'is_active'
+        'sehri_time',
+        'iftar_time',
+        'is_active',
     ];
 
-    public function district() {
+    public function district()
+    {
         return $this->belongsTo(District::class);
     }
 }

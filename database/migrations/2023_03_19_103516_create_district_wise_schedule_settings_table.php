@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('district_wise_schedule_settings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('district_id');
-            $table->integer('time_addition_subtraction');
-            $table->string('am_pm')->nullable();
+            $table->integer('sehri_time');
+            $table->integer('iftar_time');
             $table->boolean('is_active')->default(false);
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
             $table->softDeletes();

@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     npm \
     libcurl4-openssl-dev \
+
     pkg-config \
     libssl-dev \
     default-mysql-client
@@ -44,6 +45,7 @@ WORKDIR /home/swoole
 
 FROM base as development
 
+RUN npm install chokidar
 RUN npm i
 
 COPY --chown=swoole:swoole composer.json ./
@@ -54,4 +56,4 @@ RUN composer dump-autoload
 COPY --chown=swoole:swoole ./ ./
 
 USER swoole
-CMD [ "php", "artisan", "octane:start",  "--host=0.0.0.0", "--port=80" ]
+CMD [ "php", "artisan", "octane:start", "--watch",  "--host=0.0.0.0", "--port=80" ]

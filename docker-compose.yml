@@ -13,6 +13,7 @@ services:
             - /home/swoole/vendor
             - ./storage:/home/swoole/storage
             - ./app:/home/swoole/app
+            - /home/swoole/node_modules
         ports:
             - 8888:80
         environment:

@@ -913,12 +913,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'video'        => 'https://www.youtube.com/watch?v=XXXXX',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
-            [
-                'user_id' => 1,
-                'sura_id' => 2,
-                'ayat_no' => 58,
-                'arabic_text',
-            ],
+
         ];
         DB::table('ayats')->insert($ayats);
     }
