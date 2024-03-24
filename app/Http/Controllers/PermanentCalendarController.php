@@ -62,6 +62,28 @@ class PermanentCalendarController extends Controller
         ]);
     }
 
+    public function districtWiseRamazanCalendar()
+    {
+
+        $permanentCalendars = PermanentCalendar::where('id', '>=', '73')
+            ->where('id', '<', '103')
+            ->select('id', 'day', 'month_id', 'sehri', 'magrib')
+            ->get();
+        // eloquent query to get 30 data from permanent calendar
+        // calculate each row of addition with district wise calculation
+        foreach ($permanentCalendars as $permanentCalendar) {
+            dd($permanentCalendar);
+        }
+        return response()->json([
+            'status'      => 'success',
+            'status_code' => 200,
+            'message'     => 'Permanent Calendar Data',
+            'data'        => [
+                'permanent_calendars' => $permanentCalendars,
+            ],
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
