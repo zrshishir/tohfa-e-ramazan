@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
 
 class DistrictSeeder extends Seeder
 {
@@ -16,13 +14,13 @@ class DistrictSeeder extends Seeder
     {
         $districts = [
             ['division_id' => 1, 'name' => 'Dhaka'],
-            ['division_id' => 1, 'name' => 'Faridpur'],
-            ['division_id' => 1, 'name' => 'Gazipur'],
-            ['division_id' => 1, 'name' => 'Gopalganj'],
-            ['division_id' => 1, 'name' => 'Kishoreganj'],
-            ['division_id' => 1, 'name' => 'Madaripur'],
-            ['division_id' => 1, 'name' => 'Manikganj'],
-            ['division_id' => 1, 'name' => 'Munshiganj'],
+            ['division_id' => 1, 'name' => 'Faridpur'], //2
+            ['division_id' => 1, 'name' => 'Gazipur'], //3
+            ['division_id' => 1, 'name' => 'Gopalganj'], //4
+            ['division_id' => 1, 'name' => 'Kishoreganj'], //5
+            ['division_id' => 1, 'name' => 'Madaripur'], //6
+            ['division_id' => 1, 'name' => 'Manikganj'], //7
+            ['division_id' => 1, 'name' => 'Munshiganj'], //8
             ['division_id' => 1, 'name' => 'Narayanganj'],
             ['division_id' => 1, 'name' => 'Narsingdi'],
             ['division_id' => 1, 'name' => 'Rajbari'],
