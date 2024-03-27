@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');
 });
+
+// feedback form routes
+Route::get('/feedback-form', 'App\Http\Controllers\FeedbackController@index')->name('feedback.index');
+Route::post('/feedback', 'App\Http\Controllers\FeedbackController@store')->name('feedback');
