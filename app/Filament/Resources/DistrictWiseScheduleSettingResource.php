@@ -40,7 +40,7 @@ class DistrictWiseScheduleSettingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('district_id'),
+                Tables\Columns\TextColumn::make('district.name'),
                 Tables\Columns\TextColumn::make('time_addition_subtraction'),
                 Tables\Columns\TextColumn::make('am_pm'),
                 Tables\Columns\IconColumn::make('is_active')

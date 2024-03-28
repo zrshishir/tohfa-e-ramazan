@@ -37,7 +37,7 @@ class DivisionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('country_id'),
+                Tables\Columns\TextColumn::make('country.name'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime(),

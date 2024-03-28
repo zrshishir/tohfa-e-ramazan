@@ -15,16 +15,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # - name: Remove existing network
-      #   run: docker network rm ramazan
-
       - name: Create Docker network
         run: docker network create ramazan
 
       - name: Set up Docker Compose
         run: docker-compose up -d
 
-      # - name: Run database migrations
+      - name: Install dependencies
+        run: docker-compose run --rm -u root app composer install
+
+      - name: Check MySQL connection
+        run: docker-compose exec -t db mysql --user=swoole --password=password --host=db --execute="SELECT 1;"
+
+      # - name: Run migrations
+      #   env:
+      #     DB_CONNECTION: mysql
+      #     DB_HOST: db
+      #     DB_PORT: 3306
+      #     DB_DATABASE: tohfa-e-ramazan
+      #     DB_USERNAME: swoole
+      #     DB_PASSWORD: password
       #   run: docker-compose run --rm -u root app php artisan migrate --force
 
       # - name: Run seeder
@@ -38,3 +48,6 @@ jobs:
 
       - name: Stop Docker Compose
         run: docker-compose down
+
+      - name: Remove Docker network
+        run: docker network rm ramazan
