@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -25,6 +26,6 @@ class FeedbackController extends Controller
         $feedback->feedback = $request->feedback;
         $feedback->save();
 
-        return redirect('/feedback')->with('success', 'Thank you for your feedback!');
+        return redirect('/feedback-form')->with('success', 'Thank you for your feedback!');
     }
 }

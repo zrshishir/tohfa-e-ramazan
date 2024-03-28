@@ -31,31 +31,39 @@
                 </div>
             @endif
 
-            <div class="max-w-7xl mx-auto p-6 lg:p-8">
-                <div class="flex justify-center">
-                    <?php
-                        dd(route('feedback'));
-                    ?>
-                    <form action="{{ route('feedback') }}" method="POST">
-                        @csrf
-                        <div class="mb-4">
-                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                            <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                            <input type="email" name="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        </div>
-                        <div class="mb-4">
-                            <label for="feedback" class="block text-gray-700 text-sm font-bold mb-2">Feedback:</label>
-                            <textarea name="feedback" id="feedback" rows="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-                        </div>
-                        <div class="flex justify-center">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
-                        </div>
-                    </form>
 
-                </div>
+            <div class="max-w-2xl mx-auto">
+                <form action="{{ route('feedback.store') }}" method="POST">
+                    @csrf
+                    <div class="mt-16">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                            <div>
+                                <label for="name" class="block text-xl font-semibold text-gray-900 dark:text-gray-400">Name</label>
+                            </div>
+                            <div>
+                                <input type="text" name="name" id="name" class="block w-full mt-1 px-6 py-4 rounded-lg bg-white dark:bg-gray-800/50 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xl font-semibold text-gray-900 dark:text-gray-400">Email</label>
+                                </div>
+                            <div>
+                                <input type="email" name="email" id="email" class="block w-full mt-1 px-6 py-4 rounded-lg bg-white dark:bg-gray-800/50 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" required>
+                            </div>
+                            <div>
+                                <label for="feedback" class="block text-xl font-semibold text-gray-900 dark:text-gray-400">Feedback</label>
+                                </div>
+                            <div>
+                                <textarea name="feedback" id="feedback" class="block w-full mt-1 px-6 py-4 rounded-lg bg-white dark:bg-gray-800/50 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500" required></textarea>
+                            </div>
+                            <div>
+
+                            </div>
+                            <div>
+                                <button type="submit" class="block w-full mt-1 px-6 py-4 rounded-lg bg-red-500 text-white font-semibold hover:text-white hover:bg-red-700 dark:bg-red-800/20 dark:hover:bg-red-800 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </body>

@@ -22,5 +22,5 @@ Route::get('/privacy-policy', function () {
 });
 
 // feedback form routes
-Route::get('/feedback-form', 'App\Http\Controllers\FeedbackController@index')->name('feedback.index');
-Route::post('/feedback', 'App\Http\Controllers\FeedbackController@store')->name('feedback');
+Route::get('/feedback-form', 'App\Http\Controllers\FeedbackController@index')->name('feedback.form');
+Route::post('/feedback', 'App\Http\Controllers\FeedbackController@store')->name('feedback.store');

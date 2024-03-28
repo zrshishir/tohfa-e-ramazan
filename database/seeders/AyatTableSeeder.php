@@ -719,7 +719,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 45,
                 'arabic_text'  => 'وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ',
@@ -734,7 +734,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 46,
                 'arabic_text'  => 'الَّذِينَ يَظُنُّونَ أَنَّهُم مُّلَاقُو رَ‌بِّهِمْ وَأَنَّهُمْ إِلَيْهِ رَ‌اجِعُونَ',
@@ -749,7 +749,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 47,
                 'arabic_text'  => 'يَا بَنِي إِسْرَ‌ائِيلَ اذْكُرُ‌وا نِعْمَتِيَ الَّتِي أَنْعَمْتُ عَلَيْكُمْ وَأَوْفُوا بِعَهْدِي أُوفِ بِعَهْدِكُمْ وَإِيَّايَ فَارْ‌هَبُونِ',
@@ -764,7 +764,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 48,
                 'arabic_text'  => 'وَآمِنُوا بِمَا أَنزَلْتُ مُصَدِّقًا لِّمَا مَعَكُمْ وَلَا تَكُونُوا أَوَّلَ كَافِرٍ بِهِ وَلَا تَشْتَرُوا بِآيَاتِي ثَمَنًا قَلِيلًا وَإِيَّايَ فَاتَّقُونِ',
@@ -779,7 +779,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 49,
                 'arabic_text'  => 'وَلَا تَشْتَرُ‌وا بِآيَاتِي ثَمَنًا قَلِيلًا وَإِيَّايَ فَاتَّقُونِ',
@@ -794,7 +794,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 50,
                 'arabic_text'  => 'وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ',
@@ -809,7 +809,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 51,
                 'arabic_text'  => 'أَتَأْمُرُ‌ونَ النَّاسَ بِالْبِرِّ وَتَنسَوْنَ أَنفُسَكُمْ وَأَنتُمْ تَتْلُونَ الْكِتَابَ ۚ أَفَلَا تَعْقِلُونَ',
@@ -824,7 +824,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 52,
                 'arabic_text'  => 'وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى الْخَاشِعِينَ',
@@ -839,7 +839,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 53,
                 'arabic_text'  => 'الَّذِينَ يَظُنُّونَ أَنَّهُم مُّلَاقُو رَ‌بِّهِمْ وَأَنَّهُمْ إِلَيْهِ رَ‌اجِعُونَ',
@@ -854,7 +854,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 54,
                 'arabic_text'  => 'يَا بَنِي إِسْرَ‌ائِيلَ اذْكُرُ‌وا نِعْمَتِيَ الَّتِي أَنْعَمْتُ عَلَيْكُمْ وَأَوْفُوا بِعَهْدِي أُوفِ بِعَهْدِكُمْ وَإِيَّايَ فَارْ‌هَبُونِ',
@@ -869,7 +869,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 55,
                 'arabic_text'  => 'وَآمِنُوا بِمَا أَنزَلْتُ مُصَدِّقًا لِّمَا مَعَكُمْ وَلَا تَكُونُوا أَوَّلَ كَافِرٍ بِهِ وَلَا تَشْتَرُوا بِآيَاتِي ثَمَنًا قَلِيلًا وَإِيَّايَ فَاتَّقُونِ',
@@ -884,7 +884,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 56,
                 'arabic_text'  => 'وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ',
@@ -899,7 +899,7 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
             ],
             [
-                'user_id'      => 1,
+
                 'sura_id'      => 2,
                 'ayat_no'      => 57,
                 'arabic_text'  => 'أَتَأْمُرُ‌ونَ النَّاسَ بِالْبِرِّ وَتَنسَوْنَ أَنفُسَكُمْ وَأَنتُمْ تَتْلُونَ الْكِتَابَ ۚ أَفَلَا تَعْقِلُونَ',
@@ -912,12 +912,6 @@ un wa lakum fil-ardi mustaqarrunw wa mataa\'un ilaa hii',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3',
                 'video'        => 'https://www.youtube.com/watch?v=XXXXX',
                 'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg',
-            ],
-            [
-                'user_id' => 1,
-                'sura_id' => 2,
-                'ayat_no' => 58,
-                'arabic_text',
             ],
         ];
         DB::table('ayats')->insert($ayats);
