@@ -31,6 +31,11 @@
                 </div>
             @endif
 
+@if(session('success'))
+    <script>
+        alert("{{ session('success') }}");
+    </script>
+@endif
 
             <div class="max-w-2xl mx-auto">
                 <form action="{{ route('feedback.store') }}" method="POST">
