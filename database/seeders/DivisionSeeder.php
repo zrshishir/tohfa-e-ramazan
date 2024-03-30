@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
 
 class DivisionSeeder extends Seeder
 {
@@ -22,6 +20,7 @@ class DivisionSeeder extends Seeder
             ['name' => 'Barisal', 'country_id' => 18],
             ['name' => 'Sylhet', 'country_id' => 18],
             ['name' => 'Rangpur', 'country_id' => 18],
+            ['name' => 'Mymensingh', 'country_id' => 18],
         ];
 
         DB::table('divisions')->insert($divisions);

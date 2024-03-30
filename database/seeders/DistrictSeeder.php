@@ -21,52 +21,63 @@ class DistrictSeeder extends Seeder
             ['division_id' => 1, 'name' => 'Madaripur'], //6
             ['division_id' => 1, 'name' => 'Manikganj'], //7
             ['division_id' => 1, 'name' => 'Munshiganj'], //8
-            ['division_id' => 1, 'name' => 'Narayanganj'],
-            ['division_id' => 1, 'name' => 'Narsingdi'],
-            ['division_id' => 1, 'name' => 'Rajbari'],
-            ['division_id' => 1, 'name' => 'Shariatpur'],
-            ['division_id' => 1, 'name' => 'Tangail'],
-            ['division_id' => 2, 'name' => 'Bandarban'],
-            ['division_id' => 2, 'name' => 'Brahmanbaria'],
-            ['division_id' => 2, 'name' => 'Chandpur'],
-            ['division_id' => 2, 'name' => 'Chittagong'],
-            ['division_id' => 2, 'name' => 'Comilla'],
-            ['division_id' => 2, 'name' => 'Cox\'s Bazar'],
-            ['division_id' => 2, 'name' => 'Feni'],
-            ['division_id' => 2, 'name' => 'Khagrachari'],
-            ['division_id' => 2, 'name' => 'Lakshmipur'],
-            ['division_id' => 2, 'name' => 'Noakhali'],
-            ['division_id' => 2, 'name' => 'Rangamati'],
-            ['division_id' => 3, 'name' => 'Bagerhat'],
-            ['division_id' => 3, 'name' => 'Chuadanga'],
-            ['division_id' => 3, 'name' => 'Jessore'],
-            ['division_id' => 3, 'name' => 'Jhenaidah'],
-            ['division_id' => 3, 'name' => 'Khulna'],
-            ['division_id' => 3, 'name' => 'Kushtia'],
-            ['division_id' => 3, 'name' => 'Magura'],
-            ['division_id' => 3, 'name' => 'Meherpur'],
-            ['division_id' => 3, 'name' => 'Narail'],
-            ['division_id' => 3, 'name' => 'Satkhira'],
-            ['division_id' => 4, 'name' => 'Bogra'],
-            ['division_id' => 4, 'name' => 'Joypurhat'],
-            ['division_id' => 4, 'name' => 'Naogaon'],
-            ['division_id' => 4, 'name' => 'Natore'],
-            ['division_id' => 4, 'name' => 'Nawabganj'],
-            ['division_id' => 4, 'name' => 'Pabna'],
-            ['division_id' => 4, 'name' => 'Rajshahi'],
-            ['division_id' => 4, 'name' => 'Sirajganj'],
-            ['division_id' => 5, 'name' => 'Dinajpur'],
-            ['division_id' => 5, 'name' => 'Gaibandha'],
-            ['division_id' => 5, 'name' => 'Kurigram'],
-            ['division_id' => 5, 'name' => 'Lalmonirhat'],
-            ['division_id' => 5, 'name' => 'Nilphamari'],
-            ['division_id' => 5, 'name' => 'Panchagarh'],
-            ['division_id' => 5, 'name' => 'Rangpur'],
-            ['division_id' => 5, 'name' => 'Thakurgaon'],
-            ['division_id' => 6, 'name' => 'Habiganj'],
-            ['division_id' => 6, 'name' => 'Moulvibazar'],
-            ['division_id' => 6, 'name' => 'Sunamganj'],
-            ['division_id' => 6, 'name' => 'Sylhet'],
+            ['division_id' => 1, 'name' => 'Narayanganj'], //9
+            ['division_id' => 1, 'name' => 'Narsingdi'], //10
+            ['division_id' => 1, 'name' => 'Rajbari'], //11
+            ['division_id' => 1, 'name' => 'Shariatpur'], //12
+            ['division_id' => 1, 'name' => 'Tangail'], //13
+            ['division_id' => 2, 'name' => 'Bandarban'], //14
+            ['division_id' => 2, 'name' => 'Brahmanbaria'], //15
+            ['division_id' => 2, 'name' => 'Chandpur'], //16
+            ['division_id' => 2, 'name' => 'Chittagong'], //17
+            ['division_id' => 2, 'name' => 'Comilla'], //18
+            ['division_id' => 2, 'name' => 'Cox\'s Bazar'], //19
+            ['division_id' => 2, 'name' => 'Feni'], //20
+            ['division_id' => 2, 'name' => 'Khagrachari'], //21
+            ['division_id' => 2, 'name' => 'Lakshmipur'], //22
+            ['division_id' => 2, 'name' => 'Noakhali'], //23
+            ['division_id' => 2, 'name' => 'Rangamati'], //24
+            ['division_id' => 3, 'name' => 'Bagerhat'], //25
+            ['division_id' => 3, 'name' => 'Chuadanga'], //26
+            ['division_id' => 3, 'name' => 'Jessore'], //27
+            ['division_id' => 3, 'name' => 'Jhenaidah'], //28
+            ['division_id' => 3, 'name' => 'Khulna'], //29
+            ['division_id' => 3, 'name' => 'Kushtia'], //30
+            ['division_id' => 3, 'name' => 'Magura'], //31
+            ['division_id' => 3, 'name' => 'Meherpur'], //32
+            ['division_id' => 3, 'name' => 'Narail'], //33
+            ['division_id' => 3, 'name' => 'Satkhira'], //34
+            ['division_id' => 4, 'name' => 'Bogra'], //35
+            ['division_id' => 4, 'name' => 'Joypurhat'], //36
+            ['division_id' => 4, 'name' => 'Naogaon'], //37
+            ['division_id' => 4, 'name' => 'Natore'], //38
+            ['division_id' => 4, 'name' => 'Nawabganj'], //39
+            ['division_id' => 4, 'name' => 'Pabna'], //40
+            ['division_id' => 4, 'name' => 'Rajshahi'], //41
+            ['division_id' => 4, 'name' => 'Sirajganj'], //42
+            ['division_id' => 5, 'name' => 'Dinajpur'], //43
+            ['division_id' => 5, 'name' => 'Gaibandha'], //44
+            ['division_id' => 5, 'name' => 'Kurigram'], //45
+            ['division_id' => 5, 'name' => 'Lalmonirhat'], //46
+            ['division_id' => 5, 'name' => 'Nilphamari'], //47
+            ['division_id' => 5, 'name' => 'Panchagarh'], //48
+            ['division_id' => 5, 'name' => 'Rangpur'], //49
+            ['division_id' => 5, 'name' => 'Thakurgaon'], //50
+            ['division_id' => 6, 'name' => 'Habiganj'], //51
+            ['division_id' => 6, 'name' => 'Moulvibazar'], //52
+            ['division_id' => 6, 'name' => 'Sunamganj'], //53
+            ['division_id' => 6, 'name' => 'Sylhet'], //54
+            ['division_id' => 7, 'name' => 'Barguna'], //55
+            ['division_id' => 7, 'name' => 'Barisal'], //56
+            ['division_id' => 7, 'name' => 'Bhola'], //57
+            ['division_id' => 7, 'name' => 'Jhalokati'], //58
+            ['division_id' => 7, 'name' => 'Patuakhali'], //59
+            ['division_id' => 7, 'name' => 'Pirojpur'], //60
+            ['division_id' => 8, 'name' => 'Jamalpur'], //61
+            ['division_id' => 8, 'name' => 'Mymensingh'], //62
+            ['division_id' => 8, 'name' => 'Netrokona'], //63
+            ['division_id' => 8, 'name' => 'Sherpur'], //64
+
         ];
 
         DB::table('districts')->insert($districts);
