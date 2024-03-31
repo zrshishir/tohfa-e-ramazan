@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DistrictWiseTableSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class DistrictWiseTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table()->insert([
+        DB::table('district_wise_schedule_settings')->insert([
             [
                 'district_id' => 1,
                 'sehri_time'  => 0,
@@ -106,7 +107,7 @@ class DistrictWiseTableSeeder extends Seeder
                 'district_id' => 16,
                 'sehri_time'  => -1,
                 'iftar_time'  => -1,
-                'is_active',
+                'is_active'   => true,
             ],
             [
                 'district_id' => 17,
@@ -304,7 +305,7 @@ class DistrictWiseTableSeeder extends Seeder
                 'district_id' => 49,
                 'sehri_time'  => 6,
                 'iftar_time'  => 6,
-                'is_active',
+                'is_active'   => true,
             ],
             [
                 'district_id' => 50,

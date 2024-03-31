@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             SuraTableSeeder::class,
             AyatTableSeeder::class,
             AsmaulHusnaTableSeeder::class,
+            DistrictWiseTableSeeder::class,
         ]);
     }
 }

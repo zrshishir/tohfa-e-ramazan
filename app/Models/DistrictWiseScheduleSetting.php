@@ -10,6 +10,8 @@ class DistrictWiseScheduleSetting extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'district_wise_schedule_settings';
+
     protected $fillable = [
         'district_id',
         'sehri_time',

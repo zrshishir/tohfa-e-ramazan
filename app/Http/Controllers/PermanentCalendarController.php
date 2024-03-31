@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DistrictWiseScheduleSetting;
 use App\Models\MazhabWiseScheduleSetting;
 use App\Models\PermanentCalendar;
 use Illuminate\Http\Request;
@@ -64,7 +65,8 @@ class PermanentCalendarController extends Controller
 
     public function districtWiseRamazanCalendar()
     {
-
+        $dws = DistrictWiseScheduleSetting::with('district')->get();
+        dd($dws);
         $permanentCalendars = PermanentCalendar::where('id', '>=', '73')
             ->where('id', '<', '103')
             ->select('id', 'day', 'month_id', 'sehri', 'magrib')
