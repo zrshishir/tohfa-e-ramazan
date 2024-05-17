@@ -59,44 +59,58 @@ class AyatTableSeeder extends Seeder
             [
                 'sura_id'      => 1,
                 'ayat_no'      => 4,
-                'arabic_text'  => 'اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِينُ',
-                'english_text' => 'iyyaa-ka na’-budu wa iyyaa-ka nas-ta-‘een',
-                'bangla_text'  => 'ইয়্যা-কা না’বুদু ও ইয়্যা-কা নাস্তাইন',
-                'meaning'      => 'আমরা আপনার ইবাদত করি এবং আপনার কাছে সাহায্য চাই।',
+                'arabic_text'  => 'مَالِكِ يَوْمِ الدِّينِ',
+                'english_text' => 'maa-lik-i yaw-mid-diin',
+                'bangla_text'  => 'মালিকি ইয়াউমিদ্দিন',
+                'meaning'      => 'যিনি বিচার দিনের মালিক।',
                 'reference'    => 'সূরা আল ফাতিহা ১:৪',
-                'notes'        => 'আপনি ইয়াক নাছুয়াদু এবং আপনার কাছে আমরা সাহায্য চাই।',
+                'notes'        => 'যিনি বিচার দিনের মালিক।',
                 'status'       => 'active',
-                'audio'        => 'https://server8.mp3quran.net/basit/004.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'audio'        => 'https://server8.mp3quran.net/basit/004.mp3',
+                'video'        => 'https://www.youtube.com/watch?v=VHfJY3YpLj8',
+                'image'        => 'https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg',
             ],
             [
                 'sura_id'      => 1,
                 'ayat_no'      => 5,
-                'arabic_text'  => 'اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ',
-                'english_text' => 'ih-di-nas-si-raa-tal-mus-ta-qiim',
-                'bangla_text'  => 'ইহদিনাস সিরাতাল মুসতাকীম',
-                'meaning'      => 'আমাদেরকে সরল পথে প্রবৃদ্ধি কর।',
+                'arabic_text'  => 'إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ',
+                'english_text' => 'iyyaa-ka na’-budu wa iyyaa-ka nas-ta-‘een',
+                'bangla_text'  => 'ইয়্যা-কা না’বুদু ও ইয়্যা-কা নাস্তাইন',
+                'meaning'      => 'আমরা আপনার ইবাদত করি এবং আপনার কাছে সাহায্য চাই।',
                 'reference'    => 'সূরা আল ফাতিহা ১:৫',
-                'notes'        => 'আমাদেরকে সরল পথে প্রবৃদ্ধি কর।',
+                'notes'        => 'আমরা আপনার ইবাদত করি এবং আপনার কাছে সাহায্য চাই।',
                 'status'       => 'active',
-                'audio'        => 'https://server8.mp3quran.net/basit/005.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'audio'        => 'https://server8.mp3quran.net/basit/005.mp3',
+                'video'        => 'https://www.youtube.com/watch?v=VHfJY3YpLj8',
+                'image'        => 'https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg',
             ],
             [
                 'sura_id'      => 1,
                 'ayat_no'      => 6,
-                'arabic_text'  => 'صِرَاطَ الَّذِينَ اَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ',
+                'arabic_text'  => 'اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ',
+                'english_text' => 'ih-di-nas-si-raa-tal-mus-ta-qiim',
+                'bangla_text'  => 'ইহদিনাস সিরাতাল মুসতাকীম',
+                'meaning'      => 'আমাদেরকে সরল পথে প্রবৃদ্ধি কর।',
+                'reference'    => 'সূরা আল ফাতিহা ১:৬',
+                'notes'        => 'আমাদেরকে সরল পথে প্রবৃদ্ধি কর।',
+                'status'       => 'active',
+                'audio'        => 'https://server8.mp3quran.net/basit/006.mp3',
+                'video'        => 'https://www.youtube.com/watch?v=VHfJY3YpLj8',
+                'image'        => 'https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg',
+            ],
+            [
+                'sura_id'      => 1,
+                'ayat_no'      => 7,
+                'arabic_text'  => 'صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ',
                 'english_text' => 'si-raa-tal-lazi-na an-‘am-ta ‘alay-him ghay-ri-l-maghdoo-bi ‘alay-him wa la-d-daa-l-leen',
                 'bangla_text'  => 'সিরাতাল লাজিনা আনআমতা আলাইহিম গাইরিল মাগদুবি আলাইহিম ওয়া লাদ্দাল্লিন',
                 'meaning'      => 'তাদের পথ, যাদের উপর আপনি অনুগ্রহ করেছেন, তাদের পথ, যাদের উপর গজব না আসে এবং যাদের পথ, যারা হারানো গেছে।',
-                'reference'    => 'সূরা আল ফাতিহা ১:৬',
+                'reference'    => 'সূরা আল ফাতিহা ১:৭',
                 'notes'        => 'তাদের পথ, যাদের উপর আপনি অনুগ্রহ করেছেন, তাদের পথ, যাদের উপর গজব না আসে এবং যাদের পথ, যারা হারানো গেছে।',
                 'status'       => 'active',
-                'audio'        => 'https://server8.mp3quran.net/basit/006.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'audio'        => 'https://server8.mp3quran.net/basit/007.mp3',
+                'video'        => 'https://www.youtube.com/watch?v=VHfJY3YpLj8',
+                'image'        => 'https://i.ytimg.com/vi/VHfJY3YpLj8/maxresdefault.jpg',
             ],
             [
                 'sura_id'      => 2,
@@ -109,8 +123,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'আলিফ লাম মীম',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -123,8 +137,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'এই কিতাবে কোন সন্দেহ নেই, এটি ভক্তদের জন্য পথ প্রদর্শন করে।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -137,8 +151,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'যারা গায়েবে বিশ্বাস রাখে এবং সালাত পালন করে এবং তাদের প্রাপ্তি করা রিয়ায়ত দান করে।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -151,8 +165,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'যারা আপনার প্রেরিত করা হুকুম এবং আপনার প্রেরিত করা হুকুম এবং আখেরাতে বিশ্বাস রাখে।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -165,8 +179,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'তারা তাদের প্রভুর পথে প্রবৃদ্ধি করা হুকুম পেয়েছে এবং তারা সফল হয়েছে।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -179,8 +193,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'যদি তুমি তাদের পরবর্তী করার জন্য বিপদ দেন অথবা তুমি তাদের পরবর্তী করার জন্য বিপদ না দেন, তারা বিশ্বাস না করে।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -193,8 +207,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'আল্লাহ তাদের হৃদয়ের ও শ্রবণের ও দৃষ্টিতে পর্দা পড়িয়েছে এবং তাদের জন্য বড় শাস্তি আছে।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -207,8 +221,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'আল্লাহ ছাড়া কোন মাবুদ নেই, তিনি চিরস্থায়ী ও জীবিত।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -221,8 +235,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'চোখ তাকে ধরতে পারে না, কিন্তু তিনি চোখ ধরে রাখেন। তিনি সুক্ষ্মতামূলক ও সকল বিষয়ে জ্ঞানী।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -235,8 +249,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'এবং মানুষের মধ্যে কেউ আছে যিনি বলে, আমরা আল্লাহের বিশ্বাস করি। কিন্তু যখন তাঁকে আপত্তি করা হয়, তখন তিনি মানুষের প্রতিবাদ আল্লাহের শাস্তির মতো করেন। এবং যদি তোমার প্রভুর পক্ষ থেকে সাহায্য আসে, তারা বলবে, আমরা তোমাদের সঙ্গে ছিলাম। কি আল্লাহ সমস্ত জগতের হৃদয়ে যা আছে তা আলাম।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -249,8 +263,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'এবং যখন তাদের বলা হয়, তোমরা পৃথিবীতে অপরাধ করবে না, তখন তারা বলে, আমরা কেবল সুধারক।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
 
             [
@@ -264,8 +278,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'এবং মানুষের মধ্যে কেউ আছে যিনি বলে, আমরা আল্লাহের ও আগামী দিনের বিশ্বাস করি কিন্তু তারা বিশ্বাসী নয়।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -278,8 +292,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'এবং যখন তাদের বলা হয়, তোমরা বিশ্বাস করো যথাযথভাবে যেমন মানুষ বিশ্বাস করে, তারা বলে, আমরা যথাযথভাবে বিশ্বাস করবো যেমন মূর্খরা বিশ্বাস করে। নিশ্চয়ই তারা মূর্খরা, কিন্তু তারা জানে না।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -292,8 +306,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'এবং যখন তারা যারা বিশ্বাস করে, তাদের সঙ্গে মিলে, তখন তারা বলে, আমরা বিশ্বাস করি। এবং যখন তারা তাদের শয়তানদের সঙ্গে একা থাকে, তখন তারা বলে, আমরা তোমাদের সঙ্গে ছিলাম। নিশ্চয়ই তারা আপত্তিকারী।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
 
             [
@@ -307,8 +321,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'এবং যখন তারা যারা বিশ্বাস করে, তাদের সঙ্গে মিলে, তখন তারা বলে, আমরা বিশ্বাস করি। এবং যখন তারা তাদের শয়তানদের সঙ্গে একা থাকে, তখন তারা বলে, আমরা তোমাদের সঙ্গে ছিলাম। নিশ্চয়ই তারা আপত্তিকারী।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -321,8 +335,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'তারা হল সেই লোকজন যারা হেদায়েত দিয়ে ভুল পথ কেনার বদলে পথ কেনেছে। তাদের ব্যবসায় কোন লাভ হয়নি এবং তারা হেদায়ে নেই।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -335,8 +349,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'তাদের মিথ্যা যেমন একটি লোকের মিথ্যা, যে একটি আগুন আলোকিত করে, তখন তার চারপাশের আলো চলে গেল। আল্লাহ তাদের আলো নিয়ে চলে গেল এবং তারা অন্ধকারে থেকে বাচ্চা রয়ে গেল।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => 2,
@@ -349,8 +363,8 @@ class AyatTableSeeder extends Seeder
                 'notes'        => 'তারা বধ্য সুন্দর বুকমুন এবং অন্ধকারে তারা ফিরে আসতে পারবে না।',
                 'status'       => 'active',
                 'audio'        => 'https://server8.mp3quran.net/basit/002.mp3', // Update with the correct audio URL
-                'video' => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
-                'image' => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
+                'video'        => 'https://www.youtube.com/watch?v=XXXXX', // Update with the correct video URL
+                'image'        => 'https://i.ytimg.com/vi/XXXXX/maxresdefault.jpg', // Update with the correct image URL
             ],
             [
                 'sura_id'      => '2',

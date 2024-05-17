@@ -31,35 +31,48 @@ class PermanentCalendarController extends Controller
             ->where(DB::raw('CAST(day AS UNSIGNED)'), '>=', $today)
             ->paginate($to);
 
-        return response()->json([
-            'status'      => 'success',
-            'today'       => $today,
-            'nextDay'     => $nextDay,
-            'status_code' => 200,
-            'message'     => 'Permanent Calendar Data',
-            'data'        => [
-                'mazhab_setting'      => $mazhabSetting,
-                'permanent_calendars' => $permanentCalendars,
-            ],
-        ]);
+        return response()->json(
+            [
+                'status'      => 'success',
+                'today'       => $today,
+                'nextDay'     => $nextDay,
+                'status_code' => 200,
+                'message'     => 'Permanent Calendar Data',
+                'data'        => [
+                    'mazhab_setting'      => $mazhabSetting,
+                    'permanent_calendars' => $permanentCalendars,
+                ],
+            ]
+        );
     }
 
     public function ramazanCalendar()
     {
-        $permanentCalendars = PermanentCalendar::where('id', '>=', '73')
-            ->where('id', '<', '103')
+        $date       = date('Y-m-d');
+        $today      = date('d', strtotime($date));
+        $month      = date('m', strtotime($date));
+        $next30Days = date('Y-m-d', strtotime('+30 days', strtotime($date)));
+        // dd($date, $today, $month, $next30Days);
+        $id = PermanentCalendar::where('day', $today)
+            ->where('month_id', $month)
+            ->pluck('id');
+
+        $permanentCalendars = PermanentCalendar::where('id', '>=', $id)
+            ->where('id', '<', $id[0] + 30)
             ->select('id', 'day', 'month_id', 'sehri', 'magrib')
             ->get();
         // eloquent query to get 30 data from permanent calendar
 
-        return response()->json([
-            'status'      => 'success',
-            'status_code' => 200,
-            'message'     => 'Permanent Calendar Data',
-            'data'        => [
-                'permanent_calendars' => $permanentCalendars,
-            ],
-        ]);
+        return response()->json(
+            [
+                'status'      => 'success',
+                'status_code' => 200,
+                'message'     => 'Permanent Calendar Data',
+                'data'        => [
+                    'permanent_calendars' => $permanentCalendars,
+                ],
+            ]
+        );
     }
 
     /**
