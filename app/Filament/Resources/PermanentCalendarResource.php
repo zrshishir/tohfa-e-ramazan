@@ -18,6 +18,7 @@ class PermanentCalendarResource extends Resource
     protected static ?string $model = PermanentCalendar::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
+
     protected static ?string $navigationGroup = 'Salat Calendar';
 
     public static function form(Form $form): Form
@@ -51,7 +52,7 @@ class PermanentCalendarResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('month_id'),
+                Tables\Columns\TextColumn::make('month.name'),
                 Tables\Columns\TextColumn::make('day'),
                 Tables\Columns\TextColumn::make('sehri_time'),
                 Tables\Columns\TextColumn::make('fazr_time'),
@@ -77,14 +78,14 @@ class PermanentCalendarResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -93,5 +94,5 @@ class PermanentCalendarResource extends Resource
             'view' => Pages\ViewPermanentCalendar::route('/{record}'),
             'edit' => Pages\EditPermanentCalendar::route('/{record}/edit'),
         ];
-    }    
+    }
 }

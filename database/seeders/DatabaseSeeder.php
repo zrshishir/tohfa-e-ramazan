@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\DoaCategory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -35,6 +34,10 @@ class DatabaseSeeder extends Seeder
             MazhabTableSeeder::class,
             MazhabWiseScheduleSettingSeeder::class,
             TasbihTableSeeder::class,
+            DoaSeeder::class,
+            SuraTableSeeder::class,
+            AyatTableSeeder::class,
+            AsmaulHusnaTableSeeder::class,
         ]);
     }
 }

@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('mazhabs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->string('name');
+            $table->string('bangla_text');
+            $table->string('arabic_text');
             $table->timestamps();
         });
     }

@@ -21,4 +21,22 @@ class PermanentCalendar extends Model
         'magrib_and_iftar_time',
         'esha_time',
     ];
+    protected $casts = [
+        'sehri' => 'json',
+        'fazr' => 'json',
+        'sunrise' => 'json',
+        'ishraq' => 'json',
+        'johr' => 'json',
+        'asr' => 'json',
+        'magrib' => 'json',
+        'esha' => 'json',
+        'tahazzud' => 'json',
+        'jummah' => 'json',
+        'forbidden' => 'json',
+    ];
+
+    public function month()
+    {
+        return $this->belongsTo( Month::class );
+    }
 }
