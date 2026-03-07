@@ -29,7 +29,11 @@ class AsmaulHusnaResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id')->sortable(),
+                Tables\Columns\TextColumn::make('arabic_name')->label('Arabic')->searchable(),
+                Tables\Columns\TextColumn::make('english_name')->label('English')->searchable(),
+                Tables\Columns\TextColumn::make('bangla_name')->label('Bangla')->searchable(),
+                Tables\Columns\TextColumn::make('meaning')->label('Meaning')->limit(50),
             ])
             ->filters([
                 //

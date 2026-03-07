@@ -25,26 +25,12 @@ class PermanentCalendarResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('month_id')
+                Forms\Components\Select::make('month_id')
+                    ->relationship('month', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('day')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('sehri_time')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('fazr_time')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('sunrise_time')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('ishraq_time')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('johr_time')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('asr_time')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('magrib_and_iftar_time')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('esha_time')
-                    ->maxLength(255),
+                    ->required()
+                    ->maxLength(2),
             ]);
     }
 
@@ -52,20 +38,24 @@ class PermanentCalendarResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('month.name'),
-                Tables\Columns\TextColumn::make('day'),
-                Tables\Columns\TextColumn::make('sehri_time'),
-                Tables\Columns\TextColumn::make('fazr_time'),
-                Tables\Columns\TextColumn::make('sunrise_time'),
-                // Tables\Columns\TextColumn::make('ishraq_time'),
-                Tables\Columns\TextColumn::make('johr_time'),
-                Tables\Columns\TextColumn::make('asr_time'),
-                Tables\Columns\TextColumn::make('magrib_and_iftar_time'),
-                Tables\Columns\TextColumn::make('esha_time'),
-                // Tables\Columns\TextColumn::make('created_at')
-                //     ->dateTime(),
-                // Tables\Columns\TextColumn::make('updated_at')
-                //     ->dateTime(),
+                Tables\Columns\TextColumn::make('month.name')->label('Month')->sortable(),
+                Tables\Columns\TextColumn::make('day')->label('Day')->sortable(),
+                Tables\Columns\TextColumn::make('sehri_start')->label('Sehri Start')
+                    ->getStateUsing(fn ($record) => data_get($record->sehri, 'start_time')),
+                Tables\Columns\TextColumn::make('sehri_end')->label('Sehri End')
+                    ->getStateUsing(fn ($record) => data_get($record->sehri, 'end_time')),
+                Tables\Columns\TextColumn::make('fazr_start')->label('Fazr')
+                    ->getStateUsing(fn ($record) => data_get($record->fazr, 'start_time')),
+                Tables\Columns\TextColumn::make('sunrise_start')->label('Sunrise')
+                    ->getStateUsing(fn ($record) => data_get($record->sunrise, 'start_time')),
+                Tables\Columns\TextColumn::make('johr_start')->label('Johr')
+                    ->getStateUsing(fn ($record) => data_get($record->johr, 'start_time')),
+                Tables\Columns\TextColumn::make('asr_start')->label('Asr')
+                    ->getStateUsing(fn ($record) => data_get($record->asr, 'start_time')),
+                Tables\Columns\TextColumn::make('magrib_start')->label('Magrib / Iftar')
+                    ->getStateUsing(fn ($record) => data_get($record->magrib, 'start_time')),
+                Tables\Columns\TextColumn::make('esha_start')->label('Esha')
+                    ->getStateUsing(fn ($record) => data_get($record->esha, 'start_time')),
             ])
             ->filters([
                 //

@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('reference');
             $table->text('notes');
             $table->string('status');
-            $table->string('audio')->nullable();
-            $table->string('video')->nullable();
-            $table->string('image')->nullable();
+            $table->text('audio')->nullable();
+            $table->text('video')->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }
