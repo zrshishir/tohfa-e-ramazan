@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HadithController;
+use App\Http\Controllers\MasalaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,3 +47,11 @@ Route::get('/ayat/{id}', 'App\Http\Controllers\AyatController@index');
 
 // asmaul husna
 Route::get('/asmaul-husna', 'App\Http\Controllers\AsmaulHusnaController@index');
+
+// hadith routes
+Route::get('/hadith', [HadithController::class, 'index']);
+Route::get('/hadith/{id}', [HadithController::class, 'show']);
+
+// masala routes
+Route::get('/masala', [MasalaController::class, 'index']);
+Route::get('/masala/{id}', [MasalaController::class, 'show']);
