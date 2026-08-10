@@ -38,7 +38,6 @@ class DatabaseSeeder extends Seeder
             SuraTableSeeder::class,
             AyatTableSeeder::class,
             AsmaulHusnaTableSeeder::class,
-            HadithSeeder::class,
             MasalaSeeder::class,
         ]);
     }

@@ -49,8 +49,11 @@ Route::get('/ayat/{id}', 'App\Http\Controllers\AyatController@index');
 Route::get('/asmaul-husna', 'App\Http\Controllers\AsmaulHusnaController@index');
 
 // hadith routes
+Route::get('/hadith-books', [HadithController::class, 'books']);
+Route::get('/hadith-books/{bookId}/chapters', [HadithController::class, 'chapters'])->whereNumber('bookId');
+Route::get('/hadith-random', [HadithController::class, 'random']);
 Route::get('/hadith', [HadithController::class, 'index']);
-Route::get('/hadith/{id}', [HadithController::class, 'show']);
+Route::get('/hadith/{id}', [HadithController::class, 'show'])->whereNumber('id');
 
 // masala routes
 Route::get('/masala', [MasalaController::class, 'index']);
