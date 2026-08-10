@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-08-10
+
+### Changed
+
+- `GET /api/ayat/{sura_id}` is now **paginated** (10 per page by default, `per_page` up
+  to 100, query string preserved in the page links). It previously returned every ayat of
+  a sura in one response — 286 rows and ~29× the payload for Al-Baqarah. The frontend
+  already ships a paginated reader with a fallback for an unpaginated response, so this
+  is not breaking.
+- Ayats are explicitly ordered by `ayat_no`.
+
+### Fixed
+
+- Four more models could not be mass-assigned at all, because columns that are `NOT NULL`
+  with no default were missing from `$fillable` — `Model::create()` threw an integrity
+  constraint violation every time:
+
+  | Model | Missing |
+  |---|---|
+  | `Sura` | `bangla_text` |
+  | `Ayat` | `ayat_no`, `notes` |
+  | `DoaCategory` | `bangla_text`, `arabic_text` |
+  | `Mazhab` | `user_id`, `bangla_text`, `arabic_text` |
+
+  All four went unnoticed because their seeders write through `DB::table()`, which
+  bypasses `$fillable` entirely.
+
+- `AyatController::index()` used `empty()` on an Eloquent collection, which is never
+  truthy, so the `204` branch was unreachable.
+
+### Added
+
+- `ModelFillableTest::test_required_columns_are_fillable` — the inverse of the existing
+  phantom-column guard. It reads column metadata and asserts that every `NOT NULL`
+  column without a default is present in `$fillable`. This is what found the four models
+  above.
+- `AyatApiTest` — 6 tests covering pagination, ordering, the `per_page` cap, query-string
+  preservation and the empty-sura `204`.
+
 ## [2.0.0] - 2026-08-10
 
 ### ⚠️ Breaking

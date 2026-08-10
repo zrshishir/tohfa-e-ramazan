@@ -13,6 +13,10 @@ class Ayat extends Model
 
     protected $fillable = [
         'sura_id',
+        // ayat_no and notes are NOT NULL on the table but were absent here, so
+        // Ayat::create() could never satisfy the constraints.
+        'ayat_no',
+        'notes',
         'arabic_text',
         'bangla_text',
         'english_text',
