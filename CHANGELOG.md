@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-08-10
+
+### Fixed
+
+- **`GET /api/ramazan-calendar` returned 500 on every request**, taking down the Ramadan
+  calendar and single-date screens — the app's headline feature. The query selected an
+  `iftar` column that does not exist:
+
+  ```
+  SQLSTATE[42S22]: Column not found: 1054 Unknown column 'iftar' in 'field list'
+  select `id`, `day`, `month_id`, `sehri`, `magrib`, `iftar` from `permanent_calendars`
+  ```
+
+- The `PermanentCalendar` model's `$fillable` listed eight columns that do not exist
+  (`sehri_time`, `fazr_time`, `sunrise_time`, `ishraq_time`, `johr_time`, `asr_time`,
+  `magrib_and_iftar_time`, `esha_time`) and none of the real ones, so every
+  `PermanentCalendar::create()` silently discarded its payload and inserted a row
+  containing nothing but timestamps. The existing seeder writes via `DB::table()` and so
+  was unaffected, which is why this went unnoticed.
+
+### Added
+
+- A derived `iftar` object on **all** calendar responses — `POST /permanent-calendar`,
+  `GET /permanent-calendar/{month_id}`, `GET /today-prayer` and `GET /ramazan-calendar`.
+  There is no `iftar` column because the fast is broken when Magrib begins; iftar is now
+  computed from `magrib` with the mazhab's own `iftar_time` offset.
+  This is additive — no existing key changed.
+- 9 feature tests (`RamazanCalendarTest`) covering the 500 regression, the 30-day window,
+  month rollover, iftar derivation on every endpoint, and the absence of a mazhab row.
+
+### Changed
+
+- `iftar` removed from `PRAYER_OFFSET_MAP`, where it could never have matched a column.
+- Iftar is derived from the **raw** `magrib` value, captured before `magrib_time` is
+  applied, so it carries only `iftar_time` and never inherits Magrib's offset on top.
+
 ## [1.2.0] - 2026-08-10
 
 ### ⚠️ Breaking
