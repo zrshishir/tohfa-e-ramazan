@@ -22,9 +22,34 @@ class PermanentCalendarController extends Controller
         'johr'    => ['johr_time',   'johr_time'],
         'asr'     => ['asr_time',    'asr_time'],
         'magrib'  => ['magrib_time', 'magrib_time'],
-        'iftar'   => ['iftar_time',  'iftar_time'],
         'esha'    => ['esha_time',   'esha_time'],
     ];
+
+    /**
+     * There is no `iftar` column — the fast is broken when Magrib begins, so iftar is
+     * derived from `magrib` with the mazhab's own `iftar_time` offset applied.
+     *
+     * `ramazanCalendar()` previously named `iftar` in its select() and every request
+     * died with "Unknown column 'iftar' in 'field list'".
+     */
+    private function deriveIftar(?array $rawMagrib, ?MazhabWiseScheduleSetting $mazhabSetting): ?array
+    {
+        if (empty($rawMagrib) || empty($rawMagrib['start_time'])) {
+            return null;
+        }
+
+        $offset = (int) ($mazhabSetting->iftar_time ?? 0);
+
+        return [
+            'text_en'    => 'Iftar',
+            'text_bn'    => 'ইফতার',
+            'text_ar'    => 'إفطار',
+            'start_time' => $this->adjustTime($rawMagrib['start_time'], $offset),
+            'end_time'   => isset($rawMagrib['end_time'])
+                ? $this->adjustTime($rawMagrib['end_time'], $offset)
+                : null,
+        ];
+    }
 
     /**
      * Adjust a time string like "05:22 AM" by +/- minutes.
@@ -79,11 +104,17 @@ class PermanentCalendarController extends Controller
     {
         $data = $calendar->toArray();
 
+        // Captured before offsets are applied: iftar carries its own offset and must not
+        // inherit magrib's on top.
+        $rawMagrib = isset($data['magrib']) && is_array($data['magrib']) ? $data['magrib'] : null;
+
         foreach (self::PRAYER_OFFSET_MAP as $column => [$startField, $endField]) {
             if (isset($data[$column]) && is_array($data[$column])) {
                 $data[$column] = $this->applyOffset($data[$column], $mazhabSetting, $startField, $endField);
             }
         }
+
+        $data['iftar'] = $this->deriveIftar($rawMagrib, $mazhabSetting);
 
         return $data;
     }
@@ -253,22 +284,21 @@ class PermanentCalendarController extends Controller
             $records = PermanentCalendar::where('month_id', $mId)
                 ->whereIn(DB::raw('CAST(day AS UNSIGNED)'), $dayNumbers)
                 ->orderByRaw('CAST(day AS UNSIGNED)')
-                ->select('id', 'day', 'month_id', 'sehri', 'magrib', 'iftar')
+                ->select('id', 'day', 'month_id', 'sehri', 'magrib')
                 ->get();
 
             foreach ($records as $record) {
                 $item = $record->toArray();
+
+                // Derived from raw magrib, before magrib's own offset is applied.
+                $rawMagrib = !empty($item['magrib']) && is_array($item['magrib'])
+                    ? $item['magrib']
+                    : null;
+
                 if ($mazhabSetting) {
-                    // Apply sehri offset
                     if (!empty($item['sehri'])) {
                         $item['sehri'] = $this->applyOffset(
                             $item['sehri'], $mazhabSetting, 'sehri_time', 'sehri_time'
-                        );
-                    }
-                    // Apply iftar offset (use iftar column if present, else magrib)
-                    if (!empty($item['iftar'])) {
-                        $item['iftar'] = $this->applyOffset(
-                            $item['iftar'], $mazhabSetting, 'iftar_time', 'iftar_time'
                         );
                     }
                     if (!empty($item['magrib'])) {
@@ -277,6 +307,9 @@ class PermanentCalendarController extends Controller
                         );
                     }
                 }
+
+                $item['iftar'] = $this->deriveIftar($rawMagrib, $mazhabSetting);
+
                 $results->push($item);
             }
         }
