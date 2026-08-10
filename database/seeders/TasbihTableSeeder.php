@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tasbih;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class TasbihTableSeeder extends Seeder
 {
@@ -16,7 +16,7 @@ class TasbihTableSeeder extends Seeder
         $tasbihs = [
             [
                 'user_id' => 1,
-                'tasbih' => json_encode([
+                'tasbih' => ([
                     ['text_en' => 'Subhanallah', 'text_bn' => 'সুবহানআল্লাহ', 'text_ar' => 'سبحان الله', 'reset_on' => 33, 'count' => 0, 'today_count' => 0, 'monthly_count' => 0, 'yearly_count' => 0, 'total_count' => 0],
                     ['text_en' => 'Alhamdulillah', 'text_bn' => 'আলহামদুলিল্লাহ', 'text_ar' => 'الحمد لله', 'reset_on' => 33, 'count' => 0,'today_count' => 0, 'monthly_count' => 0, 'yearly_count' => 0, 'total_count' => 0],
                     ['text_en' => 'Allahuakbar', 'text_bn' => 'আল্লাহু আকবর', 'text_ar' => 'الله أكبر', 'reset_on' => 33, 'count' => 0, 'today_count' => 0, 'monthly_count' => 0, 'yearly_count' => 0, 'total_count' => 0],
@@ -27,6 +27,12 @@ class TasbihTableSeeder extends Seeder
             ],
         ];
 
-        DB::table('tasbih')->insert($tasbihs);
+        // Idempotent, and routed through the model so the `array` cast encodes the JSON.
+        foreach ($tasbihs as $tasbih) {
+            Tasbih::updateOrCreate(
+                ['user_id' => $tasbih['user_id']],
+                ['tasbih'  => $tasbih['tasbih']]
+            );
+        }
     }
 }

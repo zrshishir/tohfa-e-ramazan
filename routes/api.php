@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HadithController;
 use App\Http\Controllers\MasalaController;
+use App\Http\Controllers\TasbihController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,13 +27,12 @@ Route::get("/today-prayer", "App\Http\Controllers\PermanentCalendarController@to
 Route::get("/ramazan-calendar", "App\Http\Controllers\PermanentCalendarController@ramazanCalendar");
 Route::get('/mazhabs', 'App\Http\Controllers\MazhabController@index');
 
-// write tasbih routes here
-Route::get('/tasbih', 'App\Http\Controllers\TasbihController@index');
-Route::post('/tasbih', 'App\Http\Controllers\TasbihController@store');
-Route::put('/tasbih', 'App\Http\Controllers\TasbihController@update');
-Route::delete('/tasbih', 'App\Http\Controllers\TasbihController@destroy');
-// route to show
-Route::get('/tasbih/{id}', 'App\Http\Controllers\TasbihController@show');
+// tasbih routes — {userId} is the owning user, not the tasbih row id
+Route::get('/tasbih', [TasbihController::class, 'index']);
+Route::post('/tasbih', [TasbihController::class, 'store']);
+Route::get('/tasbih/{userId}', [TasbihController::class, 'show'])->whereNumber('userId');
+Route::put('/tasbih/{userId}', [TasbihController::class, 'update'])->whereNumber('userId');
+Route::delete('/tasbih/{userId}', [TasbihController::class, 'destroy'])->whereNumber('userId');
 // write doa category routes here
 Route::get('/doa-category', 'App\Http\Controllers\DoaCategoryController@index');
 // write doa routes here
