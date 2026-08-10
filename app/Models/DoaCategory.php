@@ -14,6 +14,9 @@ class DoaCategory extends Model
     protected $fillable = [
         'user_id',
         'name',
+        // NOT NULL on the table; without these DoaCategory::create() cannot succeed.
+        'bangla_text',
+        'arabic_text',
     ];
 
     public function doas()

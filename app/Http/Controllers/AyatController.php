@@ -9,16 +9,26 @@ use App\Traits\HelperTrait;
 class AyatController extends Controller
 {
     use HelperTrait;
+
     /**
-     * Display a listing of the resource.
+     * GET /api/ayat/{sura_id}
+     * Params: page, per_page (default 10, max 100)
+     *
+     * Previously returned every ayat of a sura in one response — 286 rows for
+     * Al-Baqarah — which the reader then had to hold in memory in full.
      */
-    public function index($sura_id)
+    public function index(Request $request, $sura_id)
     {
-        $ayats = Ayat::with('sura')->where('sura_id', $sura_id)->get();
+        $perPage = min((int) $request->input('per_page', 10) ?: 10, 100);
 
-        if (empty($ayats)) {
+        $ayats = Ayat::with('sura')
+            ->where('sura_id', $sura_id)
+            ->orderBy('ayat_no', 'asc')
+            ->paginate($perPage)
+            ->withQueryString();
 
-            return $this->noContentResponse($message = 'Ayats not found', $data = [], $statusCode = 204);
+        if ($ayats->isEmpty()) {
+            return $this->noContentResponse('Ayats not found', [], 204);
         }
 
         return $this->successResponse('Ayats retrieved successfully', $ayats);

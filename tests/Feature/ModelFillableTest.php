@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
@@ -67,6 +68,47 @@ class ModelFillableTest extends TestCase
                 count($phantom) === 1 ? 'does' : 'do',
                 $table,
                 count($phantom) === 1 ? 'it' : 'them'
+            )
+        );
+    }
+
+    /**
+     * The inverse failure: a column that is NOT NULL with no default but missing from
+     * $fillable can never be set by mass assignment, so `Model::create()` always throws
+     * an integrity-constraint violation. Found in Sura (bangla_text) and Ayat
+     * (ayat_no, notes) — both invisible because their seeders write via DB::table().
+     *
+     * @dataProvider modelProvider
+     * @param class-string<Model> $class
+     */
+    public function test_required_columns_are_fillable(string $class): void
+    {
+        if (DB::connection()->getDriverName() !== 'sqlite') {
+            $this->markTestSkipped('Column metadata is read via the SQLite pragma.');
+        }
+
+        $model = new $class;
+        $table = $model->getTable();
+
+        $required = [];
+
+        foreach (DB::select('PRAGMA table_info("' . $table . '")') as $column) {
+            if ($column->notnull && $column->dflt_value === null && !$column->pk) {
+                $required[] = $column->name;
+            }
+        }
+
+        $missing = array_diff($required, $model->getFillable(), ['created_at', 'updated_at']);
+
+        $this->assertSame(
+            [],
+            array_values($missing),
+            sprintf(
+                "%s: column(s) %s are NOT NULL with no default but missing from \$fillable, "
+                . 'so %s::create() can never succeed.',
+                $table,
+                implode(', ', $missing),
+                class_basename($class)
             )
         );
     }
