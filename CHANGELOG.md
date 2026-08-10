@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-08-10
+
+### Fixed
+
+- `Doa::$fillable` listed **`english_tex`** — a typo for the real `english_text` column.
+  The Filament admin has an English-text field for duas, so every edit to a dua's English
+  translation was silently discarded on save. Eloquent drops unknown keys during mass
+  assignment without raising anything.
+- `Category::$fillable` listed `is_active`, which is not a column on `categories`.
+- `RamazanSchedule::$fillable` listed `sehri_time` (the column is `shehri_time`) and
+  omitted `day`.
+
+### Added
+
+- `ModelFillableTest` — a guard covering **every** model in `app/Models`, asserting that
+  each `$fillable` entry is a real column and that no model is left un-mass-assignable.
+  42 tests. Verified to fail with a readable message when the `english_tex` typo is
+  reintroduced.
+
+  This bug class has now been found five times in this codebase: `Tasbih`,
+  `PermanentCalendar`, `Doa`, `Category` and `RamazanSchedule`. The guard makes a sixth
+  occurrence a test failure rather than silent data loss.
+
 ## [1.3.0] - 2026-08-10
 
 ### Fixed

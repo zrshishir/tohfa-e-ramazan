@@ -21,7 +21,7 @@ class Doa extends Model
         'description',
         'arabic_text',
         'bangla_text',
-        'english_tex',
+        'english_text',
         'meaning',
         'reference',
         'when_to_use',
