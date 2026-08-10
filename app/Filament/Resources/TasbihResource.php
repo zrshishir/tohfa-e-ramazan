@@ -25,14 +25,30 @@ class TasbihResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name')
                     ->required(),
-                Forms\Components\TextInput::make('subhanallah'),
-                Forms\Components\TextInput::make('alhamdulillah'),
-                Forms\Components\TextInput::make('allahuakbar'),
-                Forms\Components\TextInput::make('astagfirullah'),
-                Forms\Components\TextInput::make('la_ilaha_illallah'),
-                Forms\Components\TextInput::make('subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem'),
+                Forms\Components\Repeater::make('tasbih')
+                    ->label('Dhikr list')
+                    ->schema([
+                        Forms\Components\TextInput::make('text_en')
+                            ->label('English')
+                            ->required(),
+                        Forms\Components\TextInput::make('text_bn')->label('Bangla'),
+                        Forms\Components\TextInput::make('text_ar')->label('Arabic'),
+                        Forms\Components\TextInput::make('reset_on')
+                            ->label('Resets at')
+                            ->numeric()
+                            ->minValue(0)
+                            ->helperText('0 means the counter never resets.'),
+                        Forms\Components\TextInput::make('count')->numeric()->minValue(0),
+                        Forms\Components\TextInput::make('today_count')->numeric()->minValue(0),
+                        Forms\Components\TextInput::make('monthly_count')->numeric()->minValue(0),
+                        Forms\Components\TextInput::make('yearly_count')->numeric()->minValue(0),
+                        Forms\Components\TextInput::make('total_count')->numeric()->minValue(0),
+                    ])
+                    ->columns(3)
+                    ->collapsible(),
             ]);
     }
 
@@ -41,12 +57,9 @@ class TasbihResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name'),
-                Tables\Columns\TextColumn::make('subhanallah'),
-                Tables\Columns\TextColumn::make('alhamdulillah'),
-                Tables\Columns\TextColumn::make('allahuakbar'),
-                Tables\Columns\TextColumn::make('astagfirullah'),
-                Tables\Columns\TextColumn::make('la_ilaha_illallah'),
-                Tables\Columns\TextColumn::make('subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem'),
+                Tables\Columns\TextColumn::make('tasbih')
+                    ->label('Dhikrs')
+                    ->getStateUsing(fn (Tasbih $record) => count($record->tasbih ?? [])),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')

@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-08-10
+
+### ⚠️ Breaking
+
+- `GET /api/tasbih` now returns `data.tasbih` as a **JSON array**, not a JSON-encoded
+  string. Clients must stop calling `JSON.parse()` on it. Requires the paired frontend
+  release.
+- `PUT` and `DELETE /api/tasbih` now require a user segment: `/api/tasbih/{userId}`.
+  The previous parameterless routes could never have worked (see below).
+
+### Fixed
+
+- `PUT /api/tasbih` and `DELETE /api/tasbih` were declared without a `{id}` segment while
+  `TasbihController::update()` and `destroy()` both required one — **every call returned
+  a 500** before reaching any logic.
+- `update()` assigned the *array* returned by `$request->validate()` to `$validator` and
+  then called `$validator->fails()` on it, a fatal error on every request that passed
+  validation.
+- The `Tasbih` model's `$fillable` listed six columns that do not exist
+  (`subhanallah`, `alhamdulillah`, `allahuakbar`, `astagfirullah`, `laillahaillallah`,
+  `subhanallahiwalhamdulillahi`) and omitted `tasbih`, the only column carrying data — so
+  mass assignment silently discarded every write.
+- `TasbihController` validated a *third* set of invented field names, matching neither the
+  table nor `$fillable`, so no valid payload could ever be constructed.
+- The Filament `TasbihResource` referenced the same phantom fields, rendering empty form
+  inputs and empty admin table columns. It now edits the dhikr array through a repeater.
+- `index()` returned `Tasbih::first()` — always user 1's row regardless of caller.
+- `TasbihTableSeeder` used a raw `DB::table()->insert()`, duplicating the row on every
+  `db:seed`. It now goes through the model and is idempotent.
+
+### Added
+
+- `tasbih` cast to `array` on the model.
+- `GET /api/tasbih/{userId}` alongside `GET /api/tasbih?user_id=`.
+- Real validation of the dhikr array: `text_en` required per entry, counters must be
+  non-negative integers, `user_id` must exist.
+- 14 feature tests covering all five tasbih endpoints (`TasbihApiTest`).
+- Manual testing document at `docs/manual-testing/tasbih-api-contract.md`.
+
+### Changed
+
+- All tasbih responses use the shared `HelperTrait` envelope.
+- Missing rows return `404` instead of `200` with `data: null`.
+- Tasbih routes use the `[Controller::class, 'method']` array syntax and constrain
+  `{userId}` to digits.
+
 ## [1.1.0] - 2026-08-05
 
 ### Added

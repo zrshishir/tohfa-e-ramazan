@@ -2,147 +2,124 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tasbih;
+use App\Traits\HelperTrait;
+use Illuminate\Http\Request;
 
 class TasbihController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $tasbih = Tasbih::first();
+    use HelperTrait;
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
+    /**
+     * Until accounts exist, every device shares the seeded default row.
+     * Requests may pass ?user_id= to target a specific row.
+     */
+    private const DEFAULT_USER_ID = 1;
+
+    /**
+     * Validation rules for a tasbih payload.
+     *
+     * `tasbih` is a JSON array of dhikr objects — not a set of columns. The previous
+     * rules validated six invented field names (`subhanallah`, `alhamdulillah`, ...)
+     * that exist neither in the table nor in the model, so no valid request could
+     * ever have been saved.
+     */
+    private function rules(bool $requireUser = true): array
+    {
+        return [
+            'user_id'                 => ($requireUser ? 'required' : 'sometimes') . '|integer|exists:users,id',
+            'tasbih'                  => 'required|array|min:1',
+            'tasbih.*.text_en'        => 'required|string',
+            'tasbih.*.text_bn'        => 'nullable|string',
+            'tasbih.*.text_ar'        => 'nullable|string',
+            'tasbih.*.reset_on'       => 'nullable|integer|min:0',
+            'tasbih.*.count'          => 'nullable|integer|min:0',
+            'tasbih.*.today_count'    => 'nullable|integer|min:0',
+            'tasbih.*.monthly_count'  => 'nullable|integer|min:0',
+            'tasbih.*.yearly_count'   => 'nullable|integer|min:0',
+            'tasbih.*.total_count'    => 'nullable|integer|min:0',
+        ];
     }
 
     /**
-     * Show the form for creating a new resource.
+     * GET /api/tasbih
+     * Params: user_id (optional, defaults to 1)
      */
-    public function create()
+    public function index(Request $request)
     {
-        //
+        $userId = (int) $request->input('user_id', self::DEFAULT_USER_ID);
+
+        $tasbih = Tasbih::where('user_id', $userId)->first();
+
+        if (!$tasbih) {
+            return $this->notFoundResponse('Tasbih not found for this user', []);
+        }
+
+        return $this->successResponse('Tasbih retrieved successfully', $tasbih);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * GET /api/tasbih/{userId}
+     */
+    public function show(int $userId)
+    {
+        $tasbih = Tasbih::where('user_id', $userId)->first();
+
+        if (!$tasbih) {
+            return $this->notFoundResponse('Tasbih not found for this user', []);
+        }
+
+        return $this->successResponse('Tasbih retrieved successfully', $tasbih);
+    }
+
+    /**
+     * POST /api/tasbih
+     * Creates the user's tasbih row, or overwrites it if one already exists.
      */
     public function store(Request $request)
     {
-        // validate json data
-        $validator = $request->validate([
-            'user_id' => 'required',
-            'subhanallah' => 'required',
-            'alhamdulillah' => 'required',
-            'allahuakbar' => 'required',
-            'astagfirullah' => 'required',
-            'la_ilaha_illallah' => 'required',
-            'subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem' => 'required',
-        ]);
+        $validated = $request->validate($this->rules());
 
+        $tasbih = Tasbih::updateOrCreate(
+            ['user_id' => $validated['user_id']],
+            ['tasbih'  => $validated['tasbih']]
+        );
 
-        $tasbih = Tasbih::where('user_id', $request->user_id)->first();
+        return $this->successResponse('Tasbih saved successfully', $tasbih);
+    }
 
-        if ($tasbih) {
-            $tasbih->update($request->all());
-        } else {
-            $tasbih = Tasbih::create($request->all());
+    /**
+     * PUT /api/tasbih/{userId}
+     * Persists updated counters for the given user.
+     */
+    public function update(Request $request, int $userId)
+    {
+        $tasbih = Tasbih::where('user_id', $userId)->first();
+
+        if (!$tasbih) {
+            return $this->notFoundResponse('Tasbih not found for this user', []);
         }
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
+        $validated = $request->validate($this->rules(requireUser: false));
+
+        $tasbih->update(['tasbih' => $validated['tasbih']]);
+
+        return $this->successResponse('Tasbih updated successfully', $tasbih->fresh());
     }
 
     /**
-     * Display the specified resource.
+     * DELETE /api/tasbih/{userId}
      */
-    public function show(string $id)
+    public function destroy(int $userId)
     {
-        // show tasbih data by user id
-        $tasbih = Tasbih::where('user_id', $id)->first();
+        $tasbih = Tasbih::where('user_id', $userId)->first();
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $tasbih = Tasbih::where('user_id', $id)->first();
-
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        // validate json data
-        $validator = $request->validate([
-            'user_id' => 'required',
-            'subhanallah' => 'required',
-            'alhamdulillah' => 'required',
-            'allahuakbar' => 'required',
-            'astagfirullah' => 'required',
-            'la_ilaha_illallah' => 'required',
-            'subhanallahi_wabi_hamdihi_wa_subhanallahil_azeem' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'status_code' => 400,
-                'message' => 'Validation Error',
-                'errors' => $validator->errors(),
-            ]);
+        if (!$tasbih) {
+            return $this->notFoundResponse('Tasbih not found for this user', []);
         }
 
-        $tasbih = Tasbih::where('user_id', $id)->first();
-        $tasbih->update($request->all());
-
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $tasbih = Tasbih::where('user_id', $id)->first();
         $tasbih->delete();
 
-        return response()->json([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Tasbih Data',
-            'data' => $tasbih,
-        ]);
+        return $this->successResponse('Tasbih deleted successfully', []);
     }
 }
