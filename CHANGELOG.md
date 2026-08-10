@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-08-10
+
+### ⚠️ Breaking
+
+- The `hadiths` table is restructured. It was a flat `title` / `description` /
+  `reference` sheet holding two placeholder rows; it is now
+  `hadith_books` → `hadith_chapters` → `hadiths`, with Arabic, Bangla and English text
+  per hadith. `GET /api/hadith` is now **paginated** and returns entirely different
+  fields. Requires the paired frontend release.
+- `HadithSeeder` is removed. Hadith content now comes from `php artisan hadith:import`.
+
+### Added
+
+- **The full Siha Sittah — 34,455 hadiths across 333 chapters**, each with Arabic,
+  Bangla and English text:
+
+  | Book | Hadiths | Chapters | Bangla coverage |
+  |---|---|---|---|
+  | Sahih al-Bukhari | 7,563 | 97 | 99.3% |
+  | Sahih Muslim | 7,563 | 56 | 97.3% |
+  | Sunan Abu Dawud | 5,274 | 43 | 99.9% |
+  | Jami at-Tirmidhi | 3,956 | 49 | 98.0% |
+  | Sunan an-Nasa'i | 5,758 | 51 | 98.1% |
+  | Sunan Ibn Majah | 4,341 | 37 | 99.8% |
+
+- `php artisan hadith:import [--book=slug] [--fresh]` — fetches the three language
+  editions per book from the fawazahmed0/hadith-api dataset on jsDelivr and joins them
+  on `hadithnumber`. Idempotent via upsert; safe to re-run.
+- New endpoints:
+  - `GET /api/hadith-books` — the six collections.
+  - `GET /api/hadith-books/{bookId}/chapters` — chapters for a book.
+  - `GET /api/hadith` — paginated, filterable by `book_id` and `chapter_id`,
+    searchable via `q` across the Bangla and English text.
+  - `GET /api/hadith/{id}` — single hadith with its book and chapter embedded.
+  - `GET /api/hadith-random` — backs a "hadith of the day" card.
+- `HadithBook` and `HadithChapter` models; `Hadith::published()` and `Hadith::search()`
+  scopes.
+- 25 feature tests across `HadithApiTest` and `HadithImportTest`. The importer is
+  exercised against faked HTTP responses, so the join logic is covered without a 34k-row
+  download in CI.
+
+### Notes on the data
+
+- **Chapter names are English only.** The Bengali and Arabic editions ship English
+  chapter names in their metadata. Rather than store English in `name_bn`, the importer
+  checks the script and stores null, so the client falls back honestly instead of
+  displaying English labelled as Bengali.
+- Roughly 1–3% of entries per book have no Bengali translation — these are chapter
+  headings and commentary the dataset leaves in Arabic. Same script check applies.
+- Grades are only populated where the source provides them; Bukhari and Muslim carry
+  none, being Sahih by definition.
+- Hadith numbering has gaps where the source repeats a number: 7,589 raw entries in
+  Bukhari collapse to 7,563 rows under the `(book, hadith_number)` unique constraint.
+
 ## [1.3.1] - 2026-08-10
 
 ### Fixed
