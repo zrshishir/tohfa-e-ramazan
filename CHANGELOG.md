@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.1] - 2026-08-11
+
+### Fixed
+
+- **`composer.lock` could not install on PHP 8.3.** Three packages were pinned to
+  versions declaring `php <8.3`, so `composer install` failed outright — while the
+  development machine runs 8.3.27, meaning the local `vendor/` was out of step with the
+  committed lock and with whatever CI or a server would build.
+
+  A targeted update of just the blocking packages, rather than a full `composer update`,
+  to keep the change small:
+
+  | Package | From | To |
+  |---|---|---|
+  | `laminas/laminas-diactoros` | 2.25.2 | 2.26.0 |
+  | `nette/schema` | v1.2.3 | v1.3.5 |
+  | `nette/utils` | v4.0.0 | v4.1.5 |
+  | `psr/http-factory` | 1.0.2 | 1.1.0 |
+
+  Laravel, Filament and everything else are untouched.
+
+### Changed
+
+- CI tests against **PHP 8.2 and 8.3** again. The 8.3 leg was the check that found this,
+  and had been narrowed to 8.2 as a stopgap.
+
+### Note
+
+`composer audit` reports 44 advisories across 15 packages, and two dependencies
+(`league/uri-parser`, `tgalopin/html-sanitizer`) are abandoned. Out of scope here —
+worth its own pass.
+
+
 ## [2.4.0] - 2026-08-11
 
 ### ⚠️ Breaking

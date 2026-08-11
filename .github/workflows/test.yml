@@ -17,11 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # 8.2 only: the committed composer.lock pins laminas/laminas-diactoros,
-        # nette/schema, nette/utils and league/config to versions that declare
-        # `php <8.3`, so `composer install` cannot resolve on 8.3. Widening the
-        # matrix needs a `composer update` first — tracked separately.
-        php: ['8.2']
+        php: ['8.2', '8.3']
 
     steps:
       - name: Checkout code
