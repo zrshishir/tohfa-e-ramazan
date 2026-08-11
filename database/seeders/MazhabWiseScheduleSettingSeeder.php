@@ -2,64 +2,69 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\MazhabWiseScheduleSetting;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
+/**
+ * Every mazhab previously carried a flat offset applied to *every* waqt — Hanafi +15,
+ * Shafi'i +10, Maliki +5, Hanbali +7. Since `permanent_calendars` already holds correct
+ * published times for Dhaka, that offset was pushing every displayed time late:
+ *
+ *   published 11 Aug 2026    stored raw    displayed with Hanafi +15
+ *   Fajr    4:11 AM          04:10         04:25
+ *   Maghrib 6:35 PM          06:35         06:50
+ *   Isha    7:56 PM          07:55         08:10
+ *
+ * Sehri end ran 15 minutes late, and iftar 15 minutes late — both in the direction that
+ * invalidates a fast. All offsets are therefore reset to zero, so the app shows the
+ * stored published times unmodified.
+ *
+ * Where the madhhabs genuinely differ:
+ *
+ *   Asr  — the substantive one. Hanafi: shadow = 2× object length (+ noon shadow);
+ *          Maliki, Shafi'i, Hanbali: 1×. Worth 30–90 minutes depending on season and
+ *          latitude, so it cannot be expressed as one fixed offset and is left at 0
+ *          pending either a computed Asr or verified per-month values.
+ *   Zuhr — no difference in when it *starts*. It ends when Asr begins, so the Hanafi
+ *          Zuhr window is simply longer; that follows from the Asr rule.
+ *   Isha — Abu Hanifa held it begins when the *white* twilight goes; Abu Yusuf,
+ *          Muhammad and the other three schools say the *red* twilight, roughly 10–15
+ *          minutes earlier. Most Hanafi timetables, including Bangladesh's, follow the
+ *          red-twilight position, so 0 matches local practice.
+ *
+ * Fajr, sunrise and Maghrib are astronomical and identical across all four schools.
+ */
 class MazhabWiseScheduleSettingSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * mazhab_id => [johr, asr, esha] offsets in minutes.
+     * Everything else is fixed at zero because it does not vary by madhhab.
      */
+    private const OFFSETS = [
+        1 => [0, 0, 0],   // Hanafi   — asr needs a verified value, see above
+        2 => [0, 0, 0],   // Shafi'i
+        3 => [0, 0, 0],   // Maliki
+        4 => [0, 0, 0],   // Hanbali
+    ];
+
     public function run(): void
     {
-        $mazhabWiseScheduleSettings = [
-            [
-                'mazhab_id' => 1,
-                'sehri_time' => 15,
-                'fazr_time' => 15,
-                'ishraq_time' => 15,
-                'johr_time' => 15,
-                'asr_time' => 15,
-                'magrib_time' => 15,
-                'iftar_time' => 15,
-                'esha_time' => 15,
-            ],
-            [
-                'mazhab_id' => 2,
-                'sehri_time' => 10,
-                'fazr_time' => 10,
-                'ishraq_time' => 10,
-                'johr_time' => 10,
-                'asr_time' => 10,
-                'magrib_time' => 10,
-                'iftar_time' => 10,
-                'esha_time' => 10,
-            ],
-            [
-                'mazhab_id' => 3,
-                'sehri_time' => 5,
-                'fazr_time' => 5,
-                'ishraq_time' => 5,
-                'johr_time' => 5,
-                'asr_time' => 5,
-                'magrib_time' => 5,
-                'iftar_time' => 5,
-                'esha_time' => 5,
-            ],
-            [
-                'mazhab_id' => 4,
-                'sehri_time' => 7,
-                'fazr_time' => 7,
-                'ishraq_time' => 7,
-                'johr_time' => 7,
-                'asr_time' => 7,
-                'magrib_time' => 7,
-                'iftar_time' => 7,
-                'esha_time' => 7,
-            ],
-        ];
-
-        DB::table('mazhab_wise_schedule_settings')->insert($mazhabWiseScheduleSettings);
+        foreach (self::OFFSETS as $mazhabId => [$johr, $asr, $esha]) {
+            MazhabWiseScheduleSetting::updateOrCreate(
+                ['mazhab_id' => $mazhabId],
+                [
+                    // Astronomical — no madhhab variation.
+                    'sehri_time'  => 0,
+                    'fazr_time'   => 0,
+                    'ishraq_time' => 0,
+                    'magrib_time' => 0,
+                    'iftar_time'  => 0,
+                    // Genuinely school-dependent.
+                    'johr_time'   => $johr,
+                    'asr_time'    => $asr,
+                    'esha_time'   => $esha,
+                ]
+            );
+        }
     }
 }

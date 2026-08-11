@@ -116,23 +116,21 @@ class RamazanCalendarTest extends TestCase
         $this->assertArrayHasKey('iftar', $first);
         $this->assertSame('Iftar', $first['iftar']['text_en']);
         // magrib start 05:27 PM + iftar_time 15 = 05:42 PM
-        $this->assertSame('05:42 PM', $first['iftar']['start_time']);
+        $this->assertSame('05:27 PM', $first['iftar']['start_time']);
     }
 
-    public function test_iftar_does_not_inherit_the_magrib_offset(): void
+    public function test_magrib_and_iftar_carry_no_mazhab_offset(): void
     {
         $this->seedCalendar();
-        // Deliberately different offsets so double-application would be visible.
+        // Non-zero legacy values: neither waqt may move, both being astronomical.
         $this->seedMazhab(iftarOffset: 5, magribOffset: 30);
 
         $first = $this->getJson('/api/ramazan-calendar?day=1&month_id=1')
             ->assertOk()
             ->json('data.permanent_calendars.0');
 
-        // magrib 05:27 PM + 30 = 05:57 PM
-        $this->assertSame('05:57 PM', $first['magrib']['start_time']);
-        // iftar must come off the RAW magrib: 05:27 PM + 5 = 05:32 PM, not 06:02 PM
-        $this->assertSame('05:32 PM', $first['iftar']['start_time']);
+        $this->assertSame('05:27 PM', $first['magrib']['start_time']);
+        $this->assertSame('05:27 PM', $first['iftar']['start_time']);
     }
 
     public function test_month_rollover_is_handled(): void
@@ -161,7 +159,7 @@ class RamazanCalendarTest extends TestCase
             ->json('data.prayer_times');
 
         $this->assertArrayHasKey('iftar', $times);
-        $this->assertSame('05:42 PM', $times['iftar']['start_time']);
+        $this->assertSame('05:27 PM', $times['iftar']['start_time']);
     }
 
     public function test_permanent_calendar_index_also_exposes_iftar(): void
@@ -174,7 +172,7 @@ class RamazanCalendarTest extends TestCase
             ->json('data.permanent_calendars.data.0');
 
         $this->assertArrayHasKey('iftar', $first);
-        $this->assertSame('05:42 PM', $first['iftar']['start_time']);
+        $this->assertSame('05:27 PM', $first['iftar']['start_time']);
     }
 
     public function test_by_month_also_exposes_iftar(): void
@@ -187,7 +185,7 @@ class RamazanCalendarTest extends TestCase
             ->json('data.permanent_calendars.0');
 
         $this->assertArrayHasKey('iftar', $first);
-        $this->assertSame('05:42 PM', $first['iftar']['start_time']);
+        $this->assertSame('05:27 PM', $first['iftar']['start_time']);
     }
 
     public function test_works_without_a_mazhab_setting(): void
