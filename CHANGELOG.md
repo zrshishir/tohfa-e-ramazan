@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.1] - 2026-08-12
+
+### Fixed
+
+- **`AyatTableSeeder` wrote the Bangla translation into `bangla_text`**, the column
+  reserved for the Bangla *uccharon*. It fed the same `bn.bengali` edition into both
+  `bangla_text` and `meaning`, so the two were byte-identical in all 6,236 rows and the
+  pronunciation was lost.
+
+  `DoaSeeder` shows the intended convention, which duas follow correctly:
+
+  | Column | Holds |
+  |---|---|
+  | `arabic_text` | Arabic |
+  | `english_text` | Latin pronunciation |
+  | `bangla_text` | Bangla uccharon |
+  | `meaning` | Bangla meaning |
+
+  `bangla_text` is now written empty rather than duplicating the meaning. **It still
+  needs a source** — see below.
+
+### Added
+
+- **A guard against alquran.cloud's silent fallback.** Requesting an edition that does
+  not exist — `bn.transliteration`, say — returns HTTP 200 with the **Arabic** text
+  rather than an error, so a typo would seed Arabic into a translation column and look
+  fine until somebody read it. `fetchEdition()` now compares against the Arabic edition
+  and skips a response that matches it.
+- 3 feature tests (`AyatSeederGuardTest`).
+
+### Still needed: a Bangla uccharon source
+
+alquran.cloud publishes only three transliteration editions — Turkish, English and
+Russian. There is no Bengali one, so the pronunciation cannot be restored from the
+current API. Once a source is available it is a one-line change in the seeder.
+
+
 ## [2.8.0] - 2026-08-11
 
 ### Added
