@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\GeocodeController;
 use App\Http\Controllers\HadithController;
 use App\Http\Controllers\LocationController;
@@ -19,8 +20,22 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+/*
+ * Auth. Optional throughout — every other endpoint works without a token; an account
+ * only carries tasbih counts and bookmarks between devices.
+ *
+ * Register and login are throttled hard: they are the two endpoints worth brute-forcing.
+ */
+Route::prefix('auth')->group(function () {
+    Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:5,1');
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1');
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/me', [AuthController::class, 'me']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+        // Store policy requires in-app account deletion.
+        Route::delete('/account', [AuthController::class, 'destroy']);
+    });
 });
 
 Route::post("/permanent-calendar", "App\Http\Controllers\PermanentCalendarController@index");

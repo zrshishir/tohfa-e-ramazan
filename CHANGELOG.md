@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.0] - 2026-08-11
+
+### Added
+
+- **Optional accounts**, so tasbih counts and bookmarks can follow a user between
+  devices. Everything else works exactly as before without one — a test asserts the rest
+  of the API stays open to guests.
+
+  ```
+  POST   /api/auth/register    throttled 5/min
+  POST   /api/auth/login       throttled 5/min
+  GET    /api/auth/me
+  POST   /api/auth/logout
+  DELETE /api/auth/account
+  ```
+
+- **In-app account deletion**, which Google Play and the App Store both require of any
+  app offering account creation. It re-checks the password, revokes all tokens, and
+  **force-deletes** — `User` soft-deletes, and a soft-deleted row still holds the name
+  and email and still blocks that address from registering again.
+
+- 15 feature tests (`AuthApiTest`).
+
+### Security notes
+
+- Passwords go through Laravel's `Password::min(8)->uncompromised()` rule — a length
+  floor plus a breach check — and require confirmation.
+- Login answers with the **same message** for an unknown email as for a wrong password,
+  so the endpoint cannot be used to discover which addresses are registered. A test
+  compares the two responses.
+- Logout revokes **only the calling token**, so signing out on a phone leaves a tablet
+  signed in.
+- The password hash is never serialised into a response; a test asserts no `$2y$` string
+  appears in the body.
+
+### Note
+
+This replaces PR #6, open since January 2024. That branch was 45 commits behind,
+conflicted with the updated `composer.lock`, accepted any non-empty string as a
+password, had no rate limiting, and duplicated `HelperTrait` in a parallel
+`ResponseHelper`.
+
+
 ## [2.6.0] - 2026-08-11
 
 ### Security
