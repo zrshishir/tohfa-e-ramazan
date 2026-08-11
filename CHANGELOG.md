@@ -7,6 +7,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-08-11
+
+### Security
+
+- **44 advisories across 15 packages reduced to 3 across 1.** Dependencies were pinned at
+  mid-2023 releases; `composer update` within the existing constraints brought 104
+  packages forward. No constraint in `composer.json` was changed, so no major version
+  jumps.
+
+  | Package | From | To |
+  |---|---|---|
+  | `laravel/framework` | v10.13.2 | 10.50.2 |
+  | `guzzlehttp/guzzle` | 7.7.0 | 7.15.3 |
+  | `guzzlehttp/psr7` | 2.5.0 | 2.13.0 |
+  | `league/commonmark` | 2.4.0 | 2.9.2 |
+  | `symfony/http-foundation` | v6.3.0 | v6.4.43 |
+  | `filament/filament` | v2.17.45 | v2.17.59 |
+  | `phpunit/phpunit` | 10.2.1 | 10.5.64 |
+
+  Closed among others **CVE-2024-52301** (Laravel environment manipulation via query
+  string, high) and **CVE-2025-27515** (file validation bypass).
+
+### ⚠️ Three advisories remain, and cannot be fixed on Laravel 10
+
+`laravel/framework` carries three advisories with **no patched release in the 10.x line**:
+
+| Advisory | Fixed in |
+|---|---|
+| `PKSA-mdq4-51ck-6kdq` — CRLF injection in the default email rule | 11.x+ only |
+| `PKSA-3r5d-mb8f-1qw9` — CRLF injection in the default email rule | 12.60.0 |
+| `PKSA-m5cs-t1y6-qpcs` — temporary signed URL path confusion | 12.61.1 |
+
+They are listed in `policy.advisories.ignore-id` so Composer can resolve at all —
+without it **no version of Laravel 10 installs**, since Composer 2.10 blocks packages
+with known advisories.
+
+**The real fix is upgrading Laravel.** 10.x reached end of security support in February
+2025. That also requires Filament 2 → 3, since Filament 2 does not support Laravel 11,
+so it is a migration rather than a dependency bump — deliberately not attempted here.
+
+Practical exposure is limited: the two CRLF issues are in the `email` validation rule,
+which this codebase uses only in the unrouted registration path, and signed URLs are
+not used.
+
+
 ## [2.5.0] - 2026-08-11
 
 ### Security
