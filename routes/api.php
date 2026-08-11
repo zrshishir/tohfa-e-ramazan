@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HadithController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MasalaController;
 use App\Http\Controllers\TasbihController;
 use Illuminate\Http\Request;
@@ -26,6 +27,10 @@ Route::get("/permanent-calendar/{month_id}", "App\Http\Controllers\PermanentCale
 Route::get("/today-prayer", "App\Http\Controllers\PermanentCalendarController@today");
 Route::get("/ramazan-calendar", "App\Http\Controllers\PermanentCalendarController@ramazanCalendar");
 Route::get('/mazhabs', 'App\Http\Controllers\MazhabController@index');
+
+// location pickers for the settings screen
+Route::get('/divisions', [LocationController::class, 'divisions']);
+Route::get('/districts', [LocationController::class, 'districts']);
 
 // tasbih routes — {userId} is the owning user, not the tasbih row id
 Route::get('/tasbih', [TasbihController::class, 'index']);

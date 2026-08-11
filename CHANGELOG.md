@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-08-11
+
+### Added
+
+- **District-wise sehri and iftar times.** All four calendar endpoints now accept
+  `district_id` and shift sehri and iftar by that district's Islamic Foundation offset
+  relative to Dhaka. No other waqt is district-adjusted.
+- `GET /api/divisions` (with districts embedded) and `GET /api/districts` (with division
+  and offsets), backing the app's location picker. `DivisionController` and
+  `CountryController` existed but had never been routed.
+- Offsets for all 64 districts, seeded and editable in the Filament admin.
+- 10 feature tests (`DistrictOffsetTest`).
+
+### Fixed
+
+- **The districts table had its divisions wrong.** Division 5, labelled "Barisal", held
+  every *Rangpur* district; division 7 "Rangpur" was empty. Anyone picking Barisal would
+  have been shown Dinajpur, Rangpur, Thakurgaon and the rest.
+- **Ten districts were missing** (54 of 64): all six of Barisal's own districts, and the
+  entire Mymensingh division, which has existed since 2015 and was absent from the
+  divisions table altogether.
+
+### Changed
+
+- `district_wise_schedule_settings` replaces `time_addition_subtraction` + `am_pm` with
+  `sehri_offset` and `iftar_offset`. The Islamic Foundation publishes **separate** values
+  for the two — Cox's Bazar is −1 sehri but −10 iftar — which one column could not
+  represent. The table was empty, so nothing was migrated.
+
+### ⚠️ Data provenance
+
+The offsets come from a secondary source citing the Islamic Foundation
+([iqbir.com](https://iqbir.com/article/namaz-roza-time-difference-dhaka/)), **not** from
+islamicfoundation.gov.bd directly. **Spot-check them before release.** They are editable
+per district in the Filament admin.
+
+Note also that for Ramadan 2026 the Islamic Foundation moved to publishing 64 separate
+district schedules instead of offsets. The offset model is kept here because this app
+serves a year-round permanent calendar, which IF does not publish per district.
+
+### Not changed
+
+Mazhab offsets are untouched. The current flat per-mazhab shift applied to every prayer
+does not reflect how the madhhabs actually differ — the substantive difference is the Asr
+shadow ratio (Hanafi 2×, the other three 1×), which is seasonal and far larger than the
+stored values, and Isha follows the calculation authority rather than the madhhab. This
+needs verified data before a picker is built on it.
+
 ## [2.1.0] - 2026-08-10
 
 ### Changed

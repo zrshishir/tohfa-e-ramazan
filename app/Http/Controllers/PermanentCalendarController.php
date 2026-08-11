@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DistrictWiseScheduleSetting;
 use App\Models\MazhabWiseScheduleSetting;
 use App\Models\PermanentCalendar;
 use Carbon\Carbon;
@@ -27,18 +28,62 @@ class PermanentCalendarController extends Controller
 
     /**
      * There is no `iftar` column — the fast is broken when Magrib begins, so iftar is
-     * derived from `magrib` with the mazhab's own `iftar_time` offset applied.
+     * derived from `magrib` with the mazhab's own `iftar_time` offset applied, plus the
+     * district's iftar offset.
      *
-     * `ramazanCalendar()` previously named `iftar` in its select() and every request
-     * died with "Unknown column 'iftar' in 'field list'".
+     * Sehri and iftar shift by district. The Islamic Foundation publishes a separate
+     * minute offset for each, relative to Dhaka — a district is not a single shift.
+     * No other waqt is adjusted by district.
      */
+    private ?DistrictWiseScheduleSetting $districtSetting = null;
+
+    private function loadDistrictSetting(Request $request): void
+    {
+        $districtId = $request->input('district_id');
+
+        $this->districtSetting = $districtId
+            ? DistrictWiseScheduleSetting::where('district_id', $districtId)
+                ->where('is_active', true)
+                ->first()
+            : null;
+    }
+
+    private function districtOffset(string $waqt): int
+    {
+        if (!$this->districtSetting) {
+            return 0;
+        }
+
+        return (int) ($waqt === 'sehri'
+            ? $this->districtSetting->sehri_offset
+            : $this->districtSetting->iftar_offset);
+    }
+
+    /** Shift a prayer block by the selected district's offset for that waqt. */
+    private function applyDistrictOffset(?array $prayerJson, string $waqt): ?array
+    {
+        $offset = $this->districtOffset($waqt);
+
+        if (empty($prayerJson) || $offset === 0) {
+            return $prayerJson;
+        }
+
+        foreach (['start_time', 'end_time'] as $key) {
+            if (isset($prayerJson[$key])) {
+                $prayerJson[$key] = $this->adjustTime($prayerJson[$key], $offset);
+            }
+        }
+
+        return $prayerJson;
+    }
+
     private function deriveIftar(?array $rawMagrib, ?MazhabWiseScheduleSetting $mazhabSetting): ?array
     {
         if (empty($rawMagrib) || empty($rawMagrib['start_time'])) {
             return null;
         }
 
-        $offset = (int) ($mazhabSetting->iftar_time ?? 0);
+        $offset = (int) ($mazhabSetting->iftar_time ?? 0) + $this->districtOffset('iftar');
 
         return [
             'text_en'    => 'Iftar',
@@ -114,6 +159,7 @@ class PermanentCalendarController extends Controller
             }
         }
 
+        $data['sehri'] = $this->applyDistrictOffset($data['sehri'] ?? null, 'sehri');
         $data['iftar'] = $this->deriveIftar($rawMagrib, $mazhabSetting);
 
         return $data;
@@ -135,6 +181,7 @@ class PermanentCalendarController extends Controller
         $pageSize = (int) $request->input('to', 10);
 
         $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
+        $this->loadDistrictSetting($request);
 
         $query = PermanentCalendar::where('month_id', $monthId);
 
@@ -176,6 +223,7 @@ class PermanentCalendarController extends Controller
         $mazhabId = (int) $request->input('mazhab_id', 1);
 
         $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
+        $this->loadDistrictSetting($request);
 
         $calendars = PermanentCalendar::where('month_id', $monthId)
             ->orderByRaw('CAST(day AS UNSIGNED)')
@@ -212,6 +260,7 @@ class PermanentCalendarController extends Controller
         $mazhabId = (int) $request->input('mazhab_id', 1);
 
         $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
+        $this->loadDistrictSetting($request);
 
         $calendar = PermanentCalendar::where('month_id', $monthId)
             ->whereRaw('CAST(day AS UNSIGNED) = ?', [$day])
@@ -258,6 +307,7 @@ class PermanentCalendarController extends Controller
         $mazhabId = (int) $request->input('mazhab_id', 1);
 
         $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
+        $this->loadDistrictSetting($request);
 
         // Build 30 days worth of (month_id, day) pairs, cycling months 1–12
         $days = [];
@@ -308,6 +358,7 @@ class PermanentCalendarController extends Controller
                     }
                 }
 
+                $item['sehri'] = $this->applyDistrictOffset($item['sehri'] ?? null, 'sehri');
                 $item['iftar'] = $this->deriveIftar($rawMagrib, $mazhabSetting);
 
                 $results->push($item);
