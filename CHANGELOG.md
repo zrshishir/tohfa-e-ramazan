@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-08-11
+
+### ⚠️ Breaking
+
+- `masalas.title` and `masalas.description` are renamed to **`question`** and
+  **`answer`**, and `GET /api/masala` is now paginated. Requires the paired frontend
+  release.
+
+### Added
+
+- **Masa-el categories.** A new `masala_categories` table seeded with the standard
+  chapters of fiqh — Purification, Prayer, Fasting, Zakat, Hajj, Funeral rites,
+  Transactions, Family, Miscellaneous — each with Bangla and Arabic names.
+- `GET /api/masala-categories` — categories with a published count, so the list screen
+  needs one request.
+- `GET /api/masala` now supports `category_id`, `q` (search across question and answer),
+  `page` and `per_page`.
+- **Filament admin for Masa-el, which had none at all** — content could previously only
+  be added by editing a seeder. Both `MasalaResource` and `MasalaCategoryResource`, with
+  a category filter and slug auto-fill.
+- 14 feature tests (`MasalaApiTest`).
+
+### Changed
+
+- `masala_category_id` is nullable, so an uncategorised entry still lists rather than
+  disappearing or erroring.
+- Entries are ordered by `sort_order` then id, editable in admin.
+
+### Note on content
+
+Only the category headings are seeded — those are structural. The two existing example
+masalas are preserved and moved under Fasting. **Actual rulings are not seeded**: fiqh
+content should come from a source you trust rather than being generated, and the admin
+now exists to enter it.
+
+
 ## [2.3.0] - 2026-08-11
 
 ### 🔴 Fixed — every prayer time was 15 minutes late
