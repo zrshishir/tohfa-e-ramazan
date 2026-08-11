@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tasbih;
 use App\Models\User;
 use App\Traits\HelperTrait;
 use Illuminate\Auth\Events\Registered;
@@ -110,6 +111,10 @@ class AuthController extends Controller
 
         // Tokens first: the account must not stay usable if the delete half-fails.
         $user->tokens()->delete();
+
+        // The tasbih foreign key has no ON DELETE rule, so a user with saved counters
+        // cannot be removed until their row goes. Bookmarks cascade on their own.
+        Tasbih::where('user_id', $user->id)->delete();
 
         // forceDelete, not delete: the User model soft-deletes, and a soft-deleted row
         // still holds the person's name and email and still blocks that address from

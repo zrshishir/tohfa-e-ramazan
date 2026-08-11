@@ -230,6 +230,24 @@ class AccountSyncTest extends TestCase
         $this->assertSame(1, $response->json('data.tasbih.0.total_count'));
     }
 
+    public function test_an_account_with_synced_data_can_still_be_deleted(): void
+    {
+        // Regression: the tasbih foreign key has no ON DELETE rule, so a user who had
+        // ever synced counters could not be removed — deletion returned a 500.
+        Tasbih::create(['user_id' => $this->user->id, 'tasbih' => [$this->dhikr('Subhanallah', 5)]]);
+        Bookmark::create(['user_id' => $this->user->id, 'ayat_id' => $this->ayat->id]);
+
+        $token = $this->user->createToken('app')->plainTextToken;
+
+        $this->withHeader('Authorization', "Bearer {$token}")
+            ->deleteJson('/api/auth/account', ['password' => 'correct-horse-battery'])
+            ->assertOk();
+
+        $this->assertDatabaseMissing('users', ['id' => $this->user->id]);
+        $this->assertSame(0, Tasbih::where('user_id', $this->user->id)->count());
+        $this->assertSame(0, Bookmark::where('user_id', $this->user->id)->count());
+    }
+
     public function test_guests_still_reach_the_shared_tasbih(): void
     {
         Tasbih::create(['user_id' => $this->user->id, 'tasbih' => [$this->dhikr('Subhanallah', 3)]]);

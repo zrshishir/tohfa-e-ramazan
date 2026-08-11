@@ -37,6 +37,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   counters**. When a token is present it now wins over both. Guests keep the previous
   behaviour, since the app must work without an account.
 
+### Fixed during end-to-end testing
+
+- **Deleting an account that had ever synced tasbih counters returned a 500.** The
+  `tasbih` foreign key carries no `ON DELETE` rule, so the user row could not be removed
+  while a counters row referenced it. The unit tests missed this because their users had
+  no tasbih data; only exercising register → sync → delete against a real server exposed
+  it. Now covered by a regression test.
+
 ### Note
 
 Guests are unaffected throughout. Bookmarks and counters still live on the device without
