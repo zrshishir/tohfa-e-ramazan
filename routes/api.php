@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\GeocodeController;
 use App\Http\Controllers\HadithController;
 use App\Http\Controllers\LocationController;
@@ -36,6 +37,19 @@ Route::prefix('auth')->group(function () {
         // Store policy requires in-app account deletion.
         Route::delete('/account', [AuthController::class, 'destroy']);
     });
+});
+
+/*
+ * Account-scoped data. Guests keep bookmarks and tasbih counts on the device; these
+ * exist so a signed-in user's progress follows them between devices.
+ */
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/bookmarks', [BookmarkController::class, 'index']);
+    Route::post('/bookmarks', [BookmarkController::class, 'store']);
+    Route::post('/bookmarks/sync', [BookmarkController::class, 'sync']);
+    Route::delete('/bookmarks/{ayatId}', [BookmarkController::class, 'destroy'])->whereNumber('ayatId');
+
+    Route::post('/tasbih/sync', [TasbihController::class, 'sync']);
 });
 
 Route::post("/permanent-calendar", "App\Http\Controllers\PermanentCalendarController@index");
