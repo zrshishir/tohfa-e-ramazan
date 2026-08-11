@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-08-11
+
+### Security
+
+- **The Google Maps key is no longer handled by the client.** The app called the
+  Geocoding API directly with the key inlined in its bundle, where anyone could extract
+  it. `GET /api/geocode` now proxies the call and the key lives only on the server, read
+  from `GOOGLE_MAPS_KEY`.
+
+  ⚠️ **The previously exposed key still needs rotating** — it is in git history and in
+  every build already shipped. This change stops the leak; it does not undo it.
+
+### Added
+
+- `GET /api/geocode?lat=&lng=` — reverse geocoding, throttled to 30/minute since each
+  cache miss is a billed Google call, and cached for 30 days per coordinate rounded to
+  ~110m.
+- The response also **matches the place against the districts table** and returns a
+  `district`, so the app can suggest a district rather than asking the user to find it
+  in a list. Google's current spellings are mapped onto the older ones the table uses
+  (Chattogram → Chittagong, Cumilla → Comilla, Jashore → Jessore, and others).
+- 9 feature tests (`GeocodeApiTest`).
+
+### Changed
+
+- A missing server key returns `503` and an upstream failure `502`, rather than a `500`.
+- Coordinates are validated; an unmatched place returns a null district rather than an
+  error, since the city and division are still useful.
+
+
 ## [2.4.1] - 2026-08-11
 
 ### Fixed
