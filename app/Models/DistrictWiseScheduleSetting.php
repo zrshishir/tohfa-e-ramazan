@@ -12,9 +12,17 @@ class DistrictWiseScheduleSetting extends Model
 
     protected $fillable = [
         'district_id',
-        'time_addition_subtraction',
-        'am_pm',
-        'is_active'
+        // Minutes relative to Dhaka. The Islamic Foundation publishes separate values
+        // for sehri and iftar, so one combined offset cannot represent a district.
+        'sehri_offset',
+        'iftar_offset',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'sehri_offset' => 'integer',
+        'iftar_offset' => 'integer',
+        'is_active'    => 'boolean',
     ];
 
     public function district() {

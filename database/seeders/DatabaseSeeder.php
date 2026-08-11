@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             CountriesSeeder::class,
             DivisionSeeder::class,
             DistrictSeeder::class,
+            DistrictWiseScheduleSettingSeeder::class,
             MonthSeeder::class,
             PermanentCalendarSeeder::class,
             DoaCategorySeeder::class,
