@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.0] - 2026-08-11
+
+### Added
+
+- **Server-side bookmarks**, so a reading list survives a reinstall and follows a user
+  between devices. Previously bookmarks lived only in the app's `localStorage`.
+
+  ```
+  GET    /api/bookmarks
+  POST   /api/bookmarks              idempotent per ayat
+  DELETE /api/bookmarks/{ayatId}     keyed by ayat, so the reader can toggle
+  POST   /api/bookmarks/sync         merges the device into the account
+  POST   /api/tasbih/sync            merges device counters into the account
+  ```
+
+- **Merge, not replace, on sign-in.** Someone who read on a phone before creating an
+  account should not lose those bookmarks, and signing in on a second device should not
+  wipe what is already on the account. Both sync endpoints merge and return the combined
+  set so the device can adopt it wholesale.
+
+- **Tasbih counters merge by taking the higher value.** A dhikr count only goes up, so
+  whichever side synced last should not decide the result.
+
+### Fixed
+
+- `GET /api/tasbih` and `PUT /api/tasbih/{userId}` took the user from the URL or query
+  string with no authentication, so **any caller could read or overwrite anyone's
+  counters**. When a token is present it now wins over both. Guests keep the previous
+  behaviour, since the app must work without an account.
+
+### Note
+
+Guests are unaffected throughout. Bookmarks and counters still live on the device without
+an account; these endpoints exist only so a signed-in user's progress follows them.
+
+
 ## [2.7.0] - 2026-08-11
 
 ### Added
