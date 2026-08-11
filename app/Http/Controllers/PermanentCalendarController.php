@@ -13,17 +13,22 @@ class PermanentCalendarController extends Controller
 {
     /**
      * Map PermanentCalendar JSON column names to MazhabWiseScheduleSetting offset fields.
-     * Each entry: 'json_column' => ['start_offset_field', 'end_offset_field']
-     * If both start and end use the same offset, repeat the field name.
+     * Each entry: 'json_column' => ['start_offset_field', 'end_offset_field'].
+     *
+     * Only the waqts that genuinely vary between the four schools.
+     *
+     * Fajr, sunrise, Maghrib (and therefore sehri and iftar) are astronomical and
+     * identical across all four madhhabs. They were previously in this map, so a
+     * mazhab's flat offset shifted them too — pushing sehri end and iftar late against
+     * the correct published times already stored in `permanent_calendars`.
+     *
+     * District offsets still apply to sehri and iftar; those are geographic, not
+     * juristic, and are handled separately.
      */
     private const PRAYER_OFFSET_MAP = [
-        'sehri'   => ['sehri_time',  'sehri_time'],
-        'fazr'    => ['fazr_time',   'fazr_time'],
-        'ishraq'  => ['ishraq_time', 'ishraq_time'],
-        'johr'    => ['johr_time',   'johr_time'],
-        'asr'     => ['asr_time',    'asr_time'],
-        'magrib'  => ['magrib_time', 'magrib_time'],
-        'esha'    => ['esha_time',   'esha_time'],
+        'johr' => ['johr_time', 'johr_time'],
+        'asr'  => ['asr_time',  'asr_time'],
+        'esha' => ['esha_time', 'esha_time'],
     ];
 
     /**
@@ -83,7 +88,9 @@ class PermanentCalendarController extends Controller
             return null;
         }
 
-        $offset = (int) ($mazhabSetting->iftar_time ?? 0) + $this->districtOffset('iftar');
+        // Iftar is Maghrib, which is astronomical — no mazhab offset. Only the
+        // district's geographic offset applies.
+        $offset = $this->districtOffset('iftar');
 
         return [
             'text_en'    => 'Iftar',
@@ -345,19 +352,7 @@ class PermanentCalendarController extends Controller
                     ? $item['magrib']
                     : null;
 
-                if ($mazhabSetting) {
-                    if (!empty($item['sehri'])) {
-                        $item['sehri'] = $this->applyOffset(
-                            $item['sehri'], $mazhabSetting, 'sehri_time', 'sehri_time'
-                        );
-                    }
-                    if (!empty($item['magrib'])) {
-                        $item['magrib'] = $this->applyOffset(
-                            $item['magrib'], $mazhabSetting, 'magrib_time', 'magrib_time'
-                        );
-                    }
-                }
-
+                // Sehri and magrib carry no mazhab offset — they are astronomical.
                 $item['sehri'] = $this->applyDistrictOffset($item['sehri'] ?? null, 'sehri');
                 $item['iftar'] = $this->deriveIftar($rawMagrib, $mazhabSetting);
 

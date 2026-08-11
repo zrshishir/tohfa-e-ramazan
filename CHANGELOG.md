@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0] - 2026-08-11
+
+### 🔴 Fixed — every prayer time was 15 minutes late
+
+`permanent_calendars` already holds correct published times for Dhaka, but each mazhab
+carried a flat offset applied to **every** waqt (Hanafi +15, Shafi'i +10, Maliki +5,
+Hanbali +7). Since Hanafi is the default, every displayed time ran 15 minutes late:
+
+| | Published, 11 Aug 2026 | Stored | Displayed before this fix |
+|---|---|---|---|
+| Fajr | 4:11 AM | 04:10 | 04:25 |
+| Maghrib | 6:35 PM | 06:35 | 06:50 |
+| Isha | 7:56 PM | 07:55 | 08:10 |
+
+**Sehri end and iftar were both late** — the direction that invalidates a fast. Users
+would have kept eating 15 minutes past the true end of sehri, and broken their fast 15
+minutes after Maghrib.
+
+All offsets are reset to zero, so the app now shows the stored published times unmodified.
+Verified against published Dhaka times: Fajr 04:10 vs 4:11, Maghrib 06:35 vs 6:35,
+Isha 07:55 vs 7:56.
+
+### Changed
+
+- A mazhab can now only affect **Zuhr, Asr and Isha**. Fajr, sunrise, Maghrib — and
+  therefore sehri and iftar — are astronomical and identical across all four schools;
+  they have been removed from the offset map so this cannot recur. District offsets still
+  apply to sehri and iftar, being geographic rather than juristic.
+- `deriveIftar()` no longer adds a mazhab offset. Iftar is Maghrib.
+
+### Research behind the change
+
+- **Asr** is the substantive difference: Hanafi holds Asr begins when an object's shadow
+  is **twice** its length plus the noon shadow; Maliki, Shafi'i and Hanbali say **once**.
+  Worth 30–90 minutes depending on season and latitude, so it cannot be a fixed offset.
+  Left at 0 pending a computed Asr or verified per-month values.
+- **Zuhr** does not differ in when it starts. It ends when Asr begins, so the Hanafi Zuhr
+  window is simply longer — that follows from the Asr rule.
+- **Isha** is a genuine but smaller difference: Abu Hanifa held it begins when the *white*
+  twilight goes; Abu Yusuf, Muhammad and the other three schools say the *red* twilight,
+  around 10–15 minutes earlier. Most Hanafi timetables, Bangladesh's included, follow the
+  red-twilight position, so 0 matches local practice.
+
+### Added
+
+- 4 feature tests (`MazhabOffsetTest`) guarding that no mazhab offset can move sehri,
+  fajr, magrib or iftar, while Zuhr, Asr and Isha still respond.
+
+
 ## [2.2.0] - 2026-08-11
 
 ### Added
