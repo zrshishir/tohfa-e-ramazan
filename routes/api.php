@@ -61,5 +61,6 @@ Route::get('/hadith', [HadithController::class, 'index']);
 Route::get('/hadith/{id}', [HadithController::class, 'show'])->whereNumber('id');
 
 // masala routes
+Route::get('/masala-categories', [MasalaController::class, 'categories']);
 Route::get('/masala', [MasalaController::class, 'index']);
-Route::get('/masala/{id}', [MasalaController::class, 'show']);
+Route::get('/masala/{id}', [MasalaController::class, 'show'])->whereNumber('id');
