@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GeocodeController;
 use App\Http\Controllers\HadithController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MasalaController;
@@ -27,6 +28,10 @@ Route::get("/permanent-calendar/{month_id}", "App\Http\Controllers\PermanentCale
 Route::get("/today-prayer", "App\Http\Controllers\PermanentCalendarController@today");
 Route::get("/ramazan-calendar", "App\Http\Controllers\PermanentCalendarController@ramazanCalendar");
 Route::get('/mazhabs', 'App\Http\Controllers\MazhabController@index');
+
+// Reverse geocoding, proxied so the Maps key stays server-side. Throttled because
+// each miss is a billed Google call.
+Route::get('/geocode', [GeocodeController::class, 'reverse'])->middleware('throttle:30,1');
 
 // location pickers for the settings screen
 Route::get('/divisions', [LocationController::class, 'divisions']);
