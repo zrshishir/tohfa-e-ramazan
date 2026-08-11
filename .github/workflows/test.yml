@@ -1,53 +1,69 @@
 name: Laravel Test
 
+# The previous workflow ran only on push, so no pull request was ever tested. It also
+# spun up Docker Compose and MySQL, which the suite no longer needs: phpunit.xml runs
+# against in-memory SQLite. Every run of it failed.
 on:
   push:
-    branches:
-      - main
-      - development
-
+    branches: [main, development]
+  pull_request:
+    branches: [main, development]
 
 jobs:
-  app:
+  test:
+    name: PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3']
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Create Docker network
-        run: docker network create ramazan
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          # pdo_sqlite backs the in-memory test database; intl and mbstring are needed
+          # for the Arabic and Bangla content.
+          extensions: mbstring, intl, pdo_sqlite, sqlite3, bcmath
+          coverage: none
 
-      - name: Set up Docker Compose
-        run: docker-compose up -d
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php${{ matrix.php }}-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-php${{ matrix.php }}-
 
       - name: Install dependencies
-        run: docker-compose run --rm -u root app composer install
+        run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Check MySQL connection
-        run: docker-compose exec -t db mysql --user=swoole --password=password --host=db --execute="SELECT 1;"
-
-      # - name: Run migrations
-      #   env:
-      #     DB_CONNECTION: mysql
-      #     DB_HOST: db
-      #     DB_PORT: 3306
-      #     DB_DATABASE: tohfa-e-ramazan
-      #     DB_USERNAME: swoole
-      #     DB_PASSWORD: password
-      #   run: docker-compose run --rm -u root app php artisan migrate --force
-
-      # - name: Run seeder
-      #   run: docker-compose run --rm -u root app php artisan db:seed --force
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
 
       - name: Run tests
-        run: docker-compose run --rm -u root app vendor/bin/phpunit
+        run: php artisan test
 
-      - name: Docker Compose logs
-        run: docker-compose logs db
+  lint:
+    name: Syntax check
+    runs-on: ubuntu-latest
 
-      - name: Stop Docker Compose
-        run: docker-compose down
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Remove Docker network
-        run: docker network rm ramazan
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      # Cheap guard against a parse error reaching development.
+      - name: php -l over app, database, routes and tests
+        run: |
+          find app database routes tests -name '*.php' -print0 \
+            | xargs -0 -n1 -P4 php -l > /dev/null
