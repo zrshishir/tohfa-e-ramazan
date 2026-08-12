@@ -7,6 +7,94 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-08-12
+
+Laravel 10 → 11 and Filament 2 → 3. Laravel 10 left security support in February 2025,
+and three advisories sit in `policy.advisories.ignore-id` with no fixed release in the
+10.x line. Filament 2 does not support Laravel 11, so both had to move together.
+
+### Changed
+
+- **Laravel 10.50.2 → 11.55.0**, **Filament v2.17.59 → 3.3.54**, Livewire 2.12.8 → 3.8.4,
+  Octane 1.5.6 → 2.19.0, Sanctum 3.3.3 → 4.3.3, PHPUnit 9 → 10.5.64, PHP floor `^8.1` → `^8.2`.
+
+  The Laravel 10 application skeleton (`app/Http/Kernel.php`, `app/Console/Kernel.php`,
+  `app/Exceptions/Handler.php`) still works under 11 and is deliberately left in place.
+  Adopting the slim `bootstrap/app.php` layout is a separate change, not bundled here.
+
+- **All 18 Filament resources** converted to `Filament\Forms\Form` / `Filament\Tables\Table`,
+  with `Filament\Pages\Actions` renamed to `Filament\Actions` across 65 page classes.
+  `config/filament.php` is replaced by `App\Providers\Filament\AdminPanelProvider`.
+
+- `config/octane.php` brought in line with the Octane 2 defaults: added `state_file`, and
+  registered `CloseMonologHandlers` on `WorkerStopping`.
+
+- `OCTANE_SERVER` now defaults to `swoole` rather than `roadrunner`. The Dockerfile
+  pecl-installs swoole and nothing else, so the previous default meant a missing env var
+  left `octane:start` reaching for a RoadRunner binary that is not in the image.
+
+- Docker base image unpinned from `php:8.2.0` to `php:8.2`. The 8.2.0 patch shipped in
+  December 2022.
+
+### Added
+
+- **`FlushOnce` listener on `OperationTerminated`.** Laravel 11 introduces the `once()`
+  helper, which memoizes per object instance. Octane workers outlive the request, so
+  without this flush a value memoized while serving one user is handed to the next.
+
+- **Panel access control (`User::canAccessPanel`).** Filament 2 had no access check, so
+  **every registered account — including every mobile app user — could sign in at `/admin`**
+  and edit hadith, duas, masa-el and prayer times. Access now requires `role = 'admin'`.
+
+  Filament 3 denies access outright when the user model does not implement `FilamentUser`
+  and the environment is not `local`, so without this the panel would have returned 403 to
+  everyone on deploy.
+
+  A migration grants the role to `admin@admin.com`. **No other account can reach the admin.**
+
+- **82 tests covering the admin panel**, where there were none:
+  - every resource's list, create and edit page is mounted for real;
+  - each resource round-trips a generated record through its edit form and asserts the
+    stored row is byte-identical afterwards, which is what catches a form that renders but
+    discards input;
+  - panel access is asserted over HTTP, because mounting a Livewire component directly
+    skips the middleware that enforces it.
+
+- `composer.json` gained the standard Laravel script hooks. The file previously had an
+  empty `scripts` block, so `package:discover` never ran after an install — which is why
+  `bootstrap/cache/packages.php` still referenced `Akaunting\Money\Provider`, a package
+  removed with Filament 2, and the application would not boot until the cache was deleted
+  by hand.
+
+### Fixed
+
+- **The admin user form could not be saved at all, and stored passwords in plaintext.**
+  `password` was `->required()` with no dehydration. The column is `$hidden` on the model,
+  so Filament could never fill the field and every edit failed validation on a field the
+  admin had no way to satisfy. Independently, the `User` model has no `hashed` cast, so
+  anything typed there was written to the column verbatim — an admin-set password could
+  never match at login.
+
+  The field is now required only on create, hashed on the way in, and left untouched when
+  submitted blank.
+
+- `phone` is no longer required on the user form. API registration does not collect a phone
+  number, so requiring one made every API-registered account unsaveable from the admin.
+
+### Security
+
+- Restricting `/admin` to `role = 'admin'` closes an unauthenticated-by-role hole: any user
+  who registered through the mobile app could previously log into the admin with their app
+  credentials.
+
+### Notes
+
+- Three advisories remain ignored in `composer.json`. They are fixed only in Laravel 12.60
+  and 12.61, so they clear in the next hop, not this one.
+- `.env` is tracked in this repository and contains the application key and database
+  credentials. Untracking and rotating it is worth doing, but it is deployment-affecting
+  and deliberately left out of this change.
+
 ## [2.8.1] - 2026-08-12
 
 ### Fixed
