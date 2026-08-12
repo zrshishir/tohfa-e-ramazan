@@ -36,6 +36,13 @@ and three advisories sit in `policy.advisories.ignore-id` with no fixed release 
 - Docker base image unpinned from `php:8.2.0` to `php:8.2`. The 8.2.0 patch shipped in
   December 2022.
 
+- **`config.platform.php` pinned to `8.2`.** Resolving the lock file on a PHP 8.3 machine
+  pulled in `openspout/openspout` 4.32 and `laravel/pint` 1.30.5, both of which require
+  PHP 8.3 — producing a `composer.lock` that `composer.json` claimed to support on 8.2 but
+  that could not actually be installed there. The production image is PHP 8.2, so the
+  Docker build would have failed on it. Composer now always resolves for the lowest
+  supported version regardless of who runs the update.
+
 ### Added
 
 - **`FlushOnce` listener on `OperationTerminated`.** Laravel 11 introduces the `once()`
