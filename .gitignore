@@ -3,6 +3,11 @@
 /public/build
 /public/hot
 /public/storage
+
+# Filament republishes these on every composer install via the filament:upgrade hook,
+# so committing them only creates conflicts and stale assets after a version bump.
+/public/css/filament
+/public/js/filament
 /storage/*.key
 /vendor
 .env.backup
