@@ -25,6 +25,12 @@ return [
         'token' => env('POSTMARK_TOKEN'),
     ],
 
+    // Server-side only. The app used to call the Geocoding API directly with this key
+    // inlined in its bundle, where it could be extracted.
+    'google_maps' => [
+        'key' => env('GOOGLE_MAPS_KEY'),
+    ],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),

@@ -44,6 +44,7 @@ WORKDIR /home/swoole
 
 FROM base as development
 
+RUN npm install chokidar
 RUN npm i
 
 COPY --chown=swoole:swoole composer.json ./

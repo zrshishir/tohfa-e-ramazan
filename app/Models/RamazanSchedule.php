@@ -15,8 +15,9 @@ class RamazanSchedule extends Model
         'district_id',
         'roza_no',
         'title',
-        'sehri_time',
+        'shehri_time',
         'iftar_time',
+        'day',
         'date',
     ];
 }

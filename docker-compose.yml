@@ -13,8 +13,9 @@ services:
             - /home/swoole/vendor
             - ./storage:/home/swoole/storage
             - ./app:/home/swoole/app
+            - /home/swoole/node_modules
         ports:
-            - 8886:80
+            - 8888:80
         environment:
             CHOKIDAR_USEPOLLING: 'true'
         user: "swoole:swoole"
@@ -24,17 +25,16 @@ services:
             - ramazan
 
     db:
-        image: mysql:8.0
+        image: mariadb:10.6
         restart: always
         ports:
-            - 3306:3306
+            - "3306:3306"
         environment:
             MYSQL_DATABASE: tohfa-e-ramazan
-            MYSQL_USER: swoole
+            MYSQL_USER: root
             MYSQL_PASSWORD: password
             MYSQL_ROOT_PASSWORD: password
-        volumes:
-            - ./mysql:/var/lib/mysql
+
         networks:
             - ramazan
 

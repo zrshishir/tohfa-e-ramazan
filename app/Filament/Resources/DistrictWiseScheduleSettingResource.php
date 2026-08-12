@@ -25,12 +25,20 @@ class DistrictWiseScheduleSettingResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('district_id')
+                Forms\Components\Select::make('district_id')
+                    ->relationship('district', 'name')
+                    ->searchable()
                     ->required(),
-                Forms\Components\TextInput::make('time_addition_subtraction')
-                    ->required(),
-                Forms\Components\TextInput::make('am_pm')
-                    ->maxLength(255),
+                Forms\Components\TextInput::make('sehri_offset')
+                    ->label('Sehri offset (minutes vs Dhaka)')
+                    ->numeric()
+                    ->required()
+                    ->helperText('Positive adds minutes, negative subtracts. Islamic Foundation range is roughly -9 to +8.'),
+                Forms\Components\TextInput::make('iftar_offset')
+                    ->label('Iftar offset (minutes vs Dhaka)')
+                    ->numeric()
+                    ->required()
+                    ->helperText('Positive adds minutes, negative subtracts. Islamic Foundation range is roughly -10 to +12.'),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
             ]);
@@ -40,9 +48,10 @@ class DistrictWiseScheduleSettingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('district_id'),
-                Tables\Columns\TextColumn::make('time_addition_subtraction'),
-                Tables\Columns\TextColumn::make('am_pm'),
+                Tables\Columns\TextColumn::make('district.name'),
+                Tables\Columns\TextColumn::make('sehri_offset')->label('Sehri')->sortable(),
+                Tables\Columns\TextColumn::make('iftar_offset')->label('Iftar')->sortable(),
+
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('deleted_at')

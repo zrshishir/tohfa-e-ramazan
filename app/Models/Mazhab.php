@@ -12,6 +12,10 @@ class Mazhab extends Model
     protected $table = 'mazhabs';
 
     protected $fillable = [
+        'user_id',
         'name',
+        // NOT NULL on the table; without these Mazhab::create() cannot succeed.
+        'bangla_text',
+        'arabic_text',
     ];
 }

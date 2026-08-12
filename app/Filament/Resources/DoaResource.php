@@ -58,8 +58,8 @@ class DoaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
-                Tables\Columns\TextColumn::make('doa_category_id'),
+                Tables\Columns\TextColumn::make('user.name'),
+                Tables\Columns\TextColumn::make('doa_category.name'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('doa_for'),
                 Tables\Columns\TextColumn::make('description'),

@@ -2,76 +2,378 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DistrictWiseScheduleSetting;
+use App\Models\MazhabWiseScheduleSetting;
 use App\Models\PermanentCalendar;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PermanentCalendarController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Map PermanentCalendar JSON column names to MazhabWiseScheduleSetting offset fields.
+     * Each entry: 'json_column' => ['start_offset_field', 'end_offset_field'].
+     *
+     * Only the waqts that genuinely vary between the four schools.
+     *
+     * Fajr, sunrise, Maghrib (and therefore sehri and iftar) are astronomical and
+     * identical across all four madhhabs. They were previously in this map, so a
+     * mazhab's flat offset shifted them too — pushing sehri end and iftar late against
+     * the correct published times already stored in `permanent_calendars`.
+     *
+     * District offsets still apply to sehri and iftar; those are geographic, not
+     * juristic, and are handled separately.
      */
-    public function index()
+    private const PRAYER_OFFSET_MAP = [
+        'johr' => ['johr_time', 'johr_time'],
+        'asr'  => ['asr_time',  'asr_time'],
+        'esha' => ['esha_time', 'esha_time'],
+    ];
+
+    /**
+     * There is no `iftar` column — the fast is broken when Magrib begins, so iftar is
+     * derived from `magrib` with the mazhab's own `iftar_time` offset applied, plus the
+     * district's iftar offset.
+     *
+     * Sehri and iftar shift by district. The Islamic Foundation publishes a separate
+     * minute offset for each, relative to Dhaka — a district is not a single shift.
+     * No other waqt is adjusted by district.
+     */
+    private ?DistrictWiseScheduleSetting $districtSetting = null;
+
+    private function loadDistrictSetting(Request $request): void
+    {
+        $districtId = $request->input('district_id');
+
+        $this->districtSetting = $districtId
+            ? DistrictWiseScheduleSetting::where('district_id', $districtId)
+                ->where('is_active', true)
+                ->first()
+            : null;
+    }
+
+    private function districtOffset(string $waqt): int
+    {
+        if (!$this->districtSetting) {
+            return 0;
+        }
+
+        return (int) ($waqt === 'sehri'
+            ? $this->districtSetting->sehri_offset
+            : $this->districtSetting->iftar_offset);
+    }
+
+    /** Shift a prayer block by the selected district's offset for that waqt. */
+    private function applyDistrictOffset(?array $prayerJson, string $waqt): ?array
+    {
+        $offset = $this->districtOffset($waqt);
+
+        if (empty($prayerJson) || $offset === 0) {
+            return $prayerJson;
+        }
+
+        foreach (['start_time', 'end_time'] as $key) {
+            if (isset($prayerJson[$key])) {
+                $prayerJson[$key] = $this->adjustTime($prayerJson[$key], $offset);
+            }
+        }
+
+        return $prayerJson;
+    }
+
+    private function deriveIftar(?array $rawMagrib, ?MazhabWiseScheduleSetting $mazhabSetting): ?array
+    {
+        if (empty($rawMagrib) || empty($rawMagrib['start_time'])) {
+            return null;
+        }
+
+        // Iftar is Maghrib, which is astronomical — no mazhab offset. Only the
+        // district's geographic offset applies.
+        $offset = $this->districtOffset('iftar');
+
+        return [
+            'text_en'    => 'Iftar',
+            'text_bn'    => 'ইফতার',
+            'text_ar'    => 'إفطار',
+            'start_time' => $this->adjustTime($rawMagrib['start_time'], $offset),
+            'end_time'   => isset($rawMagrib['end_time'])
+                ? $this->adjustTime($rawMagrib['end_time'], $offset)
+                : null,
+        ];
+    }
+
+    /**
+     * Adjust a time string like "05:22 AM" by +/- minutes.
+     * Returns the original string unchanged if it doesn't match the expected format.
+     */
+    private function adjustTime(string $time, int $offsetMinutes): string
+    {
+        if ($offsetMinutes === 0) {
+            return $time;
+        }
+        // Only adjust strings that strictly match "hh:mm AM/PM"
+        if (!preg_match('/^\d{1,2}:\d{2}\s*(AM|PM)$/i', trim($time))) {
+            return $time;
+        }
+        return Carbon::createFromFormat('h:i A', trim($time))
+            ->addMinutes($offsetMinutes)
+            ->format('h:i A');
+    }
+
+    /**
+     * Apply mazhab minute offsets to a prayer JSON array.
+     * $prayerJson: ['text_en' => ..., 'start_time' => '05:22 AM', 'end_time' => '06:00 AM', ...]
+     * $startOffsetField / $endOffsetField: field names on $mazhabSetting
+     */
+    private function applyOffset(
+        ?array $prayerJson,
+        MazhabWiseScheduleSetting $mazhabSetting,
+        string $startOffsetField,
+        string $endOffsetField
+    ): ?array {
+        if (empty($prayerJson)) {
+            return $prayerJson;
+        }
+
+        $startOffset = (int) ($mazhabSetting->{$startOffsetField} ?? 0);
+        $endOffset   = (int) ($mazhabSetting->{$endOffsetField}   ?? 0);
+
+        if (isset($prayerJson['start_time']) && $startOffset !== 0) {
+            $prayerJson['start_time'] = $this->adjustTime($prayerJson['start_time'], $startOffset);
+        }
+        if (isset($prayerJson['end_time']) && $endOffset !== 0) {
+            $prayerJson['end_time'] = $this->adjustTime($prayerJson['end_time'], $endOffset);
+        }
+
+        return $prayerJson;
+    }
+
+    /**
+     * Apply all mazhab offsets to a PermanentCalendar record and return as array.
+     */
+    private function applyMazhabOffsets(PermanentCalendar $calendar, MazhabWiseScheduleSetting $mazhabSetting): array
+    {
+        $data = $calendar->toArray();
+
+        // Captured before offsets are applied: iftar carries its own offset and must not
+        // inherit magrib's on top.
+        $rawMagrib = isset($data['magrib']) && is_array($data['magrib']) ? $data['magrib'] : null;
+
+        foreach (self::PRAYER_OFFSET_MAP as $column => [$startField, $endField]) {
+            if (isset($data[$column]) && is_array($data[$column])) {
+                $data[$column] = $this->applyOffset($data[$column], $mazhabSetting, $startField, $endField);
+            }
+        }
+
+        $data['sehri'] = $this->applyDistrictOffset($data['sehri'] ?? null, 'sehri');
+        $data['iftar'] = $this->deriveIftar($rawMagrib, $mazhabSetting);
+
+        return $data;
+    }
+
+    /**
+     * POST /api/permanent-calendar
+     * Paginated calendar for a month, from a given day onwards.
+     * Params: month_id (default: current month), to (page size, default: 10), mazhab_id (default: 1)
+     */
+    public function index(Request $request)
     {
         date_default_timezone_set('Asia/Dhaka');
-        $date = date('Y-m-d');
-        $month = date('m', strtotime($date));
-        $day = date('d', strtotime($date));
 
-        $permanentCalendars = PermanentCalendar::where('month_id', '>=', $month)->where('day', '>=', $day)->paginate(30);
+        $today    = (int) date('d');
+        $month    = (int) date('m');
+        $monthId  = (int) $request->input('month_id', $month);
+        $mazhabId = (int) $request->input('mazhab_id', 1);
+        $pageSize = (int) $request->input('to', 10);
+
+        $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
+        $this->loadDistrictSetting($request);
+
+        $query = PermanentCalendar::where('month_id', $monthId);
+
+        if ($monthId === $month) {
+            $query->whereRaw('CAST(day AS UNSIGNED) >= ?', [$today]);
+        }
+
+        $paginated = $query->orderByRaw('CAST(day AS UNSIGNED)')->paginate($pageSize);
+
+        $items = collect($paginated->items())->map(function (PermanentCalendar $cal) use ($mazhabSetting) {
+            return $mazhabSetting ? $this->applyMazhabOffsets($cal, $mazhabSetting) : $cal->toArray();
+        });
 
         return response()->json([
-            'status' => 'success',
+            'status'      => 'success',
             'status_code' => 200,
-            'message' => 'Permanent Calendar Data',
-            'data' => $permanentCalendars,
+            'today'       => $today,
+            'message'     => 'Permanent Calendar Data',
+            'data'        => [
+                'mazhab_setting'      => $mazhabSetting,
+                'permanent_calendars' => [
+                    'data'          => $items,
+                    'current_page'  => $paginated->currentPage(),
+                    'last_page'     => $paginated->lastPage(),
+                    'per_page'      => $paginated->perPage(),
+                    'total'         => $paginated->total(),
+                ],
+            ],
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * GET /api/permanent-calendar/{month_id}
+     * Full month prayer times.
+     * Params: mazhab_id (default: 1)
      */
-    public function create()
+    public function byMonth(Request $request, int $monthId)
     {
-        //
+        $mazhabId = (int) $request->input('mazhab_id', 1);
+
+        $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
+        $this->loadDistrictSetting($request);
+
+        $calendars = PermanentCalendar::where('month_id', $monthId)
+            ->orderByRaw('CAST(day AS UNSIGNED)')
+            ->get();
+
+        $items = $calendars->map(function (PermanentCalendar $cal) use ($mazhabSetting) {
+            return $mazhabSetting ? $this->applyMazhabOffsets($cal, $mazhabSetting) : $cal->toArray();
+        });
+
+        return response()->json([
+            'status'      => 'success',
+            'status_code' => 200,
+            'message'     => 'Monthly Calendar Data',
+            'data'        => [
+                'mazhab_setting'      => $mazhabSetting,
+                'permanent_calendars' => $items,
+            ],
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * GET /api/today-prayer
+     * Today's full prayer schedule.
+     * Params: mazhab_id (default: 1), day (optional, default: today), month_id (optional, default: current month)
      */
-    public function store(Request $request)
+    public function today(Request $request)
     {
-        //
+        date_default_timezone_set('Asia/Dhaka');
+
+        $today    = (int) date('d');
+        $month    = (int) date('m');
+        $day      = (int) $request->input('day', $today);
+        $monthId  = (int) $request->input('month_id', $month);
+        $mazhabId = (int) $request->input('mazhab_id', 1);
+
+        $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
+        $this->loadDistrictSetting($request);
+
+        $calendar = PermanentCalendar::where('month_id', $monthId)
+            ->whereRaw('CAST(day AS UNSIGNED) = ?', [$day])
+            ->first();
+
+        if (!$calendar) {
+            return response()->json([
+                'status'      => 'error',
+                'status_code' => 404,
+                'message'     => 'No prayer data found for the requested date.',
+            ], 404);
+        }
+
+        $prayerTimes = $mazhabSetting
+            ? $this->applyMazhabOffsets($calendar, $mazhabSetting)
+            : $calendar->toArray();
+
+        return response()->json([
+            'status'      => 'success',
+            'status_code' => 200,
+            'message'     => 'Prayer Schedule',
+            'data'        => [
+                'mazhab_setting' => $mazhabSetting,
+                'day'            => $day,
+                'month_id'       => $monthId,
+                'prayer_times'   => $prayerTimes,
+            ],
+        ]);
     }
 
     /**
-     * Display the specified resource.
+     * GET /api/ramazan-calendar
+     * Next 30 days of sehri & iftar times from today (or a given date), handling month boundaries.
+     * Params: mazhab_id (default: 1), day (optional), month_id (optional)
      */
-    public function show(PermanentCalendar $permanentCalendar)
+    public function ramazanCalendar(Request $request)
     {
-        //
-    }
+        date_default_timezone_set('Asia/Dhaka');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PermanentCalendar $permanentCalendar)
-    {
-        //
-    }
+        $today    = (int) date('d');
+        $month    = (int) date('m');
+        $day      = (int) $request->input('day', $today);
+        $monthId  = (int) $request->input('month_id', $month);
+        $mazhabId = (int) $request->input('mazhab_id', 1);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, PermanentCalendar $permanentCalendar)
-    {
-        //
-    }
+        $mazhabSetting = MazhabWiseScheduleSetting::where('mazhab_id', $mazhabId)->first();
+        $this->loadDistrictSetting($request);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(PermanentCalendar $permanentCalendar)
-    {
-        //
+        // Build 30 days worth of (month_id, day) pairs, cycling months 1–12
+        $days = [];
+        $currentMonth = $monthId;
+        $currentDay   = $day;
+
+        for ($i = 0; $i < 30; $i++) {
+            $days[] = ['month_id' => $currentMonth, 'day' => $currentDay];
+
+            // Advance by one day — use Carbon to handle month-end correctly
+            // We use a fixed leap year (2000) so Feb has 29 days as a safe upper bound
+            $date = Carbon::createFromDate(2000, $currentMonth, $currentDay)->addDay();
+            $currentDay   = (int) $date->day;
+            $currentMonth = (int) $date->month;
+        }
+
+        // Group by month to minimise queries
+        $grouped = collect($days)->groupBy('month_id');
+
+        $results = collect();
+        foreach ($grouped as $mId => $entries) {
+            $dayNumbers = $entries->pluck('day')->toArray();
+
+            $records = PermanentCalendar::where('month_id', $mId)
+                ->whereIn(DB::raw('CAST(day AS UNSIGNED)'), $dayNumbers)
+                ->orderByRaw('CAST(day AS UNSIGNED)')
+                ->select('id', 'day', 'month_id', 'sehri', 'magrib')
+                ->get();
+
+            foreach ($records as $record) {
+                $item = $record->toArray();
+
+                // Derived from raw magrib, before magrib's own offset is applied.
+                $rawMagrib = !empty($item['magrib']) && is_array($item['magrib'])
+                    ? $item['magrib']
+                    : null;
+
+                // Sehri and magrib carry no mazhab offset — they are astronomical.
+                $item['sehri'] = $this->applyDistrictOffset($item['sehri'] ?? null, 'sehri');
+                $item['iftar'] = $this->deriveIftar($rawMagrib, $mazhabSetting);
+
+                $results->push($item);
+            }
+        }
+
+        // Re-sort by month then day to maintain chronological order
+        $sorted = $results->sortBy([
+            fn ($a, $b) => $a['month_id'] <=> $b['month_id'],
+            fn ($a, $b) => (int) $a['day'] <=> (int) $b['day'],
+        ])->values();
+
+        return response()->json([
+            'status'      => 'success',
+            'status_code' => 200,
+            'message'     => 'Ramazan Calendar Data',
+            'data'        => [
+                'mazhab_setting'      => $mazhabSetting,
+                'permanent_calendars' => $sorted,
+            ],
+        ]);
     }
 }

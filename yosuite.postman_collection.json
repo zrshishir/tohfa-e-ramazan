@@ -1,0 +1,1899 @@
+{
+	"info": {
+		"_postman_id": "9c36b9df-000b-410c-a554-31b05f252692",
+		"name": "yosuite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1711936",
+		"_collection_link": "https://yosuite.postman.co/workspace/yosuite~0b546996-83f8-4e24-a847-4b9cd6e96451/collection/1711936-9c36b9df-000b-410c-a554-31b05f252692?action=share&source=collection_link&creator=1711936"
+	},
+	"item": [
+		{
+			"name": "company-registration-seeder",
+			"item": [
+				{
+					"name": "store seeder",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let dynamicValue = Math.floor(Math.random() * (1000 - 1 + 1) + 1)",
+									"pm.variables.set(\"workspace_id\", dynamicValue);",
+									"console.log(pm.variables.get('workspace_id'));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful Store Seeder\", function () {",
+									"  console.log(pm.response.json());",
+									"//   var jsonData = pm.response.json();",
+									"//   if (jsonData.data.workspace_id) {",
+									"//       const request = {",
+									"//           method: \"POST\",",
+									"//           url: \"{{url}}/database/synthetic-seeder/workspace/seeder/registration/delete-seeder\",",
+									"//           header: {",
+									"//               \"Content-Type\": \"application/json\",",
+									"//           },",
+									"//           body: {",
+									"//               mode: 'raw',",
+									"//               raw: JSON.stringify({  // Changed \"Json\" to \"JSON\"",
+									"//                   workspace_id: jsonData.data.workspace_id",
+									"//               }),",
+									"//           }",
+									"//       }",
+									"//       pm.sendRequest(request, function (err, response) {",
+									"//           console.log(response.json());",
+									"//       });",
+									"//   }",
+									"  pm.expect(pm.response.code).to.be.oneOf([200, 403, 422]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"workspace_id\": \"{{workspace_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/job/synthetic-database/seeder/demo/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"job",
+								"synthetic-database",
+								"seeder",
+								"demo",
+								"store"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "invalid-request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspace_idfrg\":\"CHECKING-XPEED\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/root/synthetic-seeder/seeder/components/company-data/seed-data",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"root",
+										"synthetic-seeder",
+										"seeder",
+										"components",
+										"company-data",
+										"seed-data"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.13"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 15 Jan 2024 09:02:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        {\n            \"error\": [\n                \"Invalid Request\"\n            ]\n        }\n    ],\n    \"tracer\": null,\n    \"data\": []\n}"
+						},
+						{
+							"name": "store seeder successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspace_id\": \"{{workspace_id}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/job/synthetic-database/seeder/options/store",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"job",
+										"synthetic-database",
+										"seeder",
+										"options",
+										"store"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Jan 2024 06:02:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "swoole-http-server"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Length",
+									"value": "97"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        {\n            \"success\": [\n                \"Seeder Data Inserted Successfully\"\n            ]\n        }\n    ],\n    \"tracer\": null,\n    \"data\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "delete seeder",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let dynamicValue = Math.floor(Math.random() * (1000 - 1 + 1) + 1)",
+									"// var dynamicValue = Math.floor(Math.random() * 100) + 1;",
+									"pm.variables.set(\"workspace_id\", dynamicValue);",
+									"console.log(pm.variables.get('workspace_id'));",
+									"// pm.variables.set(\"workspace_id\", pm.environment.get(\"workspace_id\"));",
+									"// console.log(pm.environment.get(\"workspace_id\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful Store Seeder\", function () {",
+									"    console.log(pm.response.code);",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403, 422]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"workspace_id\":\"{{workspace_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/job/synthetic-database/seeder/demo/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"job",
+								"synthetic-database",
+								"seeder",
+								"demo",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspace_id\":\"CHECKING-XPEED-TEST\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/database/synthetic-seeder/workspace/seeder/registration/delete-seeder",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"database",
+										"synthetic-seeder",
+										"workspace",
+										"seeder",
+										"registration",
+										"delete-seeder"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Jan 2024 06:34:46 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "swoole-http-server"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Length",
+									"value": "97"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        {\n            \"success\": [\n                \"Seeder Data Removed Successfully\"\n            ]\n        }\n    ],\n    \"tracer\": null,\n    \"data\": {}\n}"
+						},
+						{
+							"name": "data not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspace_id\":\"{{workspace_id}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/job/synthetic-database/seeder/demo/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"job",
+										"synthetic-database",
+										"seeder",
+										"demo",
+										"delete"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Jan 2024 10:26:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "swoole-http-server"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        {\n            \"error\": [\n                \"Seeder Data Not Found\"\n            ]\n        }\n    ],\n    \"tracer\": null,\n    \"data\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "delete workspace",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let dynamicValue = Math.floor(Math.random() * (1000 - 1 + 1) + 1)",
+									"// var dynamicValue = Math.floor(Math.random() * 100) + 1;",
+									"pm.variables.set(\"workspace_id\", dynamicValue);",
+									"console.log(pm.variables.get('workspace_id'));",
+									"// pm.variables.set(\"workspace_id\", pm.environment.get(\"workspace_id\"));",
+									"// console.log(pm.environment.get(\"workspace_id\"));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful Store Seeder\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 403, 422]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"workspace_id\":\"{{workspace_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/job/synthetic-database/everything/workspace/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"job",
+								"synthetic-database",
+								"everything",
+								"workspace",
+								"delete"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete workspace success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspace_id\":\"{{workspace_id}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/job/synthetic-database/everything/workspace/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"job",
+										"synthetic-database",
+										"everything",
+										"workspace",
+										"delete"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Jan 2024 08:17:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "swoole-http-server"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        {\n            \"success\": [\n                \"Workspace Data Removed Successfully\"\n            ]\n        }\n    ],\n    \"tracer\": null,\n    \"data\": {}\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "synthetic inbox",
+			"item": [
+				{
+					"name": "inbox",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let dynamicValue = Math.floor(Math.random() * (1000 - 1 + 1) + 1)",
+									"pm.variables.set(\"workspace_id\", dynamicValue);",
+									"console.log(pm.variables.get('workspace_id'));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful Store Seeder\", function () {",
+									"  console.log(pm.response.json());",
+									"//   var jsonData = pm.response.json();",
+									"//   if (jsonData.data.workspace_id) {",
+									"//       const request = {",
+									"//           method: \"POST\",",
+									"//           url: \"{{url}}/database/synthetic-seeder/workspace/seeder/registration/delete-seeder\",",
+									"//           header: {",
+									"//               \"Content-Type\": \"application/json\",",
+									"//           },",
+									"//           body: {",
+									"//               mode: 'raw',",
+									"//               raw: JSON.stringify({  // Changed \"Json\" to \"JSON\"",
+									"//                   workspace_id: jsonData.data.workspace_id",
+									"//               }),",
+									"//           }",
+									"//       }",
+									"//       pm.sendRequest(request, function (err, response) {",
+									"//           console.log(response.json());",
+									"//       });",
+									"//   }",
+									"  pm.expect(pm.response.code).to.be.oneOf([200, 403, 422]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": [\"234234\"],\n    \"type\": \"database\",\n    \"category\": \"Inbox.Approval\",\n    \"title\": \"notification title\",\n    \"content\": \"description details\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/inbox/synthetic-inbox/notification-recipient/components/table/get-category",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"inbox",
+								"synthetic-inbox",
+								"notification-recipient",
+								"components",
+								"table",
+								"get-category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": [\"234234\"],\n    \"type\": \"database\",\n    \"category\": \"Inbox.Approval\",\n    \"title\": \"notification title\",\n    \"content\": \"description details\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/inbox/synthetic-inbox/inbox/get-inbox/65bf1dda7a5087335405a3f6",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"inbox",
+										"synthetic-inbox",
+										"inbox",
+										"get-inbox",
+										"65bf1dda7a5087335405a3f6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Feb 2024 05:18:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "swoole-http-server"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        {\n            \"success\": [\n                \"Data Retrieved Successfully\"\n            ]\n        }\n    ],\n    \"tracer\": null,\n    \"data\": [\n        {\n            \"_id\": \"65bf1ddf2bdb9a18130076c2\",\n            \"user_id\": [\n                \"65bf1dda7a5087335405a3f6\"\n            ],\n            \"type\": \"database\",\n            \"category\": \"Inbox.Employment Status\",\n            \"title\": \"Approval Request\",\n            \"content\": \"dummy description\",\n            \"read\": false,\n            \"color\": \"primary\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "send to user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let dynamicValue = Math.floor(Math.random() * (1000 - 1 + 1) + 1)",
+									"pm.variables.set(\"workspace_id\", dynamicValue);",
+									"console.log(pm.variables.get('workspace_id'));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful Store Seeder\", function () {",
+									"  console.log(pm.response.json());",
+									"//   var jsonData = pm.response.json();",
+									"//   if (jsonData.data.workspace_id) {",
+									"//       const request = {",
+									"//           method: \"POST\",",
+									"//           url: \"{{url}}/database/synthetic-seeder/workspace/seeder/registration/delete-seeder\",",
+									"//           header: {",
+									"//               \"Content-Type\": \"application/json\",",
+									"//           },",
+									"//           body: {",
+									"//               mode: 'raw',",
+									"//               raw: JSON.stringify({  // Changed \"Json\" to \"JSON\"",
+									"//                   workspace_id: jsonData.data.workspace_id",
+									"//               }),",
+									"//           }",
+									"//       }",
+									"//       pm.sendRequest(request, function (err, response) {",
+									"//           console.log(response.json());",
+									"//       });",
+									"//   }",
+									"  pm.expect(pm.response.code).to.be.oneOf([200, 403, 422]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/inbox/synthetic-inbox/notification-recipient/components/table/send-notification-test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"inbox",
+								"synthetic-inbox",
+								"notification-recipient",
+								"components",
+								"table",
+								"send-notification-test"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "send notification to user success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": [\"234234\"],\n    \"type\": \"database\",\n    \"category\": \"Inbox.Approval\",\n    \"title\": \"notification title\",\n    \"content\": \"description details\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/inbox/synthetic-inbox/inbox/send-to-user",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"inbox",
+										"synthetic-inbox",
+										"inbox",
+										"send-to-user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 01 Feb 2024 09:18:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "swoole-http-server"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        {\n            \"success\": [\n                \"Notification sent successfully\"\n            ]\n        }\n    ],\n    \"tracer\": null,\n    \"data\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "send to group",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let dynamicValue = Math.floor(Math.random() * (1000 - 1 + 1) + 1)",
+									"pm.variables.set(\"workspace_id\", dynamicValue);",
+									"console.log(pm.variables.get('workspace_id'));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful Store Seeder\", function () {",
+									"  console.log(pm.response.json());",
+									"//   var jsonData = pm.response.json();",
+									"//   if (jsonData.data.workspace_id) {",
+									"//       const request = {",
+									"//           method: \"POST\",",
+									"//           url: \"{{url}}/database/synthetic-seeder/workspace/seeder/registration/delete-seeder\",",
+									"//           header: {",
+									"//               \"Content-Type\": \"application/json\",",
+									"//           },",
+									"//           body: {",
+									"//               mode: 'raw',",
+									"//               raw: JSON.stringify({  // Changed \"Json\" to \"JSON\"",
+									"//                   workspace_id: jsonData.data.workspace_id",
+									"//               }),",
+									"//           }",
+									"//       }",
+									"//       pm.sendRequest(request, function (err, response) {",
+									"//           console.log(response.json());",
+									"//       });",
+									"//   }",
+									"  pm.expect(pm.response.code).to.be.oneOf([200, 403, 422]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": [\"234234\"],\n    \"type\": \"database\",\n    \"category\": \"Inbox.Approval\",\n    \"title\": \"notification title\",\n    \"content\": \"description details\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/inbox/synthetic-inbox/inbox/send-to-group",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"inbox",
+								"synthetic-inbox",
+								"inbox",
+								"send-to-group"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "send notify to group success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"user_id\": [\"234234\"],\n    \"type\": \"database\",\n    \"category\": \"Inbox.Approval\",\n    \"title\": \"notification title\",\n    \"content\": \"description details\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/inbox/synthetic-inbox/inbox/send-to-group",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"inbox",
+										"synthetic-inbox",
+										"inbox",
+										"send-to-group"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 01 Feb 2024 10:29:20 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Server",
+									"value": "swoole-http-server"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Length",
+									"value": "101"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": [\n        {\n            \"success\": [\n                \"Notification to group sent successfully\"\n            ]\n        }\n    ],\n    \"tracer\": null,\n    \"data\": {}\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "synthetic-approval",
+			"item": [
+				{
+					"name": "get structure",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/component/package/settings/approval/component/get-structure",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"approval",
+								"component",
+								"get-structure"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/component/package/settings/approval/component/get-structure",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"approval",
+										"component",
+										"get-structure"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Mar 2024 04:50:05 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "608"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"Content fetched successfully.\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": {\n        \"actionItems\": [\n            {\n                \"label\": \"Advanced Approvals\",\n                \"icon\": \"Setting2Outline\"\n            },\n            {\n                \"label\": \"Disable Approvals\",\n                \"icon\": \"StopOutlined\"\n            }\n        ],\n        \"canRequest\": {\n            \"title\": \"Who can make this of request?\",\n            \"field\": {\n                \"type\": \"select\",\n                \"name\": \"who_can_make_requests\",\n                \"props\": {\n                    \"placeholder\": \"Select who can request.\",\n                    \"searchColumn\": \"role_name\",\n                    \"fetchApi\": \"/component/package/settings/approval/component/get-access-level\"\n                }\n            }\n        },\n        \"canApprove\": {\n            \"title\": \"Who can approve this of request?\",\n            \"subtitle\": \"Feel free to choose the sequence in which updates to information are approved.\",\n            \"field\": {\n                \"type\": \"select\",\n                \"name\": \"approval_hierarchy\",\n                \"props\": {\n                    \"placeholder\": \"Select who can approve.\",\n                    \"optionsData\": [\n                        {\n                            \"searchColumn\": \"role_name\",\n                            \"fetchApi\": \"/component/package/settings/approval/component/get-access-level\"\n                        },\n                        {\n                            \"label\": \"Access levels\",\n                            \"value\": \"access_levels\",\n                            \"field\": {\n                                \"type\": \"select\",\n                                \"label\": \"Access Level\",\n                                \"props\": {\n                                    \"mode\": \"multiple\",\n                                    \"searchColumn\": \"role_name\",\n                                    \"optionsApi\": \"/component/package/settings/approval/component/get-access-level\",\n                                    \"placeholder\": \"Access levels\"\n                                }\n                            }\n                        },\n                        {\n                            \"label\": \"Specific person\",\n                            \"value\": \"specific_person\",\n                            \"field\": {\n                                \"type\": \"select\",\n                                \"label\": \"Specific Person\",\n                                \"props\": {\n                                    \"searchColumn\": \"name\",\n                                    \"optionsApi\": \"component/package/settings/approval/component/get-people\",\n                                    \"placeholder\": \"Specific person\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            }\n        },\n        \"advancedOptions\": {\n            \"division\": {\n                \"searchColumn\": \"name\",\n                \"fetchApi\": \"/component/package/settings/advance-approval/division\"\n            },\n            \"location\": {\n                \"searchColumn\": \"name\",\n                \"fetchApi\": \"/component/package/settings/advance-approval/location\"\n            },\n            \"department\": {\n                \"searchColumn\": \"name\",\n                \"fetchApi\": \"/component/package/settings/advance-approval/department\"\n            }\n        },\n        \"submitUrl\": \"/component/package/settings/approval/component/store-content\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get access level option",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/component/package/settings/approval/component/get-access-level",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"approval",
+								"component",
+								"get-access-level"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/component/package/settings/approval/component/get-access-level",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"approval",
+										"component",
+										"get-access-level"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Mar 2024 04:51:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "163"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"Data Retrieved Successfully\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": [\n        {\n            \"value\": \"65e02f00bd6166140f41710f\",\n            \"label\": \"Owner\",\n            \"model_name\": \"role\"\n        },\n        {\n            \"value\": \"65e02f00bd6166140f417110\",\n            \"label\": \"Manager\",\n            \"model_name\": \"role\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get people option",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/component/package/settings/approval/component/get-people",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"approval",
+								"component",
+								"get-people"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/component/package/settings/approval/component/get-people",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"approval",
+										"component",
+										"get-people"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Mar 2024 04:54:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "155"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"Data Retrieved Successfully\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": [\n        {\n            \"value\": \"65e02c4d7a3a8beea422c249\",\n            \"label\": \"Muhtasim Fahim\",\n            \"model_name\": \"people\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "division option",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/component/package/settings/advance-approval/division",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"advance-approval",
+								"division"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/component/package/settings/advance-approval/division",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"advance-approval",
+										"division"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Mar 2024 04:56:06 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "215"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"Data Retrieved Successfully\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": [\n        {\n            \"value\": \"Asia Pacific\",\n            \"label\": \"Asia Pacific\",\n            \"model_name\": \"division\"\n        },\n        {\n            \"value\": \"Europe\",\n            \"label\": \"Europe\",\n            \"model_name\": \"division\"\n        },\n        {\n            \"value\": \"North America\",\n            \"label\": \"North America\",\n            \"model_name\": \"division\"\n        },\n        {\n            \"value\": \"South America\",\n            \"label\": \"South America\",\n            \"model_name\": \"division\"\n        },\n        {\n            \"value\": \"Africa\",\n            \"label\": \"Africa\",\n            \"model_name\": \"division\"\n        },\n        {\n            \"value\": \"qui\",\n            \"label\": \"qui\",\n            \"model_name\": \"division\"\n        },\n        {\n            \"value\": \"beatae\",\n            \"label\": \"beatae\",\n            \"model_name\": \"division\"\n        },\n        {\n            \"value\": \"enim\",\n            \"label\": \"enim\",\n            \"model_name\": \"division\"\n        },\n        {\n            \"value\": \"quo\",\n            \"label\": \"quo\",\n            \"model_name\": \"division\"\n        },\n        {\n            \"value\": \"qui\",\n            \"label\": \"qui\",\n            \"model_name\": \"division\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "department option",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/component/package/settings/advance-approval/department",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"advance-approval",
+								"department"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/component/package/settings/advance-approval/department",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"advance-approval",
+										"department"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Mar 2024 04:57:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "209"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"Data Retrieved Successfully\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": [\n        {\n            \"value\": \"sales\",\n            \"label\": \"sales\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"Marketing\",\n            \"label\": \"Marketing\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"Finance\",\n            \"label\": \"Finance\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"HR\",\n            \"label\": \"HR\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"IT\",\n            \"label\": \"IT\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"rerum\",\n            \"label\": \"rerum\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"harum\",\n            \"label\": \"harum\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"quisquam\",\n            \"label\": \"quisquam\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"et\",\n            \"label\": \"et\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"quis\",\n            \"label\": \"quis\",\n            \"model_name\": \"department\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "location option",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/component/package/settings/advance-approval/department",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"advance-approval",
+								"department"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/component/package/settings/advance-approval/department",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"advance-approval",
+										"department"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 06 Mar 2024 04:57:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "209"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"Data Retrieved Successfully\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": [\n        {\n            \"value\": \"sales\",\n            \"label\": \"sales\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"Marketing\",\n            \"label\": \"Marketing\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"Finance\",\n            \"label\": \"Finance\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"HR\",\n            \"label\": \"HR\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"IT\",\n            \"label\": \"IT\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"rerum\",\n            \"label\": \"rerum\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"harum\",\n            \"label\": \"harum\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"quisquam\",\n            \"label\": \"quisquam\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"et\",\n            \"label\": \"et\",\n            \"model_name\": \"department\"\n        },\n        {\n            \"value\": \"quis\",\n            \"label\": \"quis\",\n            \"model_name\": \"department\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get content",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/component/package/settings/approval/component/get-content",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"approval",
+								"component",
+								"get-content"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success with content",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/component/package/settings/approval/component/get-content",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"approval",
+										"component",
+										"get-content"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 03 Mar 2024 08:36:29 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"No Content\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "store content",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"workspace\": \"workspace_id\",\n    \"approval_name\": \"information_update\",\n    \"approve_type\": \"anyone\",\n    \"advanced_settings_model\": null,\n    \"approval_hierarchy\": [\n        {\n            \"scope\": [\n                \"default\"\n            ],\n            \"who_can_make_requests\": [\n                {\n                    \"id\": \"account_owner\",\n                    \"model_name\": \"account_owner\"\n                }\n            ],\n            \"who_can_approve\": [\n                {\n                    \"id\": \"account_owner\",\n                    \"model_name\": \"account_owner\"\n                },\n                {\n                    \"id\": \"hr\",\n                    \"model_name\": \"people\"\n                },\n                {\n                    \"id\": [\n                        \"sales\"\n                    ],\n                    \"model_name\": \"role\"\n                }\n            ]\n        },\n        {\n            \"scope\": [\n                \"marketing\"\n            ],\n            \"who_can_make_requests\": [\n                {\n                    \"id\": \"IT\",\n                    \"model_name\": \"IT\"\n                }\n            ],\n            \"who_can_approve\": [\n                {\n                    \"id\": \"manager\",\n                    \"model_name\": \"manager\"\n                },\n                {\n                    \"id\": \"full_admin\",\n                    \"model_name\": \"full_admin\"\n                }\n            ]\n        },\n        {\n            \"scope\": [\n                \"it\"\n            ],\n            \"who_can_make_requests\": [\n                {\n                    \"id\": \"benefits_administrator\",\n                    \"model_name\": \"benefits_administrator\"\n                }\n            ],\n            \"who_can_approve\": [\n                {\n                    \"id\": \"full_admin\",\n                    \"model_name\": \"full_admin\"\n                },\n                {\n                    \"id\": \"manager\",\n                    \"model_name\": \"manager\"\n                }\n            ]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/component/package/settings/approval/component/store-content",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"approval",
+								"component",
+								"store-content"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"workspace\": \"workspace_id\",\n    \"approval_name\": \"information_update\",\n    \"approve_type\": \"anyone\",\n    \"advanced_settings_model\": null,\n    \"approval_hierarchy\": [\n        {\n            \"scope\": [\n                \"default\"\n            ],\n            \"who_can_make_requests\": [\n                {\n                    \"id\": \"account_owner\",\n                    \"model_name\": \"account_owner\"\n                }\n            ],\n            \"who_can_approve\": [\n                {\n                    \"id\": \"account_owner\",\n                    \"model_name\": \"account_owner\"\n                },\n                {\n                    \"id\": \"hr\",\n                    \"model_name\": \"people\"\n                },\n                {\n                    \"id\": [\n                        \"sales\"\n                    ],\n                    \"model_name\": \"role\"\n                }\n            ]\n        },\n        {\n            \"scope\": [\n                \"marketing\"\n            ],\n            \"who_can_make_requests\": [\n                {\n                    \"id\": \"IT\",\n                    \"model_name\": \"IT\"\n                }\n            ],\n            \"who_can_approve\": [\n                {\n                    \"id\": \"manager\",\n                    \"model_name\": \"manager\"\n                },\n                {\n                    \"id\": \"full_admin\",\n                    \"model_name\": \"full_admin\"\n                }\n            ]\n        },\n        {\n            \"scope\": [\n                \"it\"\n            ],\n            \"who_can_make_requests\": [\n                {\n                    \"id\": \"benefits_administrator\",\n                    \"model_name\": \"benefits_administrator\"\n                }\n            ],\n            \"who_can_approve\": [\n                {\n                    \"id\": \"full_admin\",\n                    \"model_name\": \"full_admin\"\n                },\n                {\n                    \"id\": \"manager\",\n                    \"model_name\": \"manager\"\n                }\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/component/package/settings/approval/component/store-content",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"approval",
+										"component",
+										"store-content"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 07 Mar 2024 04:48:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "410"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"Data Inserted Successfully\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": {\n        \"approval_name\": \"information_update\",\n        \"approve_type\": \"anyone\",\n        \"advanced_settings_model\": null,\n        \"approval_hierarchy\": [\n            {\n                \"scope\": [\n                    \"default\"\n                ],\n                \"who_can_make_requests\": [\n                    {\n                        \"id\": \"account_owner\",\n                        \"model_name\": \"account_owner\"\n                    }\n                ],\n                \"who_can_approve\": [\n                    {\n                        \"id\": \"account_owner\",\n                        \"model_name\": \"account_owner\"\n                    },\n                    {\n                        \"id\": \"hr\",\n                        \"model_name\": \"people\"\n                    },\n                    {\n                        \"id\": [\n                            \"sales\"\n                        ],\n                        \"model_name\": \"role\"\n                    }\n                ]\n            },\n            {\n                \"scope\": [\n                    \"marketing\"\n                ],\n                \"who_can_make_requests\": [\n                    {\n                        \"id\": \"IT\",\n                        \"model_name\": \"IT\"\n                    }\n                ],\n                \"who_can_approve\": [\n                    {\n                        \"id\": \"manager\",\n                        \"model_name\": \"manager\"\n                    },\n                    {\n                        \"id\": \"full_admin\",\n                        \"model_name\": \"full_admin\"\n                    }\n                ]\n            },\n            {\n                \"scope\": [\n                    \"it\"\n                ],\n                \"who_can_make_requests\": [\n                    {\n                        \"id\": \"benefits_administrator\",\n                        \"model_name\": \"benefits_administrator\"\n                    }\n                ],\n                \"who_can_approve\": [\n                    {\n                        \"id\": \"full_admin\",\n                        \"model_name\": \"full_admin\"\n                    },\n                    {\n                        \"id\": \"manager\",\n                        \"model_name\": \"manager\"\n                    }\n                ]\n            }\n        ],\n        \"updated_at\": \"2024-03-07T04:48:01.141000Z\",\n        \"created_at\": \"2024-03-07T04:48:01.071000Z\",\n        \"_id\": \"65e9470162f76dcb14022ed3\",\n        \"workspace_id\": \"workspace_id\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "test save record",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/component/package/settings/approval/component/test-save-record",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"approval",
+								"component",
+								"test-save-record"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "test save record",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/component/package/settings/approval/component/test-save-record",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"approval",
+										"component",
+										"test-save-record"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Mar 2024 10:06:08 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "104"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"Data Retrieved Successfully\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": {\n        \"request_record\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "test update status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"65e6c36c1633f4c4330e1a02\",\n    \"status\": \"approve\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/component/package/settings/approval/component/test-update-status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"approval",
+								"component",
+								"test-update-status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "test update status",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"65e6c36c1633f4c4330e1a02\",\n    \"status\": \"approve\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/component/package/settings/approval/component/test-update-status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"component",
+										"package",
+										"settings",
+										"approval",
+										"component",
+										"test-update-status"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Mar 2024 08:43:29 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": {\n        \"success\": [\n            \"Data Retrieved Successfully\"\n        ]\n    },\n    \"tracer\": null,\n    \"data\": {\n        \"request_record\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "test approve",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "65e6c36c1633f4c4330e1a02",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "approve",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/component/package/settings/approval/component/test-approve",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"approval",
+								"component",
+								"test-approve"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "shared-module",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8886/component/package/settings/approval/component/get-structure",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8886",
+							"path": [
+								"component",
+								"package",
+								"settings",
+								"approval",
+								"component",
+								"get-structure"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Modules",
+			"item": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": ""
+		}
+	]
+}

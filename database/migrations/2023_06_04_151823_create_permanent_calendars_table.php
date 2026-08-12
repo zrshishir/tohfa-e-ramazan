@@ -17,14 +17,17 @@ return new class extends Migration
                     ->constrained()
                     ->cascadeOnUpdate();
             $table->string('day')->nullable();
-            $table->string('sehri_time')->nullable();
-            $table->string('fazr_time')->nullable();
-            $table->string('sunrise_time')->nullable();
-            $table->string('ishraq_time')->nullable();
-            $table->string('johr_time')->nullable();
-            $table->string('asr_time')->nullable();
-            $table->string('magrib_and_iftar_time')->nullable();
-            $table->string('esha_time')->nullable();
+            $table->json('sehri')->nullable();
+            $table->json('fazr')->nullable();
+            $table->json('sunrise')->nullable();
+            $table->json('ishraq')->nullable();
+            $table->json('johr')->nullable();
+            $table->json('asr')->nullable();
+            $table->json('magrib')->nullable();
+            $table->json('esha')->nullable();
+            $table->json('tahazzud')->nullable();
+            $table->json('jummah')->nullable();
+            $table->json('forbidden')->nullable();
             $table->timestamps();
         });
     }

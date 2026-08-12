@@ -37,7 +37,7 @@ class DistrictResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('division_id'),
+                Tables\Columns\TextColumn::make('division.name'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime(),

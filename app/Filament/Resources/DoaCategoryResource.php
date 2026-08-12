@@ -36,7 +36,7 @@ class DoaCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('user.name'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
