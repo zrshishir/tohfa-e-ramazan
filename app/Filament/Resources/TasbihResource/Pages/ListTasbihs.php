@@ -3,14 +3,14 @@
 namespace App\Filament\Resources\TasbihResource\Pages;
 
 use App\Filament\Resources\TasbihResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListTasbihs extends ListRecords
 {
     protected static string $resource = TasbihResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),

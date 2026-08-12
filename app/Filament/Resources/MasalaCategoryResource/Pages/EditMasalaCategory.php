@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\MasalaCategoryResource\Pages;
 
 use App\Filament\Resources\MasalaCategoryResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditMasalaCategory extends EditRecord
