@@ -7,6 +7,67 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-08-13
+
+### Security
+
+- **`.env` is no longer tracked in git.** It had been committed since January 2024 in a
+  **public** repository with 2 forks.
+
+  Auditing every version of the file for non-empty, non-placeholder values, the exposure
+  is narrow but includes the worst possible item:
+
+  | Key | Exposed | Assessment |
+  |---|---|---|
+  | `APP_KEY` | all 4 commits, one value, **still in use** | Live secret |
+  | `DB_PASSWORD` | 3 commits (2024) | `password` — the same value already public in `docker-compose.yml` |
+  | `MAIL_USERNAME`, `MAIL_PASSWORD`, `REDIS_PASSWORD` | — | Literal `null`, Laravel's placeholder |
+  | `AWS_*`, `PUSHER_*` | — | Empty throughout |
+
+  > **`APP_KEY` must be rotated — this change does not do that for you.** A known
+  > application key allows forging encrypted cookies and therefore sessions, forging
+  > signed URLs, and is a documented route to remote code execution through Laravel's
+  > decrypt-and-unserialize path.
+  >
+  > Rotation here is unusually cheap: nothing is encrypted at rest, and Sanctum tokens are
+  > SHA-256 hashed rather than encrypted, so mobile users are unaffected. Only admin
+  > sessions drop. See `docs/env-and-secrets.md`.
+
+  History is deliberately **not** rewritten. The repository is public and forked, so the
+  objects survive a rewrite; rotation is the only remedy that works, and a rewrite would
+  break every existing clone for no benefit.
+
+- **`.dockerignore` added**, excluding `.env` so the image cannot carry one. Previously
+  there was no `.dockerignore` at all, so `COPY ./ ./` baked the committed `.env` —
+  including `APP_ENV=local` and `APP_DEBUG=true` — into the production image. Laravel's
+  dotenv is immutable so real environment variables still won, but any key the environment
+  did not set fell through to those values, which in production means debug stack traces.
+
+### Fixed
+
+- **The image was shipping the developer's `vendor/` directory.** `composer install` runs
+  early in the Dockerfile and writes `vendor/` inside the container, but the later
+  `COPY ./ ./` overwrote it with whatever was on the host — resolved against macOS and the
+  developer's PHP version. `.dockerignore` now excludes `vendor` and `node_modules`.
+
+### Changed
+
+- `.env.example` completed against every key the application actually reads: adds
+  `OCTANE_SERVER`, `OCTANE_HTTPS` and `SANCTUM_STATEFUL_DOMAINS`, and documents the three
+  values that must differ in production (`APP_ENV`, `APP_DEBUG`, `APP_URL`).
+
+### Notes
+
+- Local development is unaffected. `.env` stays on disk, and `docker-compose.yml`
+  bind-mounts the working directory, so the container still reads it.
+- CI was never affected: `test.yml` already ran `cp .env.example .env` followed by
+  `php artisan key:generate`.
+- `GOOGLE_MAPS_KEY` is read by `config/services.php` and used by `GET /api/geocode`, but
+  was **absent from `.env`** — geocoding has been running without a key.
+- `docs/env-and-secrets.md` records the audit, the rotation procedure with its verified
+  blast radius, and three commands to determine how production supplies its configuration
+  (which could not be established from the repository).
+
 ## [3.1.0] - 2026-08-13
 
 The second half of the framework upgrade. 3.0.0 moved to Laravel 11, which was necessary
