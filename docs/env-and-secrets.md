@@ -68,6 +68,40 @@ Non-breaking, all of it:
 
 ---
 
+## Before you pull: your local `.env` will be deleted
+
+**This bites everyone exactly once, so do it before you pull, not after.**
+
+```bash
+cp .env .env.local-backup
+```
+
+Untracking a file that git was previously tracking has a side effect that is easy to miss.
+When you check out or pull a commit where the file is deleted, git deletes it from your
+working directory too — it was still a tracked file at the point the change arrived, so
+removing it is exactly what git is supposed to do. The `.gitignore` entry only protects
+files git has never tracked.
+
+The symptom is unmistakable and alarming: **every route returns HTTP 500**, because Laravel
+has no `APP_KEY`. It looks like the upgrade broke the application. It has not.
+
+### Recovery, if you have already pulled
+
+```bash
+# The last commit that still contained the file
+git show origin/main:.env > .env
+
+# Then give this machine its own key — the published one must not be reused
+php artisan key:generate
+php artisan optimize:clear
+```
+
+Local and production must not share an `APP_KEY`. Restoring the old file gets you the
+correct database and mail settings back; `key:generate` replaces the one secret in it that
+is now public.
+
+---
+
 ## Rotating `APP_KEY`
 
 ### Blast radius — verified, not assumed
@@ -159,6 +193,7 @@ app has been serving traffic, something must already be overriding it.
 
 ## Checklist
 
+- [ ] **Back up `.env` before pulling** — git will delete it (see above)
 - [ ] Rotate `APP_KEY` in production — **the one that matters**
 - [ ] Use a different `APP_KEY` locally
 - [ ] Confirm `APP_DEBUG=false` and `APP_ENV=production` are set explicitly

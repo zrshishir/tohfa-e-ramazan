@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.1] - 2026-08-13
+
+### Documentation
+
+- **Pulling v3.2.0 deletes your local `.env`.** Untracking a previously-tracked file means
+  git removes it from the working directory when the deletion arrives — `.gitignore` only
+  protects files git has never tracked. The symptom is every route returning HTTP 500,
+  because Laravel has no `APP_KEY`, which looks exactly like the upgrade having broken the
+  application.
+
+  `docs/env-and-secrets.md` now leads with backing up `.env` before pulling, and documents
+  the recovery (`git show origin/main:.env > .env`, then `php artisan key:generate` so the
+  machine gets a key that is not the published one).
+
+  Found by hitting it: the API returned 500 across every endpoint after a routine pull,
+  and the cause was the missing file rather than anything in the upgrade.
+
 ## [3.2.0] - 2026-08-13
 
 ### Security
