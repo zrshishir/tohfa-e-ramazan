@@ -7,6 +7,52 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-08-13
+
+The second half of the framework upgrade. 3.0.0 moved to Laravel 11, which was necessary
+for Filament 3 but did not clear the outstanding advisories — all three are fixed only in
+the 12.x line. **`composer audit` is now clean and the ignore list is gone.**
+
+### Security
+
+- **All three ignored advisories resolved**, and `config.policy.advisories.ignore-id`
+  removed from `composer.json` entirely:
+
+  | Advisory | Severity | Title | Fixed in |
+  |---|---|---|---|
+  | `PKSA-3r5d-mb8f-1qw9` | high | CRLF injection in the default email rule | 12.60.0 |
+  | `PKSA-mdq4-51ck-6kdq` | — (CVE-2026-48019) | CRLF injection in the default email rule | 12.60.0 |
+  | `PKSA-m5cs-t1y6-qpcs` | medium | Temporary signed URL path confusion | 12.61.1 |
+
+  A fourth entry, `PKSA-zwc5-qtrz-zm1n`, was already stale and is dropped with the rest.
+
+  `composer audit` reports **no advisories**. The framework floor is pinned at
+  `^12.61.1` rather than `^12.0` so the fixes cannot be resolved away.
+
+### Changed
+
+- **Laravel 11.55.0 → 12.66.0.**
+- PHPUnit 10.5 → 11.5.56 and `nunomaduro/collision` 8.5 → 8.9.5. Not optional: Collision
+  8.6+ is the first release compatible with Laravel 12, and it requires PHPUnit 11.
+- `phpunit.xml` now references the 11.5 schema.
+
+- **Test metadata moved from doc-comments to attributes.** `@dataProvider` is deprecated in
+  PHPUnit 11 and removed in 12; `ModelFillableTest` and `FilamentResourceTest` now use
+  `#[DataProvider]`. The suite runs with **zero deprecation notices**.
+
+### Notes
+
+- All 284 tests pass unchanged. No application code needed modifying for Laravel 12 — the
+  work was confined to the test tooling.
+- Verified against the live database as well as the fixture suite: all 18 admin resources
+  render, and `today-prayer`, `ramazan-calendar`, `sura`, `ayat`, `doa-category` and
+  `asmaul-husna` all serve real data.
+- No migration uses `->change()`, so the Laravel 11 removal of doctrine/dbal-backed column
+  changes has no effect here. `doctrine/dbal` remains in the tree only because
+  `filament/support` requires it.
+- The PHP floor is unchanged at `^8.2`, so the container image and the `config.platform`
+  pin introduced in 3.0.0 both still hold.
+
 ## [3.0.0] - 2026-08-12
 
 Laravel 10 → 11 and Filament 2 → 3. Laravel 10 left security support in February 2025,

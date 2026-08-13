@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 /**
@@ -63,9 +64,9 @@ class FilamentResourceTest extends TestCase
      * half-converted can still be discovered by the panel while pointing at a page class
      * that no longer exists.
      *
-     * @dataProvider resourceProvider
      * @param class-string<Resource> $class
      */
+    #[DataProvider('resourceProvider')]
     public function test_resource_pages_are_registered_and_loadable(string $class): void
     {
         $pages = $class::getPages();
@@ -87,9 +88,9 @@ class FilamentResourceTest extends TestCase
      * actions and bulk actions. This is where a stale Filament\Pages\Actions import or a
      * bulk action left in the v2 namespace surfaces.
      *
-     * @dataProvider resourceProvider
      * @param class-string<Resource> $class
      */
+    #[DataProvider('resourceProvider')]
     public function test_list_page_renders(string $class): void
     {
         Livewire::test($class::getPages()['index']->getPage())
@@ -99,9 +100,9 @@ class FilamentResourceTest extends TestCase
     /**
      * Mounting the create page compiles the form schema, which the list page does not.
      *
-     * @dataProvider resourceProvider
      * @param class-string<Resource> $class
      */
+    #[DataProvider('resourceProvider')]
     public function test_create_page_renders(string $class): void
     {
         Livewire::test($class::getPages()['create']->getPage())
@@ -116,9 +117,9 @@ class FilamentResourceTest extends TestCase
      * model cannot store, saving writes null over real content — and the admin sees a
      * green "saved" notification while the data goes away.
      *
-     * @dataProvider resourceProvider
      * @param class-string<Resource> $class
      */
+    #[DataProvider('resourceProvider')]
     public function test_edit_page_round_trips_a_record_without_losing_data(string $class): void
     {
         $model = $class::getModel();
