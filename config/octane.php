@@ -11,10 +11,12 @@ use Laravel\Octane\Events\TickTerminated;
 use Laravel\Octane\Events\WorkerErrorOccurred;
 use Laravel\Octane\Events\WorkerStarting;
 use Laravel\Octane\Events\WorkerStopping;
+use Laravel\Octane\Listeners\CloseMonologHandlers;
 use Laravel\Octane\Listeners\CollectGarbage;
 use Laravel\Octane\Listeners\DisconnectFromDatabases;
 use Laravel\Octane\Listeners\EnsureUploadedFilesAreValid;
 use Laravel\Octane\Listeners\EnsureUploadedFilesCanBeMoved;
+use Laravel\Octane\Listeners\FlushOnce;
 use Laravel\Octane\Listeners\FlushTemporaryContainerInstances;
 use Laravel\Octane\Listeners\FlushUploadedFiles;
 use Laravel\Octane\Listeners\ReportException;
@@ -32,11 +34,16 @@ return [
     | when starting, restarting, or stopping your server via the CLI. You
     | are free to change this to the supported server of your choosing.
     |
-    | Supported: "roadrunner", "swoole"
+    | Supported: "roadrunner", "swoole", "frankenphp"
+    |
+    | Defaults to swoole because that is the only server the production image
+    | provides: the Dockerfile pecl-installs and enables the swoole extension and
+    | nothing else, so a missing OCTANE_SERVER previously left `octane:start`
+    | reaching for a RoadRunner binary that is not in the image.
     |
     */
 
-    'server' => env('OCTANE_SERVER', 'roadrunner'),
+    'server' => env('OCTANE_SERVER', 'swoole'),
 
     /*
     |--------------------------------------------------------------------------
@@ -101,6 +108,10 @@ return [
         ],
 
         OperationTerminated::class => [
+            // Laravel 11's once() helper memoizes per object instance. Under Octane the
+            // worker outlives the request, so without this flush a memoized value
+            // computed for one user is handed to the next one.
+            FlushOnce::class,
             FlushTemporaryContainerInstances::class,
             // DisconnectFromDatabases::class,
             // CollectGarbage::class,
@@ -112,7 +123,7 @@ return [
         ],
 
         WorkerStopping::class => [
-            //
+            CloseMonologHandlers::class,
         ],
     ],
 
@@ -224,5 +235,22 @@ return [
             'package_max_length' => 10 * 1024 * 1024,
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Octane Server State File
+    |--------------------------------------------------------------------------
+    |
+    | This value determines where Octane stores the state file used to track
+    | the running server's master process ID and admin endpoint, which is
+    | read by various Octane commands. You may tweak this if necessary.
+    |
+    | Added in Octane 2. Octane falls back to this same path when the key is
+    | absent, so it is stated here only to keep the file in step with the
+    | package's published configuration.
+    |
+    */
+
+    'state_file' => env('OCTANE_STATE_FILE', storage_path('logs/octane-server-state.json')),
 
 ];

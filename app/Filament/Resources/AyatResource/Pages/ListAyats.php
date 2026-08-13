@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\AyatResource\Pages;
 
 use App\Filament\Resources\AyatResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Resources\Components\Tab;
 use Illuminate\Database\Eloquent\Builder;
@@ -28,7 +28,7 @@ class ListAyats extends ListRecords
         return 'active';
     }
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),

@@ -3,14 +3,14 @@
 namespace App\Filament\Resources\TasbihResource\Pages;
 
 use App\Filament\Resources\TasbihResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditTasbih extends EditRecord
 {
     protected static string $resource = TasbihResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\ViewAction::make(),

@@ -6,9 +6,9 @@ use App\Filament\Resources\DoaCategoryResource\Pages;
 use App\Filament\Resources\DoaCategoryResource\RelationManagers;
 use App\Models\DoaCategory;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -17,7 +17,7 @@ class DoaCategoryResource extends Resource
 {
     protected static ?string $model = DoaCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'Doa';
 

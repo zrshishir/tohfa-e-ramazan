@@ -5,9 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\MasalaCategoryResource\Pages;
 use App\Models\MasalaCategory;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Support\Str;
 
@@ -15,7 +15,7 @@ class MasalaCategoryResource extends Resource
 {
     protected static ?string $model = MasalaCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'Content';
 
