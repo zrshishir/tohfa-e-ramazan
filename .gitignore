@@ -10,6 +10,12 @@
 /public/js/filament
 /storage/*.key
 /vendor
+# Never commit environment files. .env was tracked from January 2024 until v3.2.0, which
+# published the application key in a public repository — see docs/env-and-secrets.md.
+# .env.example is the only one that belongs in git.
+.env
+.env.*
+!.env.example
 .env.backup
 .env.production
 .phpunit.result.cache
