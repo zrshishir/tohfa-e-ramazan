@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-08-13
+
+### Added
+
+- **Content sync tooling** (`scripts/deploy/`), for pushing seeded content to a server
+  without touching anyone's account data.
+
+  A full database copy would have destroyed production's users, tasbih counters and
+  bookmarks. These scripts move the 18 content tables (42,035 rows) and leave the 7 user
+  tables alone.
+
+  - `content-tables.sh` — the single list of what is content and what is user data, shared
+    by both halves so they cannot disagree.
+  - `export-content.sh` — data-only dump. No `CREATE TABLE`: structure belongs to the
+    migrations, and recreating tables would drop the foreign keys `bookmarks` and `users`
+    depend on.
+  - `import-content.sh` — backs up the whole database first and refuses to run without
+    one, replaces content in a transaction, then verifies.
+
+  Three details that are easy to get wrong, handled explicitly:
+
+  - **`DELETE`, not `DROP`** — dropping the content tables would take the foreign keys
+    with them, including those pointing in from user tables.
+  - **`user_id` remapping** — `doas`, `doa_categories` and `mazhabs` carry a NOT NULL
+    `user_id` naming whoever created the row on the source machine. On the destination
+    that id is a different person, so the import repoints them at the destination's admin.
+  - **utf8mb4 throughout** — verified by MD5 over the whole of `ayats.arabic_text`,
+    `ayats.meaning` and `hadiths.bangla_text`; byte-identical after the round trip.
+
+  Tested against a copy of the real database seeded with extra users, their tasbih
+  counters and a bookmark, then deliberately damaged (all hadiths deleted, 100 ayats
+  corrupted): content repaired, every user row unchanged, no orphans.
+
+- **`docs/deployment.md`** — ordered runbook: configuration, code deploy, the single
+  migration, the optional content import, ten verification steps, and rollback.
+
+### Fixed
+
+- The import's orphan check counted `NULL` as an orphan. A bookmark may legitimately have
+  no `sura_id`, and the bare `LEFT JOIN` reported every one as broken — caught by the
+  script correctly refusing to report success on its own test run.
+
+- The scripts read `.env`, but a real environment variable now wins, matching Laravel's
+  dotenv precedence. Otherwise they would operate on a different database than the app.
+
+- Replaced `declare -A` with plain string entries: macOS ships bash 3.2, which has no
+  associative arrays, and the export half runs on a developer's Mac.
+
 ## [3.2.1] - 2026-08-13
 
 ### Documentation
