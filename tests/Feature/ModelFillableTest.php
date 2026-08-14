@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 /**
@@ -41,9 +42,9 @@ class ModelFillableTest extends TestCase
     }
 
     /**
-     * @dataProvider modelProvider
      * @param class-string<Model> $class
      */
+    #[DataProvider('modelProvider')]
     public function test_every_fillable_attribute_is_a_real_column(string $class): void
     {
         $model = new $class;
@@ -78,9 +79,9 @@ class ModelFillableTest extends TestCase
      * an integrity-constraint violation. Found in Sura (bangla_text) and Ayat
      * (ayat_no, notes) — both invisible because their seeders write via DB::table().
      *
-     * @dataProvider modelProvider
      * @param class-string<Model> $class
      */
+    #[DataProvider('modelProvider')]
     public function test_required_columns_are_fillable(string $class): void
     {
         if (DB::connection()->getDriverName() !== 'sqlite') {
@@ -117,9 +118,9 @@ class ModelFillableTest extends TestCase
      * A model with no $fillable and no $guarded override cannot be mass-assigned at all,
      * which is the same silent-data-loss failure from the other direction.
      *
-     * @dataProvider modelProvider
      * @param class-string<Model> $class
      */
+    #[DataProvider('modelProvider')]
     public function test_models_are_mass_assignable(string $class): void
     {
         $model = new $class;

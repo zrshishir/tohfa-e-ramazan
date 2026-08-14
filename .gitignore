@@ -3,8 +3,19 @@
 /public/build
 /public/hot
 /public/storage
+
+# Filament republishes these on every composer install via the filament:upgrade hook,
+# so committing them only creates conflicts and stale assets after a version bump.
+/public/css/filament
+/public/js/filament
 /storage/*.key
 /vendor
+# Never commit environment files. .env was tracked from January 2024 until v3.2.0, which
+# published the application key in a public repository — see docs/env-and-secrets.md.
+# .env.example is the only one that belongs in git.
+.env
+.env.*
+!.env.example
 .env.backup
 .env.production
 .phpunit.result.cache

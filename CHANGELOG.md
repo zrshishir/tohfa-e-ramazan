@@ -7,6 +7,273 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-08-13
+
+### Added
+
+- **Content sync tooling** (`scripts/deploy/`), for pushing seeded content to a server
+  without touching anyone's account data.
+
+  A full database copy would have destroyed production's users, tasbih counters and
+  bookmarks. These scripts move the 18 content tables (42,035 rows) and leave the 7 user
+  tables alone.
+
+  - `content-tables.sh` — the single list of what is content and what is user data, shared
+    by both halves so they cannot disagree.
+  - `export-content.sh` — data-only dump. No `CREATE TABLE`: structure belongs to the
+    migrations, and recreating tables would drop the foreign keys `bookmarks` and `users`
+    depend on.
+  - `import-content.sh` — backs up the whole database first and refuses to run without
+    one, replaces content in a transaction, then verifies.
+
+  Three details that are easy to get wrong, handled explicitly:
+
+  - **`DELETE`, not `DROP`** — dropping the content tables would take the foreign keys
+    with them, including those pointing in from user tables.
+  - **`user_id` remapping** — `doas`, `doa_categories` and `mazhabs` carry a NOT NULL
+    `user_id` naming whoever created the row on the source machine. On the destination
+    that id is a different person, so the import repoints them at the destination's admin.
+  - **utf8mb4 throughout** — verified by MD5 over the whole of `ayats.arabic_text`,
+    `ayats.meaning` and `hadiths.bangla_text`; byte-identical after the round trip.
+
+  Tested against a copy of the real database seeded with extra users, their tasbih
+  counters and a bookmark, then deliberately damaged (all hadiths deleted, 100 ayats
+  corrupted): content repaired, every user row unchanged, no orphans.
+
+- **`docs/deployment.md`** — ordered runbook: configuration, code deploy, the single
+  migration, the optional content import, ten verification steps, and rollback.
+
+### Fixed
+
+- The import's orphan check counted `NULL` as an orphan. A bookmark may legitimately have
+  no `sura_id`, and the bare `LEFT JOIN` reported every one as broken — caught by the
+  script correctly refusing to report success on its own test run.
+
+- The scripts read `.env`, but a real environment variable now wins, matching Laravel's
+  dotenv precedence. Otherwise they would operate on a different database than the app.
+
+- Replaced `declare -A` with plain string entries: macOS ships bash 3.2, which has no
+  associative arrays, and the export half runs on a developer's Mac.
+
+## [3.2.1] - 2026-08-13
+
+### Documentation
+
+- **Pulling v3.2.0 deletes your local `.env`.** Untracking a previously-tracked file means
+  git removes it from the working directory when the deletion arrives — `.gitignore` only
+  protects files git has never tracked. The symptom is every route returning HTTP 500,
+  because Laravel has no `APP_KEY`, which looks exactly like the upgrade having broken the
+  application.
+
+  `docs/env-and-secrets.md` now leads with backing up `.env` before pulling, and documents
+  the recovery (`git show origin/main:.env > .env`, then `php artisan key:generate` so the
+  machine gets a key that is not the published one).
+
+  Found by hitting it: the API returned 500 across every endpoint after a routine pull,
+  and the cause was the missing file rather than anything in the upgrade.
+
+## [3.2.0] - 2026-08-13
+
+### Security
+
+- **`.env` is no longer tracked in git.** It had been committed since January 2024 in a
+  **public** repository with 2 forks.
+
+  Auditing every version of the file for non-empty, non-placeholder values, the exposure
+  is narrow but includes the worst possible item:
+
+  | Key | Exposed | Assessment |
+  |---|---|---|
+  | `APP_KEY` | all 4 commits, one value, **still in use** | Live secret |
+  | `DB_PASSWORD` | 3 commits (2024) | `password` — the same value already public in `docker-compose.yml` |
+  | `MAIL_USERNAME`, `MAIL_PASSWORD`, `REDIS_PASSWORD` | — | Literal `null`, Laravel's placeholder |
+  | `AWS_*`, `PUSHER_*` | — | Empty throughout |
+
+  > **`APP_KEY` must be rotated — this change does not do that for you.** A known
+  > application key allows forging encrypted cookies and therefore sessions, forging
+  > signed URLs, and is a documented route to remote code execution through Laravel's
+  > decrypt-and-unserialize path.
+  >
+  > Rotation here is unusually cheap: nothing is encrypted at rest, and Sanctum tokens are
+  > SHA-256 hashed rather than encrypted, so mobile users are unaffected. Only admin
+  > sessions drop. See `docs/env-and-secrets.md`.
+
+  History is deliberately **not** rewritten. The repository is public and forked, so the
+  objects survive a rewrite; rotation is the only remedy that works, and a rewrite would
+  break every existing clone for no benefit.
+
+- **`.dockerignore` added**, excluding `.env` so the image cannot carry one. Previously
+  there was no `.dockerignore` at all, so `COPY ./ ./` baked the committed `.env` —
+  including `APP_ENV=local` and `APP_DEBUG=true` — into the production image. Laravel's
+  dotenv is immutable so real environment variables still won, but any key the environment
+  did not set fell through to those values, which in production means debug stack traces.
+
+### Fixed
+
+- **The image was shipping the developer's `vendor/` directory.** `composer install` runs
+  early in the Dockerfile and writes `vendor/` inside the container, but the later
+  `COPY ./ ./` overwrote it with whatever was on the host — resolved against macOS and the
+  developer's PHP version. `.dockerignore` now excludes `vendor` and `node_modules`.
+
+### Changed
+
+- `.env.example` completed against every key the application actually reads: adds
+  `OCTANE_SERVER`, `OCTANE_HTTPS` and `SANCTUM_STATEFUL_DOMAINS`, and documents the three
+  values that must differ in production (`APP_ENV`, `APP_DEBUG`, `APP_URL`).
+
+### Notes
+
+- Local development is unaffected. `.env` stays on disk, and `docker-compose.yml`
+  bind-mounts the working directory, so the container still reads it.
+- CI was never affected: `test.yml` already ran `cp .env.example .env` followed by
+  `php artisan key:generate`.
+- `GOOGLE_MAPS_KEY` is read by `config/services.php` and used by `GET /api/geocode`, but
+  was **absent from `.env`** — geocoding has been running without a key.
+- `docs/env-and-secrets.md` records the audit, the rotation procedure with its verified
+  blast radius, and three commands to determine how production supplies its configuration
+  (which could not be established from the repository).
+
+## [3.1.0] - 2026-08-13
+
+The second half of the framework upgrade. 3.0.0 moved to Laravel 11, which was necessary
+for Filament 3 but did not clear the outstanding advisories — all three are fixed only in
+the 12.x line. **`composer audit` is now clean and the ignore list is gone.**
+
+### Security
+
+- **All three ignored advisories resolved**, and `config.policy.advisories.ignore-id`
+  removed from `composer.json` entirely:
+
+  | Advisory | Severity | Title | Fixed in |
+  |---|---|---|---|
+  | `PKSA-3r5d-mb8f-1qw9` | high | CRLF injection in the default email rule | 12.60.0 |
+  | `PKSA-mdq4-51ck-6kdq` | — (CVE-2026-48019) | CRLF injection in the default email rule | 12.60.0 |
+  | `PKSA-m5cs-t1y6-qpcs` | medium | Temporary signed URL path confusion | 12.61.1 |
+
+  A fourth entry, `PKSA-zwc5-qtrz-zm1n`, was already stale and is dropped with the rest.
+
+  `composer audit` reports **no advisories**. The framework floor is pinned at
+  `^12.61.1` rather than `^12.0` so the fixes cannot be resolved away.
+
+### Changed
+
+- **Laravel 11.55.0 → 12.66.0.**
+- PHPUnit 10.5 → 11.5.56 and `nunomaduro/collision` 8.5 → 8.9.5. Not optional: Collision
+  8.6+ is the first release compatible with Laravel 12, and it requires PHPUnit 11.
+- `phpunit.xml` now references the 11.5 schema.
+
+- **Test metadata moved from doc-comments to attributes.** `@dataProvider` is deprecated in
+  PHPUnit 11 and removed in 12; `ModelFillableTest` and `FilamentResourceTest` now use
+  `#[DataProvider]`. The suite runs with **zero deprecation notices**.
+
+### Notes
+
+- All 284 tests pass unchanged. No application code needed modifying for Laravel 12 — the
+  work was confined to the test tooling.
+- Verified against the live database as well as the fixture suite: all 18 admin resources
+  render, and `today-prayer`, `ramazan-calendar`, `sura`, `ayat`, `doa-category` and
+  `asmaul-husna` all serve real data.
+- No migration uses `->change()`, so the Laravel 11 removal of doctrine/dbal-backed column
+  changes has no effect here. `doctrine/dbal` remains in the tree only because
+  `filament/support` requires it.
+- The PHP floor is unchanged at `^8.2`, so the container image and the `config.platform`
+  pin introduced in 3.0.0 both still hold.
+
+## [3.0.0] - 2026-08-12
+
+Laravel 10 → 11 and Filament 2 → 3. Laravel 10 left security support in February 2025,
+and three advisories sit in `policy.advisories.ignore-id` with no fixed release in the
+10.x line. Filament 2 does not support Laravel 11, so both had to move together.
+
+### Changed
+
+- **Laravel 10.50.2 → 11.55.0**, **Filament v2.17.59 → 3.3.54**, Livewire 2.12.8 → 3.8.4,
+  Octane 1.5.6 → 2.19.0, Sanctum 3.3.3 → 4.3.3, PHPUnit 9 → 10.5.64, PHP floor `^8.1` → `^8.2`.
+
+  The Laravel 10 application skeleton (`app/Http/Kernel.php`, `app/Console/Kernel.php`,
+  `app/Exceptions/Handler.php`) still works under 11 and is deliberately left in place.
+  Adopting the slim `bootstrap/app.php` layout is a separate change, not bundled here.
+
+- **All 18 Filament resources** converted to `Filament\Forms\Form` / `Filament\Tables\Table`,
+  with `Filament\Pages\Actions` renamed to `Filament\Actions` across 65 page classes.
+  `config/filament.php` is replaced by `App\Providers\Filament\AdminPanelProvider`.
+
+- `config/octane.php` brought in line with the Octane 2 defaults: added `state_file`, and
+  registered `CloseMonologHandlers` on `WorkerStopping`.
+
+- `OCTANE_SERVER` now defaults to `swoole` rather than `roadrunner`. The Dockerfile
+  pecl-installs swoole and nothing else, so the previous default meant a missing env var
+  left `octane:start` reaching for a RoadRunner binary that is not in the image.
+
+- Docker base image unpinned from `php:8.2.0` to `php:8.2`. The 8.2.0 patch shipped in
+  December 2022.
+
+- **`config.platform.php` pinned to `8.2`.** Resolving the lock file on a PHP 8.3 machine
+  pulled in `openspout/openspout` 4.32 and `laravel/pint` 1.30.5, both of which require
+  PHP 8.3 — producing a `composer.lock` that `composer.json` claimed to support on 8.2 but
+  that could not actually be installed there. The production image is PHP 8.2, so the
+  Docker build would have failed on it. Composer now always resolves for the lowest
+  supported version regardless of who runs the update.
+
+### Added
+
+- **`FlushOnce` listener on `OperationTerminated`.** Laravel 11 introduces the `once()`
+  helper, which memoizes per object instance. Octane workers outlive the request, so
+  without this flush a value memoized while serving one user is handed to the next.
+
+- **Panel access control (`User::canAccessPanel`).** Filament 2 had no access check, so
+  **every registered account — including every mobile app user — could sign in at `/admin`**
+  and edit hadith, duas, masa-el and prayer times. Access now requires `role = 'admin'`.
+
+  Filament 3 denies access outright when the user model does not implement `FilamentUser`
+  and the environment is not `local`, so without this the panel would have returned 403 to
+  everyone on deploy.
+
+  A migration grants the role to `admin@admin.com`. **No other account can reach the admin.**
+
+- **82 tests covering the admin panel**, where there were none:
+  - every resource's list, create and edit page is mounted for real;
+  - each resource round-trips a generated record through its edit form and asserts the
+    stored row is byte-identical afterwards, which is what catches a form that renders but
+    discards input;
+  - panel access is asserted over HTTP, because mounting a Livewire component directly
+    skips the middleware that enforces it.
+
+- `composer.json` gained the standard Laravel script hooks. The file previously had an
+  empty `scripts` block, so `package:discover` never ran after an install — which is why
+  `bootstrap/cache/packages.php` still referenced `Akaunting\Money\Provider`, a package
+  removed with Filament 2, and the application would not boot until the cache was deleted
+  by hand.
+
+### Fixed
+
+- **The admin user form could not be saved at all, and stored passwords in plaintext.**
+  `password` was `->required()` with no dehydration. The column is `$hidden` on the model,
+  so Filament could never fill the field and every edit failed validation on a field the
+  admin had no way to satisfy. Independently, the `User` model has no `hashed` cast, so
+  anything typed there was written to the column verbatim — an admin-set password could
+  never match at login.
+
+  The field is now required only on create, hashed on the way in, and left untouched when
+  submitted blank.
+
+- `phone` is no longer required on the user form. API registration does not collect a phone
+  number, so requiring one made every API-registered account unsaveable from the admin.
+
+### Security
+
+- Restricting `/admin` to `role = 'admin'` closes an unauthenticated-by-role hole: any user
+  who registered through the mobile app could previously log into the admin with their app
+  credentials.
+
+### Notes
+
+- Three advisories remain ignored in `composer.json`. They are fixed only in Laravel 12.60
+  and 12.61, so they clear in the next hop, not this one.
+- `.env` is tracked in this repository and contains the application key and database
+  credentials. Untracking and rotating it is worth doing, but it is deployment-affecting
+  and deliberately left out of this change.
+
 ## [2.8.1] - 2026-08-12
 
 ### Fixed

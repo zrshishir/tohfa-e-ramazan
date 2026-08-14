@@ -5,12 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends Resource
 {
@@ -31,14 +32,27 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength( 255 ),
+                // Not required: the API registration flow does not collect a phone
+                // number, so demanding one here made every API-registered user
+                // impossible to save from the admin.
                 Forms\Components\TextInput::make( 'phone' )
                     ->tel()
-                    ->required()
                     ->maxLength( 255 ),
                 Forms\Components\DateTimePicker::make( 'email_verified_at' ),
+                // Passwords are hashed on the way in and never on the way out.
+                //
+                // Previously this field was ->required() with no dehydration, which broke
+                // in both directions: the hash is $hidden on the model so the field always
+                // loaded empty, making every edit fail validation; and anything typed here
+                // was written to the column verbatim, storing a plaintext password that
+                // Hash::check() could never match on login.
                 Forms\Components\TextInput::make( 'password' )
                     ->password()
-                    ->required()
+                    ->revealable()
+                    ->required( fn ( string $operation ): bool => $operation === 'create' )
+                    ->dehydrated( fn ( ?string $state ): bool => filled( $state ) )
+                    ->dehydrateStateUsing( fn ( string $state ): string => Hash::make( $state ) )
+                    ->helperText( 'Leave blank to keep the current password.' )
                     ->maxLength( 255 ),
                 Forms\Components\TextInput::make( 'role' )
                     ->maxLength( 255 ),
