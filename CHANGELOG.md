@@ -73,10 +73,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   it matches what `AyatTableSeeder` already writes.
 
   The command targets `bangla_text = meaning` rather than blanking the column wholesale.
-  That distinction protects the **66 verses of genuine uccharon** rescued from the
-  pre-v3.3.0 production database — the only authentic pronunciation data in the project,
-  and unrecoverable if overwritten. `--dry-run` reports without writing, the command is
-  idempotent, and it fails loudly if the genuine-uccharon count changes.
+  That distinction keeps the command's scope to removing duplication rather than judging
+  content: 66 verses have a `bangla_text` that differs from `meaning`, and those are left
+  alone. They are **not** verified data — see the note below. `--dry-run` reports without
+  writing, the command is idempotent, and it fails if that count changes unexpectedly.
 
   Covered by 5 tests, one of which exists purely to prove the rescued rows survive.
 
@@ -133,9 +133,13 @@ surfaced.
 
 ### Notes
 
-- **66 ayats now carry genuine Bangla uccharon**, rescued from the pre-deploy production
-  database and re-applied after the import. They are the only authentic pronunciation data
-  in the project.
+- **66 ayats carry a `bangla_text` distinct from `meaning`**, recovered from the pre-deploy
+  production database and re-applied after the import.
+
+  These were later established to be **AI-generated, not authentic**, and a verse-alignment
+  check found **20 of the 66 carry the wrong verse's text** — 2:33 holding 2:34's
+  pronunciation, 2:8 holding Ayatul Kursi (2:255). They are retained pending review, not
+  because they are trusted.
 
   The remaining **6,170 rows still duplicate `meaning` into `bangla_text`** — the reader
   shows the translation in the pronunciation field. Left as-is by decision. Recorded here

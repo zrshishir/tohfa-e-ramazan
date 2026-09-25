@@ -25,17 +25,18 @@ use Illuminate\Support\Facades\DB;
  * first place. Until a licensed Bangla uccharon source exists, empty is the honest
  * value, and it matches what AyatTableSeeder now writes.
  *
- * Rows where the two columns genuinely differ are left alone. On production that is 66
- * verses rescued from the pre-v3.3.0 database — the only authentic uccharon in the
- * project, and the reason this command targets `bangla_text = meaning` rather than
- * blanking the column wholesale.
+ * Rows where the two columns differ are left alone. On production that is 66 verses
+ * recovered from the pre-v3.3.0 database. They are AI-generated and a verse-alignment
+ * check found 20 of them attached to the wrong verse, so they are retained for review
+ * rather than trusted. Either way this command's job is removing duplication, not judging
+ * content, which is why it targets `bangla_text = meaning` rather than the whole column.
  */
 class BlankDuplicatedUccharon extends Command
 {
     protected $signature = 'ayats:blank-duplicated-uccharon
                             {--dry-run : Report what would change without writing}';
 
-    protected $description = 'Clear bangla_text where it duplicates meaning, preserving genuine uccharon';
+    protected $description = 'Clear bangla_text where it duplicates meaning, leaving differing rows alone';
 
     public function handle(): int
     {
@@ -55,7 +56,7 @@ class BlankDuplicatedUccharon extends Command
         $this->newLine();
         $this->line("  Total ayats                        {$total}");
         $this->line("  bangla_text duplicating meaning    {$duplicated}");
-        $this->line("  genuine uccharon (left untouched)  {$genuine}");
+        $this->line("  differing, left untouched          {$genuine}");
         $this->newLine();
 
         if ($duplicated === 0) {

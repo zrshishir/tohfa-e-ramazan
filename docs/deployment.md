@@ -145,9 +145,10 @@ happened, and the subsequent `migrate` then ran against the old schema instead.
 ## Known issues
 
 **`bangla_text` duplicates `meaning` in 6,170 of 6,236 ayats.** The reader shows the Bangla
-translation in the pronunciation field. 66 verses hold genuine uccharon, rescued from the
-pre-v3.3.0 production database and re-applied after the import; they are the only authentic
-pronunciation data that exists. The seeder deliberately writes this column empty rather than
+translation in the pronunciation field. 66 verses hold a `bangla_text` distinct from
+`meaning`, recovered from the pre-v3.3.0 database — but these are **AI-generated and
+partly misaligned**: an alignment check found 20 of the 66 carry the wrong verse's text
+(2:8 holds Ayatul Kursi). They await review; do not treat them as verified. The seeder deliberately writes this column empty rather than
 duplicating the meaning, so **re-running `AyatTableSeeder` would blank all 6,236**, including
 those 66. Do not re-seed ayats without exporting them first. alquran.cloud publishes no
 Bengali transliteration edition; a licensed source is still needed.
