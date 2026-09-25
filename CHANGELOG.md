@@ -7,6 +7,68 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.0] - 2026-09-25
+
+First real deployment of v3.3.0 to the cPanel host, and the fixes that deployment
+surfaced.
+
+### Added
+
+- **Push-to-`main` deployment.** `.github/workflows/deploy.yml` runs the test suite, then
+  pipes `deploy/production.sh` to the server over SSH. A red build never reaches
+  production. Configured entirely through four repository secrets, so no host details or
+  credentials live in the repository.
+
+  Every guard in the script exists because it went wrong during the manual deploy:
+
+  - **A failed fetch is fatal.** The server had no authorised GitHub key, `git fetch`
+    failed, and `git reset --hard origin/main` reset to a **two-year-old cached**
+    `origin/main` — reporting success while moving production back 116 commits. The only
+    visible symptom was Composer complaining about an unrelated lock file. The script now
+    verifies the resolved SHA matches the commit being deployed.
+  - **`.env` is checked before and after.** It was tracked until v3.2.0, so checking out
+    any later commit deletes it and every route returns 500.
+  - **A failed deploy cannot leave the site down** — `artisan down` runs under a trap.
+  - **Five endpoints are curled afterwards**, and a non-200 fails the deploy.
+
+### Fixed
+
+- **`TrustProxies` now trusts the proxy.** `$proxies` was unset while production sits
+  behind Cloudflare, so Laravel ignored `X-Forwarded-Proto`, treated every request as plain
+  HTTP and generated `http://` redirects that Cloudflare bounced back — a redirect loop on
+  the admin login.
+
+- **`/privacy-policy` is a `Route::view` rather than a closure.** Laravel cannot serialise
+  closures, so that single route made `php artisan route:cache` fail for the entire
+  application and deploys had to skip route caching. Route caching is now enabled in the
+  deploy script. The route matters beyond performance — Google Play requires a reachable
+  privacy policy URL.
+
+### Changed
+
+- **`docs/deployment.md` rewritten for cPanel.** It previously described a Docker and
+  Octane deployment; the server runs neither. Following it would have meant looking for
+  containers that do not exist.
+
+### Notes
+
+- **66 ayats now carry genuine Bangla uccharon**, rescued from the pre-deploy production
+  database and re-applied after the import. They are the only authentic pronunciation data
+  in the project.
+
+  The remaining **6,170 rows still duplicate `meaning` into `bangla_text`** — the reader
+  shows the translation in the pronunciation field. Left as-is by decision. Recorded here
+  because `AyatTableSeeder` deliberately writes that column empty, so **re-seeding ayats
+  would blank all 6,236, those 66 included**. Export them first if that is ever run.
+  alquran.cloud publishes no Bengali transliteration edition, so a licensed source is still
+  the outstanding fix.
+
+- Production ran with `APP_ENV=local` and `APP_DEBUG=true` until this deploy — any error
+  exposed stack traces and configuration. Both corrected.
+
+- `GOOGLE_MAPS_KEY` was absent from production's `.env`, so `/api/geocode` has been running
+  without a key.
+
 ## [3.3.0] - 2026-08-13
 
 ### Added

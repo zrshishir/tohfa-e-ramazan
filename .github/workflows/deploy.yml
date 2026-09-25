@@ -1,0 +1,103 @@
+name: Deploy to production
+
+# Push to main deploys. The test suite must pass first — a red build never reaches
+# the server.
+#
+# Can also be run by hand from the Actions tab, which is the escape hatch when a
+# deploy needs repeating without a new commit.
+#
+# Required repository secrets (Settings → Secrets and variables → Actions):
+#
+#   DEPLOY_HOST      the real SSH hostname, not the Cloudflare-proxied domain
+#   DEPLOY_USER      cPanel username
+#   DEPLOY_PORT      SSH port (cPanel rarely uses 22)
+#   DEPLOY_SSH_KEY   private key of a DEDICATED deploy keypair — never a personal key
+#
+# Generate that keypair on your own machine, authorise the public half in cPanel's
+# SSH Access page, and paste only the private half into the secret. A separate key
+# means a repository compromise costs you one revocation rather than the hosting
+# account.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  # Two deploys running at once would fight over composer and the caches.
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Test before deploying
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Run the suite
+        run: php artisan test
+
+  deploy:
+    name: Deploy
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # The script is piped from the repository rather than kept on the server, so
+      # what runs is always what was reviewed in the pull request.
+      - name: Deploy over SSH
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          if [ -z "$DEPLOY_HOST" ]; then
+            echo "::error::DEPLOY_HOST is not set. Add the four DEPLOY_* secrets before enabling this workflow."
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          # Pin the host key rather than disabling checking, so a redirected
+          # connection fails instead of silently deploying somewhere else.
+          ssh-keyscan -p "$DEPLOY_PORT" -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+          ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" \
+              -o IdentitiesOnly=yes \
+              "$DEPLOY_USER@$DEPLOY_HOST" \
+              "bash -s -- ${{ github.sha }}" < deploy/production.sh
+
+      - name: Remove the key from the runner
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
+
+      - name: Summarise
+        if: always()
+        run: |
+          {
+            echo "### Deploy"
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Commit | \`${{ github.sha }}\` |"
+            echo "| Result | ${{ job.status }} |"
+            echo "| Site | https://prayerpulse.tazqiah.com |"
+          } >> "$GITHUB_STEP_SUMMARY"

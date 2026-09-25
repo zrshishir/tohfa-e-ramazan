@@ -1,214 +1,173 @@
-# Deploying v3.2.1 to production
+# Deploying
 
-Production is currently 13 commits behind. Those commits are Laravel 10 → 12,
-Filament 2 → 3, the admin access gate and the `.env` work. **All the functional fixes —
-iftar derivation, the ayat seeder, the auth endpoints — are already live**; nothing in this
-deploy changes what the API returns.
+Production runs on **cPanel shared hosting** — Apache/LiteSpeed with PHP-FPM, behind
+Cloudflare.
 
-Read `env-and-secrets.md` alongside this. `APP_KEY` rotation happens during this deploy.
-
----
-
-## What production will actually experience
+> An earlier version of this document described a Docker and Octane deployment. That was
+> wrong: `Dockerfile`, `docker-compose.yml` and `OCTANE_SERVER` exist in the repository but
+> describe a setup this project does not run. Following it would have sent you looking for
+> containers that aren't there.
 
 | | |
 |---|---|
-| New migrations | **1** — the admin-role backfill |
-| API response shapes | Unchanged |
-| Frontend | Already released; no app store submission needed |
-| Downtime | One container restart |
-| Admin sessions | Dropped, by design — `APP_KEY` rotates |
-| Mobile user sessions | **Unaffected** — Sanctum tokens are hashed, not encrypted |
+| Host | cPanel, user `tazqiahcp` |
+| App directory | `/home/tazqiahcp/subdomains/prayerpulse.tazqiah.com` |
+| Document root | that directory's `public/` |
+| PHP | 8.3 web **and** CLI |
+| Composer | `/opt/cpanel/composer/bin/composer` |
+| Database | MariaDB, `tazqiahcp_prayer_pulse` |
+| Edge | Cloudflare (proxied — the domain's DNS does not reach the origin) |
 
 ---
 
-## Before you start
+## Automatic deploys
 
-- [ ] **Back up your local `.env`** — `cp .env .env.local-backup`. Pulling deletes it. See
-      `env-and-secrets.md`; the symptom is every route returning 500.
-- [ ] Take a database backup you have **actually restored from once**. The content import
-      script takes its own, but that is not the same as knowing your restore works.
-- [ ] Decide how production receives configuration — the three commands in
-      `env-and-secrets.md` settle it. This matters now, because `.dockerignore` stops the
-      image carrying a `.env`.
+**Push to `main` and it deploys.** `.github/workflows/deploy.yml` runs the test suite,
+then pipes `deploy/production.sh` to the server over SSH. A red build never reaches
+production. The same workflow can be run by hand from the Actions tab.
 
----
+### One-time setup
 
-## 1. Configuration
+Four repository secrets (Settings → Secrets and variables → Actions):
 
-Set these in production's environment (host panel, orchestrator, compose `environment:`,
-or `--env-file`) — **not** in a committed file:
+| Secret | Value |
+|---|---|
+| `DEPLOY_HOST` | the real SSH hostname — **not** the Cloudflare-proxied domain |
+| `DEPLOY_USER` | `tazqiahcp` |
+| `DEPLOY_PORT` | cPanel's SSH port (rarely 22) |
+| `DEPLOY_SSH_KEY` | private half of a **dedicated** deploy keypair |
 
-```
-APP_KEY=<new value from `php artisan key:generate --show`>
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://prayerpulse.tazqiah.com
-OCTANE_SERVER=swoole
-GOOGLE_MAPS_KEY=<IP-restricted key>
-DB_HOST=... DB_DATABASE=... DB_USERNAME=... DB_PASSWORD=...
-```
-
-`APP_DEBUG=false` and `APP_ENV=production` must be set **explicitly**. Do not rely on them
-being absent — until now the image carried a `.env` with `APP_DEBUG=true`, and anything the
-environment did not set fell through to it.
-
-`GOOGLE_MAPS_KEY` was never in `.env` at all, so `GET /api/geocode` has been running
-without a key.
-
----
-
-## 2. Deploy the code
+Generate a keypair specifically for deployment — never reuse a personal key:
 
 ```bash
-git checkout main && git pull            # after the release PR merges
-docker compose build --no-cache          # picks up the new .dockerignore
-docker compose up -d
+ssh-keygen -t ed25519 -C "prayerpulse-deploy" -f ~/.ssh/prayerpulse_deploy -N ""
+cat ~/.ssh/prayerpulse_deploy.pub     # authorise this in cPanel → SSH Access
+cat ~/.ssh/prayerpulse_deploy         # paste this into DEPLOY_SSH_KEY
 ```
 
-The build now runs `composer install --no-scripts`, copies the application, then
-`composer dump-autoload`, which is what publishes Filament's assets and regenerates
-`bootstrap/cache/packages.php`.
-
-If your deploy does not rebuild the image, delete the stale manifest by hand:
-
-```bash
-rm -f bootstrap/cache/packages.php bootstrap/cache/services.php
-```
-
-That file is why the application refused to boot mid-upgrade — it still referenced
-`Akaunting\Money\Provider`, a package that left with Filament 2.
+A separate key means a repository compromise costs one revocation rather than the whole
+hosting account.
 
 ---
 
-## 3. Migrate
+## What the deploy script guards against
+
+Every check in `deploy/production.sh` exists because it actually went wrong during the
+first manual deploy of v3.3.0.
+
+**A failed fetch must not look like success.** The server authenticated to GitHub over SSH
+without an authorised key, `git fetch` failed, and `git reset --hard origin/main` then
+reset to a **two-year-old cached** `origin/main`. The command reported success while moving
+production backwards by 116 commits, and the only visible symptom was Composer complaining
+about an unrelated lock file. The script now fails hard on a failed fetch and verifies the
+resolved SHA matches the commit being deployed.
+
+The remote is HTTPS rather than SSH, which needs no key at all while the repository is
+public.
+
+**`.env` must exist before and after.** It was tracked in git until v3.2.0, so checking out
+any later commit *deletes it* — `.gitignore` only protects files git never tracked. Every
+route then returns 500, which reads exactly like the deploy having broken the application.
+The script refuses to start without `.env` and re-checks after the reset.
+
+**A failed deploy must not leave the site down.** `artisan down` runs under a trap that
+brings it back up on any non-zero exit.
+
+**A deploy that "succeeds" but serves errors is not a success.** The script curls five
+endpoints afterwards and exits non-zero unless all return 200.
+
+---
+
+## Manual deploy
 
 ```bash
+cd ~/subdomains/prayerpulse.tazqiah.com
+bash deploy/production.sh
+```
+
+Or step by step, if you want to watch each part:
+
+```bash
+git fetch origin main --prune
+git reset --hard origin/main
+composer install --no-dev --optimize-autoloader --no-interaction
 php artisan migrate --force
-```
-
-One migration runs: `2026_08_12_000000_grant_admin_role_to_seeded_admin_user`. It sets
-`role = 'admin'` on `admin@admin.com` and touches nothing else.
-
-**Verified on a copy of the real 106 MB database**: rolled back, re-applied, 1.5 ms, all
-42,035 content rows untouched.
-
-> **If your admin account is not `admin@admin.com`**, the migration grants nobody the role
-> and **you will be locked out of `/admin` with a 403**. Fix with:
-> ```sql
-> UPDATE users SET role = 'admin' WHERE email = 'your@email';
-> ```
-
----
-
-## 4. Content import
-
-Only if production's content is stale — it has no hadiths, or its ayats still carry the
-Bangla translation in `bangla_text`. Check first:
-
-```sql
-SELECT (SELECT COUNT(*) FROM hadiths) AS hadiths,
-       (SELECT COUNT(*) FROM ayats)   AS ayats,
-       (SELECT COUNT(*) FROM ayats WHERE bangla_text = meaning) AS ayats_with_duplicated_meaning;
-```
-
-Local reference: **34,455 hadiths, 6,236 ayats, 0 duplicated**.
-
-If production differs, export locally and import on the server:
-
-```bash
-# local
-./scripts/deploy/export-content.sh
-scp storage/app/content-*.sql user@server:/path/to/app/
-
-# server
-./scripts/deploy/import-content.sh content-20260813-120000.sql
 php artisan optimize:clear
+php artisan config:cache && php artisan route:cache && php artisan view:cache
+chmod -R 775 storage bootstrap/cache
 ```
-
-### What the import does and does not touch
-
-**Replaced** (18 tables, 42,035 rows): countries, divisions, districts,
-district_wise_schedule_settings, months, permanent_calendars, mazhabs,
-mazhab_wise_schedule_settings, suras, ayats, doa_categories, doas, masala_categories,
-masalas, hadith_books, hadith_chapters, hadiths, asmaul_husnas.
-
-**Never touched**: users, tasbih, bookmarks, personal_access_tokens,
-password_reset_tokens, feedbacks, blogs.
-
-The script takes a full backup first and refuses to run without one, prints user-table
-counts before and after and fails if any changed, and checks for orphaned bookmarks and
-users afterwards.
-
-It uses `DELETE` rather than `DROP`, so the foreign keys that `bookmarks` and `users`
-depend on are never removed. `doas`, `doa_categories` and `mazhabs` carry a NOT NULL
-`user_id`; those are remapped to **production's** admin, because the exported id refers to
-a different person.
-
-### How this was tested
-
-Against a copy of the real database, seeded with three extra users, their tasbih counters
-and a bookmark, then deliberately damaged — all hadiths deleted and 100 ayats corrupted:
-
-- content repaired: 34,455 hadiths restored, 0 damaged ayats remaining
-- all 3 users, 4 tasbih rows and 2 bookmarks unchanged
-- no orphans
-- **Arabic and Bangla byte-identical** — MD5 over the whole of `ayats.arabic_text`,
-  `ayats.meaning` and `hadiths.bangla_text` matches the source exactly
 
 ---
 
-## 5. Verify
+## Environment
 
-```bash
-curl -s -o /dev/null -w "%{http_code}\n" https://prayerpulse.tazqiah.com/api/today-prayer
+`.env` lives only on the server and is never committed. Required values:
+
+```
+APP_ENV=production
+APP_DEBUG=false                              # exposes config and stack traces if true
+APP_URL=https://prayerpulse.tazqiah.com
+APP_KEY=base64:...                           # rotate if ever exposed
+LOG_LEVEL=error                              # debug fills the disk quota on shared hosting
+DB_DATABASE=tazqiahcp_prayer_pulse
+GOOGLE_MAPS_KEY=...                          # /api/geocode needs it; IP-restrict it
 ```
 
-| # | Check | Expected |
-|---|---|---|
-| 5.1 | `GET /api/today-prayer` | 200, waqts plus derived `iftar` |
-| 5.2 | `GET /api/ramazan-calendar` | 200, 30 entries, current year |
-| 5.3 | `GET /api/sura`, `/api/ayat/1` | 200 |
-| 5.4 | `GET /api/hadith-books` | 200, 6 books |
-| 5.5 | An **existing** mobile token against `/api/auth/me` | 200 — proves the key rotation left Sanctum alone |
-| 5.6 | `/admin` signed out | 302 → `/admin/login` |
-| 5.7 | `/admin` as `admin@admin.com` | Dashboard loads |
-| 5.8 | `/admin` as an ordinary app user | **403** |
-| 5.9 | Trigger any error | No stack trace — confirms `APP_DEBUG=false` |
-| 5.10 | Edit and save a record in a few resources | Persists |
+`APP_ENV` and `APP_DEBUG` had been `local` and `true` in production until v3.3.0.
 
-5.5 and 5.8 are the two worth not skipping. 5.5 confirms the rotation did not log out
-every mobile user; 5.8 confirms the admin is no longer open to anyone with an account.
+Run `config:cache` **after** editing `.env` — it snapshots the values, so caching first
+bakes in whatever was there before.
+
+---
+
+## Database
+
+The content tables can be replaced from a local export without touching user accounts:
+
+```bash
+./scripts/deploy/export-content.sh          # local
+./scripts/deploy/import-content.sh dump.sql # server — backs up first, verifies after
+```
+
+For a full replacement, `mysqldump | gzip` locally, upload to `~/` via cPanel File Manager,
+then:
+
+```bash
+gunzip -c ~/dump.sql.gz | mysql -u USER -p DBNAME && echo "IMPORT OK"
+```
+
+**Keep the `&& echo`.** A failed `gunzip` pipes nothing into `mysql`, which exits cleanly
+having imported nothing — a failed import that looks identical to a successful one. That
+happened, and the subsequent `migrate` then ran against the old schema instead.
+
+---
+
+## Known issues
+
+**`bangla_text` duplicates `meaning` in 6,170 of 6,236 ayats.** The reader shows the Bangla
+translation in the pronunciation field. 66 verses hold genuine uccharon, rescued from the
+pre-v3.3.0 production database and re-applied after the import; they are the only authentic
+pronunciation data that exists. The seeder deliberately writes this column empty rather than
+duplicating the meaning, so **re-running `AyatTableSeeder` would blank all 6,236**, including
+those 66. Do not re-seed ayats without exporting them first. alquran.cloud publishes no
+Bengali transliteration edition; a licensed source is still needed.
+
+**`/api/masala-category` returns 404.** The route does not exist under that name. Present
+on local and production alike — not a deployment fault.
+
+**`/api/mazhabs` returns a positional array** (`["success",200,...]`) rather than the
+`{status,message,data}` envelope every other endpoint uses. Pre-existing inconsistency.
 
 ---
 
 ## Rollback
 
-Code:
-
 ```bash
-git checkout <previous main sha>
-docker compose build && docker compose up -d
+cd ~/subdomains/prayerpulse.tazqiah.com
+git reset --hard <previous-sha>
+composer install --no-dev --optimize-autoloader --no-interaction
+php artisan optimize:clear && php artisan config:cache
 ```
 
-The one migration is reversible (`php artisan migrate:rollback --step=1`), though leaving
-it applied is harmless — it only sets a role column.
-
-**Keep the old `APP_KEY` until you are satisfied.** Rolling the code back while the new key
-stays in place is fine; the two are independent.
-
-Database, if the content import went wrong — the script prints this path as it runs:
-
-```bash
-mysql -h <host> -u <user> -p <db> < storage/app/backup-before-content-import-<timestamp>.sql
-```
-
----
-
-## After
-
-- [ ] Confirm `composer audit` is clean on the deployed tree
-- [ ] Rotate the frontend Google Maps key — still outstanding, unrelated to this deploy
-- [ ] Device QA: notifications, Qibla, audio, account sync
-- [ ] `bangla_text` still needs a real Bangla *uccharon* source; it is deliberately empty
-      rather than duplicating the meaning
+Migrations are forward-only in practice. The only migration in v3.3.0 sets a role column
+and is harmless to leave applied.
