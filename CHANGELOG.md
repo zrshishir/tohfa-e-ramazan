@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.5.0] - 2026-09-26
+
+### Added
+
+- **`php artisan ayats:blank-duplicated-uccharon`** — clears `bangla_text` wherever it
+  merely repeats `meaning`, leaving genuine pronunciation alone.
+
+  The two columns hold different things: `bangla_text` is the Bangla *uccharon* (how the
+  Arabic is pronounced), `meaning` is the translation. A seeder bug wrote the same
+  `bn.bengali` edition into both, so the reader's "pronunciation" and "meaning" toggles
+  rendered identical text — and anyone reciting from that field was reading a translation
+  aloud in place of the verse.
+
+  There is nothing correct to put there instead: alquran.cloud publishes only Turkish,
+  English and Russian transliterations, and requesting a made-up Bengali edition returned
+  Arabic with HTTP 200, which is how the duplication arose. Empty is the honest value, and
+  it matches what `AyatTableSeeder` already writes.
+
+  The command targets `bangla_text = meaning` rather than blanking the column wholesale.
+  That distinction protects the **66 verses of genuine uccharon** rescued from the
+  pre-v3.3.0 production database — the only authentic pronunciation data in the project,
+  and unrecoverable if overwritten. `--dry-run` reports without writing, the command is
+  idempotent, and it fails loudly if the genuine-uccharon count changes.
+
+  Covered by 5 tests, one of which exists purely to prove the rescued rows survive.
+
+### Notes
+
+- Run on production as `php artisan ayats:blank-duplicated-uccharon`. Expect **6,170
+  blanked and 66 retained**.
+- A licensed Bangla uccharon source remains the outstanding fix. Until then the reader
+  shows no pronunciation for 6,170 verses — preferable to showing the translation and
+  labelling it as pronunciation.
+
 ## [3.4.0] - 2026-09-25
 
 First real deployment of v3.3.0 to the cPanel host, and the fixes that deployment
