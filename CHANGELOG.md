@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.6.0] - 2026-09-26
+
+### Added
+
+- **`php artisan ayats:split-basmala`** — separates بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ from
+  the first ayat of each sura into its own row.
+
+  The alquran.cloud `quran-uthmani` edition prefixes the Basmala onto the *text of ayat 1*
+  for suras 2–114, so the reader showed it run together with the opening verse as though
+  it were part of it. **112 suras were affected.**
+
+  Three cases are excluded explicitly, each for a different reason:
+
+  | Sura | Why it is skipped |
+  |---|---|
+  | 1 (Al-Fatihah) | The Basmala genuinely *is* ayat 1 in the Hafs numbering |
+  | 9 (At-Tawbah) | Has no Basmala at all |
+  | 27:30 | The Basmala sits *inside* the verse, quoting Sulayman's letter |
+
+  **The Basmala is inserted as `ayat_no = 0`, not by renumbering.** Shifting every verse
+  by one would break the canonical 6,236 ayat count, invalidate saved bookmarks and make
+  every verse reference in the app wrong. Zero is the conventional marker for a
+  sura-opening Basmala and leaves 1..n untouched. The command verifies the numbered count
+  is still exactly 6,236 and fails if it is not.
+
+  Matching is done on the diacritic-stripped consonant skeleton, because the source spells
+  it at least two ways — بِسْمِ in most suras and بِّسْمِ (an extra shadda) in 95 and 97.
+  Comparing consonants catches any vowelling rather than a hardcoded list.
+
+### Fixed
+
+- **A UTF-8 BOM at the head of 200 verses.** Invisible, but it broke prefix matching,
+  sorting and copy-paste, and it defeated Basmala detection until stripped. Same origin as
+  the merge, so it is cleaned in the same command.
+
+  The BOM check runs in PHP rather than SQL: MySQL's utf8mb4 collation treats the BOM as
+  an *ignorable* character, so `LIKE '%<BOM>%'` matches every row in the table and reports
+  numbers unrelated to reality. Only a byte comparison is trustworthy — and it keeps the
+  command working on SQLite, which the tests use.
+
+### Notes
+
+- 8 tests, five of which assert what the command must **not** do — suras 1, 9 and 27:30
+  left untouched, no duplication on a second run, and nothing written on `--dry-run`.
+- Run on production with `php artisan ayats:split-basmala`. Expect 112 rows created and
+  the numbered count to stay at 6,236.
+
 ## [3.5.0] - 2026-09-26
 
 ### Added
@@ -26,10 +73,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   it matches what `AyatTableSeeder` already writes.
 
   The command targets `bangla_text = meaning` rather than blanking the column wholesale.
-  That distinction protects the **66 verses of genuine uccharon** rescued from the
-  pre-v3.3.0 production database — the only authentic pronunciation data in the project,
-  and unrecoverable if overwritten. `--dry-run` reports without writing, the command is
-  idempotent, and it fails loudly if the genuine-uccharon count changes.
+  That distinction keeps the command's scope to removing duplication rather than judging
+  content: 66 verses have a `bangla_text` that differs from `meaning`, and those are left
+  alone. They are **not** verified data — see the note below. `--dry-run` reports without
+  writing, the command is idempotent, and it fails if that count changes unexpectedly.
 
   Covered by 5 tests, one of which exists purely to prove the rescued rows survive.
 
@@ -86,9 +133,13 @@ surfaced.
 
 ### Notes
 
-- **66 ayats now carry genuine Bangla uccharon**, rescued from the pre-deploy production
-  database and re-applied after the import. They are the only authentic pronunciation data
-  in the project.
+- **66 ayats carry a `bangla_text` distinct from `meaning`**, recovered from the pre-deploy
+  production database and re-applied after the import.
+
+  These were later established to be **AI-generated, not authentic**, and a verse-alignment
+  check found **20 of the 66 carry the wrong verse's text** — 2:33 holding 2:34's
+  pronunciation, 2:8 holding Ayatul Kursi (2:255). They are retained pending review, not
+  because they are trusted.
 
   The remaining **6,170 rows still duplicate `meaning` into `bangla_text`** — the reader
   shows the translation in the pronunciation field. Left as-is by decision. Recorded here

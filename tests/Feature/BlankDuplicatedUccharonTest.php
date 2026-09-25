@@ -8,9 +8,10 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
- * The command has one job that matters: blank the duplicates without touching the
- * genuine uccharon. On production only 66 verses carry real pronunciation data, and
- * they exist nowhere else, so a blanket update would be unrecoverable.
+ * The command has one job that matters: blank the duplicates without touching rows where
+ * bangla_text differs from meaning. On production that is 66 verses which exist nowhere
+ * else, so a blanket update would be unrecoverable — whether or not they turn out to be
+ * correct, destroying them removes the chance to review them.
  */
 class BlankDuplicatedUccharonTest extends TestCase
 {
